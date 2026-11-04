@@ -9,6 +9,12 @@ A single-page wedding invitation for Ankit & Anjali (24 November 2026), built fr
 
 Features: Ganesh opening screen, marigold toran, falling petals, events with countdown, add-to-calendar and WhatsApp share, and an interactive **Shri Ganesh Aarti** mode (rotating aarti thali, bell, shankh, flower shower, and the lyrics of “Jai Ganesh Deva”).
 
+### Shehnai welcome
+When a guest taps “निमंत्रण खोलें”, a short shehnai tune (about 15 seconds, made in the browser) plays, and then the invitation music starts. The ♪ button stops it.
+
+### Invitation card image
+The “📥 निमंत्रण डाउनलोड करें” button draws a 1080×1920 invitation card (Ganesh ji, the couple, all events and the baraat details) and lets guests download it or share it straight to WhatsApp on phones. The card is drawn in the browser, so it only works when the page is opened from its web link (for example GitHub Pages), not as a local file.
+
 ### Aarti audio
 When the aarti starts, an instrumental *Jai Ganesh Deva* is played. It is generated in the browser (harmonium melody, tanpura drone, dholak, manjira and bells), so there is no audio file to download. The highlighted lyrics follow the music.
 

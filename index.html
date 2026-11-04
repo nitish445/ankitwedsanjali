@@ -218,6 +218,17 @@
   .lyrics p.cur{color:var(--gold3);transform:scale(1.04);text-shadow:0 0 14px rgba(255,190,90,.5)}
   .lyrics .refrain{color:var(--gold)}
 
+  #cardModal{position:fixed;inset:0;z-index:55;display:flex;flex-direction:column;align-items:center;overflow-y:auto;padding:20px 16px 32px;text-align:center;
+    background:rgba(20,4,24,.94);opacity:0;visibility:hidden;transition:opacity .4s, visibility .4s}
+  #cardModal.show{opacity:1;visibility:visible}
+  #cardModal .close{position:absolute;top:14px;right:14px;width:44px;height:44px;border-radius:50%;border:1px solid var(--gold);background:rgba(26,5,32,.7);color:var(--gold);font-size:20px;cursor:pointer}
+  #cardModal h2{font-size:clamp(24px,6vw,34px);margin-top:8px}
+  #cardModal .hint{color:var(--muted);font-size:15px}
+  .card-preview{position:relative;width:min(80vw,360px);aspect-ratio:9/16;margin:12px auto 4px;border:1px solid rgba(233,194,122,.5);border-radius:8px;overflow:hidden;background:#2a0a2e;box-shadow:0 18px 50px rgba(0,0,0,.5)}
+  .card-preview img{display:block;width:100%;height:100%;object-fit:contain}
+  .spinner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--gold)}
+  .spinner[hidden]{display:none}
+
   .petal{position:fixed;top:-40px;z-index:60;pointer-events:none;font-size:24px;will-change:transform;animation:fall linear forwards}
   @keyframes fall{to{transform:translate(var(--dx),110vh) rotate(var(--rot))}}
 
@@ -392,6 +403,7 @@
       <div class="actions">
         <a class="btn ghost" id="cal" target="_blank" rel="noopener">📅 कैलेंडर में जोड़ें</a>
         <a class="btn ghost" id="share" target="_blank" rel="noopener">💬 WhatsApp पर भेजें</a>
+        <button class="btn saffron" data-card>📥 निमंत्रण डाउनलोड करें</button>
       </div>
     </div>
   </section>
@@ -429,7 +441,10 @@
       <svg class="heart" style="margin:14px auto"><use href="#heart"/></svg>
       <p class="lead gold display">संग जरूर पधारेंगे।</p>
       <svg class="divider"><use href="#divider"/></svg>
-      <button class="btn saffron" data-open-aarti>🪔 श्री गणेश आरती</button>
+      <div class="actions">
+        <button class="btn saffron" data-open-aarti>🪔 श्री गणेश आरती</button>
+        <button class="btn ghost" data-card>📥 निमंत्रण डाउनलोड करें</button>
+      </div>
     </div>
   </section>
 </main>
@@ -442,6 +457,18 @@
 <button class="fab" id="aartiFab" aria-label="श्री गणेश आरती" title="श्री गणेश आरती" data-open-aarti hidden>🪔</button>
 <button class="fab" id="music" aria-label="संगीत चालू/बंद" title="संगीत" hidden>♪</button>
 <audio id="bgm" src="assets/invitation.mp4" loop preload="none"></audio>
+
+<!-- ============ CARD IMAGE ============ -->
+<div id="cardModal" role="dialog" aria-modal="true" aria-label="निमंत्रण कार्ड">
+  <button class="close" id="cardClose" aria-label="बंद करें">✕</button>
+  <h2 class="gold display">📥 निमंत्रण कार्ड</h2>
+  <p class="hint">इसे डाउनलोड करें या सीधे WhatsApp पर भेजें</p>
+  <div class="card-preview"><img id="cardImg" alt="अंकित संग अंजली — शुभ विवाह निमंत्रण कार्ड"><div class="spinner" id="cardSpin">कार्ड बन रहा है…</div></div>
+  <div class="actions">
+    <a class="btn saffron" id="cardDownload" download="Ankit-Anjali-Shubh-Vivah-Nimantran.jpg">📥 डाउनलोड करें</a>
+    <button class="btn ghost" id="cardShare" hidden>💬 WhatsApp / शेयर करें</button>
+  </div>
+</div>
 
 <!-- ============ AARTI ============ -->
 <div id="aarti" role="dialog" aria-modal="true" aria-label="श्री गणेश आरती">
@@ -534,10 +561,16 @@
   $('#open').addEventListener('click', () => {
     cover.classList.add('hide'); document.body.classList.remove('locked');
     musicBtn.hidden = false; aartiFab.hidden = false;
-    playMusic(); burst(26);
+    burst(26);
+    // Shehnai welcome tune first, then the invitation music
+    musicWanted = true; musicBtn.classList.add('on');
+    Shehnai.play(() => { if (musicWanted && vid.paused && !aarti.classList.contains('show')) playMusic(); });
   });
-  musicBtn.addEventListener('click', () => bgm.paused ? playMusic() : stopMusic());
-  vid.addEventListener('play', () => stopMusic());
+  musicBtn.addEventListener('click', () => {
+    if (Shehnai.playing){ Shehnai.stop(); stopMusic(); return; }
+    bgm.paused ? playMusic() : stopMusic();
+  });
+  vid.addEventListener('play', () => { Shehnai.stop(); stopMusic(); });
 
   /* ---------- reveal ---------- */
   const io = new IntersectionObserver(es => es.forEach(e => {
@@ -802,7 +835,7 @@
     if (soundOn) startAudio(); else { stopAudio(); lyricTimer = setInterval(nextLine, 5200); }
   });
   function openAarti(){
-    resumeMusic = !bgm.paused; stopMusic(true);
+    resumeMusic = !bgm.paused || Shehnai.playing; Shehnai.stop(); stopMusic(true);
     aarti.classList.add('show'); document.body.classList.add('locked');
     requestAnimationFrame(() => { place(); loop(); });
   }
@@ -832,6 +865,222 @@
   stage.addEventListener('pointermove', e => { if (dragging) angle = angleFrom(e); });
   const endDrag = () => { dragging = false; };
   stage.addEventListener('pointerup', endDrag); stage.addEventListener('pointercancel', endDrag);
+
+  /* ---------- shehnai welcome tune (Web Audio) ---------- */
+  const Shehnai = (() => {
+    const SA = 440; // A4
+    const F = { 'P.':3/4, 'D.':5/6, 'N.':15/16, S:1, R:9/8, G:5/4, Mt:45/32, M:4/3, P:3/2, D:5/3, N:15/8, "S'":2, "R'":9/4 };
+    // phrases: [note, beats, glideIn(seconds)]  — Yaman flavour (tivra Ma)
+    const PHRASES = [
+      [['P.',0,0],['S',2.5,.45],['N.',.5,.1],['R',.5,.12],['S',2.5,.3]],                                    // alaap
+      [['N.',.5,0],['R',.5,.08],['G',1.5,.12],['R',.5,.08],['G',.5,.06],['Mt',.5,.06],['P',2,.35]],
+      [['P',.5,0],['D',.5,.08],['N',.5,.08],["S'",2,.3],['N',.5,.1],['D',.5,.08],['P',1.5,.25]],
+      [['Mt',.5,0],['G',.5,.08],['R',.5,.08],['G',1,.1],['R',.5,.08],['S',.5,.08],['N.',1,.12],['R',.5,.1],['S',3,.35]],
+    ];
+    const spb = .5;
+    let a, master, nodes = [], timers = [], playing = false;
+
+    function phrase(notes, t0){
+      const o1 = a.createOscillator(), o2 = a.createOscillator(), mix = a.createGain();
+      o1.type = 'sawtooth'; o2.type = 'square';
+      const lfo = a.createOscillator(), lg = a.createGain(); lfo.frequency.value = 5.6; lg.gain.value = 0;
+      lfo.connect(lg); lg.connect(o1.frequency); lg.connect(o2.frequency);
+      const g1 = a.createGain(), g2 = a.createGain(); g1.gain.value = .6; g2.gain.value = .25;
+      o1.connect(g1); o2.connect(g2); g1.connect(mix); g2.connect(mix);
+      // nasal double-reed formants
+      const out = a.createGain(); out.gain.value = 0;
+      [[1150,5,1],[2700,6,.7],[620,3,.5]].forEach(([f,q,v]) => {
+        const bp = a.createBiquadFilter(), bg = a.createGain(); bp.type='bandpass'; bp.frequency.value=f; bp.Q.value=q; bg.gain.value=v;
+        mix.connect(bp); bp.connect(bg); bg.connect(out);
+      });
+      out.connect(master);
+      let t = t0, prev = 0;
+      notes.forEach(([n, beats, glide], i) => {
+        const f = SA * F[n], d = beats * spb;
+        [[o1,1],[o2,1.003]].forEach(([o,k]) => {
+          if (i === 0) o.frequency.setValueAtTime(f*k, t);
+          else { o.frequency.setValueAtTime(prev*k, t); o.frequency.linearRampToValueAtTime(f*k, t + glide); }  // meend
+        });
+        prev = f;
+        // gentle tonguing dip on short notes, vibrato grows on long notes
+        out.gain.setValueAtTime(i === 0 ? 0 : .5, t);
+        out.gain.linearRampToValueAtTime(.62, t + (i === 0 ? .18 : .05));
+        lg.gain.setValueAtTime(0, t); lg.gain.linearRampToValueAtTime(d > .9 ? f * .012 : f * .004, t + Math.min(d, .8));
+        t += d;
+      });
+      out.gain.setValueAtTime(.62, t - .05); out.gain.linearRampToValueAtTime(0, t + .25);
+      [o1,o2,lfo].forEach(o => { o.start(t0); o.stop(t + .3); nodes.push(o); });
+      return t;
+    }
+    function drone(t0, t1){
+      [[SA/2,.05],[SA*3/8,.035],[SA/4,.04]].forEach(([f,v]) => {
+        const o = a.createOscillator(), g = a.createGain(), lp = a.createBiquadFilter();
+        o.type='sawtooth'; o.frequency.value=f; lp.type='lowpass'; lp.frequency.value=800;
+        g.gain.setValueAtTime(0,t0); g.gain.linearRampToValueAtTime(v,t0+1.2); g.gain.setValueAtTime(v,t1-1); g.gain.linearRampToValueAtTime(0,t1+.5);
+        o.connect(lp); lp.connect(g); g.connect(master); o.start(t0); o.stop(t1+.6); nodes.push(o);
+      });
+    }
+    function dholak(t0, t1){
+      const K = [[1,.5],[1,.25],[0,.22],[0,.16],[0,.2],[0,.16],[1,.38],[0,.22]], step = spb;
+      for (let i = 0, t = t0; t < t1 - .2; i++, t += step){
+        const [low, vol] = K[i % 8], o = a.createOscillator(), g = a.createGain();
+        if (low){ o.frequency.setValueAtTime(150,t); o.frequency.exponentialRampToValueAtTime(55,t+.25); }
+        else { o.frequency.setValueAtTime(420,t); o.frequency.exponentialRampToValueAtTime(330,t+.08); }
+        g.gain.setValueAtTime(vol*.8,t); g.gain.exponentialRampToValueAtTime(.0001,t+(low?.35:.12));
+        o.connect(g); g.connect(master); o.start(t); o.stop(t+.4); nodes.push(o);
+      }
+    }
+    return {
+      get playing(){ return playing; },
+      play(onEnd){
+        try { a = ac(); } catch(e){ onEnd && onEnd(); return; }
+        playing = true; nodes = [];
+        master = a.createGain(); master.gain.value = .8;
+        const comp = a.createDynamicsCompressor(); master.connect(comp); comp.connect(a.destination);
+        const t0 = a.currentTime + .1;
+        let t = phrase(PHRASES[0], t0) + .15;
+        const rhythmStart = t;
+        for (let k = 1; k < PHRASES.length; k++) t = phrase(PHRASES[k], t) + .1;
+        drone(t0, t + .4); dholak(rhythmStart, t);
+        bell(.12);
+        timers.push(setTimeout(() => { if (!playing) return; playing = false; onEnd && onEnd(); }, (t - a.currentTime + .9) * 1000));
+      },
+      stop(){
+        if (!playing) return; playing = false; timers.forEach(clearTimeout); timers = [];
+        const m = master, t = a.currentTime; m.gain.cancelScheduledValues(t); m.gain.setValueAtTime(m.gain.value, t); m.gain.linearRampToValueAtTime(0, t + .4);
+        const ns = nodes; nodes = []; setTimeout(() => { ns.forEach(n => { try{ n.stop(); }catch(e){} }); m.disconnect(); }, 500);
+      }
+    };
+  })();
+
+  /* ---------- shareable invitation card (canvas → JPG) ---------- */
+  const cardModal = $('#cardModal'), cardImg = $('#cardImg'), cardSpin = $('#cardSpin'), cardDl = $('#cardDownload'), cardShare = $('#cardShare');
+  let cardBlob = null, cardUrl = null;
+
+  function loadImg(src){ return new Promise(res => { const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = src; }); }
+  async function buildCard(){
+    const W = 1080, H = 1920, c = document.createElement('canvas'); c.width = W; c.height = H;
+    const x = c.getContext('2d');
+    try { await Promise.all(['64px "Rozha One"','40px "Tiro Devanagari Hindi"','40px "Great Vibes"'].map(f => document.fonts.load(f, 'अंकित Ankit'))); } catch(e){}
+    const ganesh = await loadImg('assets/ganesh.webp');
+
+    // background
+    x.fillStyle = '#2a0a2e'; x.fillRect(0,0,W,H);
+    let g = x.createRadialGradient(W/2, 420, 50, W/2, 420, 1000); g.addColorStop(0,'#7a2584'); g.addColorStop(.55,'#3f0f46'); g.addColorStop(1,'#1a0520');
+    x.fillStyle = g; x.fillRect(0,0,W,H);
+    g = x.createRadialGradient(W/2, H, 50, W/2, H, 900); g.addColorStop(0,'rgba(122,37,132,.55)'); g.addColorStop(1,'rgba(0,0,0,0)');
+    x.fillStyle = g; x.fillRect(0,0,W,H);
+
+    const gold = (y0, y1) => { const l = x.createLinearGradient(0,y0,0,y1); l.addColorStop(0,'#fff1c9'); l.addColorStop(.45,'#e9c27a'); l.addColorStop(1,'#b8862f'); return l; };
+    const text = (t, y, font, fill, size) => { x.font = `${size}px ${font}`; x.fillStyle = fill || gold(y-size, y); x.textAlign = 'center'; x.textBaseline = 'alphabetic'; x.fillText(t, W/2, y); };
+
+    // corner mandalas
+    function mandala(cx, cy, r, alpha){
+      x.save(); x.translate(cx, cy); x.globalAlpha = alpha; x.strokeStyle = '#e9c27a'; x.lineWidth = 2;
+      [1,.92,.42,.3].forEach(k => { x.beginPath(); x.arc(0,0,r*k,0,Math.PI*2); x.stroke(); });
+      for (let i = 0; i < 12; i++){ x.rotate(Math.PI/6); x.beginPath(); x.moveTo(0,-r*.32); x.bezierCurveTo(r*.15,-r*.52,r*.15,-r*.72,0,-r*.88); x.bezierCurveTo(-r*.15,-r*.72,-r*.15,-r*.52,0,-r*.32); x.stroke(); }
+      x.restore();
+    }
+    mandala(0, H*.42, 260, .14); mandala(W, H*.42, 260, .14); mandala(0, H, 300, .14); mandala(W, H, 300, .14);
+
+    // borders
+    x.strokeStyle = gold(0,H); x.lineWidth = 4; x.strokeRect(36, 36, W-72, H-72);
+    x.lineWidth = 1.5; x.strokeStyle = 'rgba(233,194,122,.6)'; x.strokeRect(54, 54, W-108, H-108);
+    function corner(cx, cy, sx, sy){
+      x.save(); x.translate(cx, cy); x.scale(sx, sy); x.strokeStyle = gold(0,90); x.fillStyle = gold(0,90); x.lineWidth = 3;
+      x.beginPath(); x.moveTo(0,110); x.lineTo(0,22); x.quadraticCurveTo(0,0,22,0); x.lineTo(110,0); x.stroke();
+      x.beginPath(); x.moveTo(16,80); x.quadraticCurveTo(16,16,80,16); x.stroke();
+      x.beginPath(); x.moveTo(28,28); x.quadraticCurveTo(52,32,56,56); x.quadraticCurveTo(32,52,28,28); x.fill();
+      x.beginPath(); x.arc(10,10,5,0,Math.PI*2); x.fill(); x.restore();
+    }
+    corner(64,64,1,1); corner(W-64,64,-1,1); corner(64,H-64,1,-1); corner(W-64,H-64,-1,-1);
+
+    // marigold toran
+    x.save(); x.beginPath(); x.rect(54,54,W-108,200); x.clip();
+    const gap = 54;
+    for (let i = 0, cx = 54; cx < W - 40; i++, cx += gap){
+      x.fillStyle = '#3f8f3a'; x.beginPath(); x.moveTo(cx, 56); x.quadraticCurveTo(cx-11, 78, cx, 104); x.quadraticCurveTo(cx+11, 78, cx, 56); x.fill();
+      const sx = cx + gap/2, len = 3 + (i % 3 === 1 ? 3 : i % 2 ? 1 : 2);
+      for (let k = 0; k < len; k++){
+        const yy = 70 + k*20, mg = x.createRadialGradient(sx-3, yy-3, 1, sx, yy, 11);
+        mg.addColorStop(0, (k+i)%2 ? '#ffe9a0' : '#ffd25a'); mg.addColorStop(.6, (k+i)%2 ? '#ffc83a' : '#f7a21b'); mg.addColorStop(1, (k+i)%2 ? '#e09600' : '#d46a00');
+        x.fillStyle = mg; x.beginPath(); x.arc(sx, yy, 10.5, 0, Math.PI*2); x.fill();
+      }
+      x.fillStyle = '#c2185b'; const ty = 70 + len*20 - 6; x.beginPath(); x.moveTo(sx, ty); x.quadraticCurveTo(sx-8, ty+14, sx, ty+26); x.quadraticCurveTo(sx+8, ty+14, sx, ty); x.fill();
+    }
+    x.restore();
+
+    // divider
+    function divider(y){
+      x.strokeStyle = gold(y-10,y+10); x.fillStyle = gold(y-10,y+10); x.lineWidth = 2;
+      x.beginPath(); x.moveTo(W/2-260, y); x.lineTo(W/2-60, y); x.moveTo(W/2+60, y); x.lineTo(W/2+260, y); x.stroke();
+      x.beginPath(); x.moveTo(W/2, y-20); x.lineTo(W/2+20, y); x.lineTo(W/2, y+20); x.lineTo(W/2-20, y); x.closePath(); x.stroke();
+      x.beginPath(); x.arc(W/2, y, 6, 0, Math.PI*2); x.fill();
+      [[-60,1],[60,-1]].forEach(([dx,dir]) => { x.beginPath(); x.moveTo(W/2+dx, y); x.quadraticCurveTo(W/2+dx-dir*14, y-12, W/2+dx-dir*28, y); x.quadraticCurveTo(W/2+dx-dir*14, y+12, W/2+dx, y); x.fill(); });
+    }
+
+    // Ganesh
+    const gy = 400, gr = 150;
+    let hg = x.createRadialGradient(W/2, gy, 20, W/2, gy, gr+40); hg.addColorStop(0,'rgba(255,190,90,.45)'); hg.addColorStop(.6,'rgba(255,140,40,.12)'); hg.addColorStop(1,'rgba(255,140,40,0)');
+    x.fillStyle = hg; x.beginPath(); x.arc(W/2, gy, gr+40, 0, Math.PI*2); x.fill();
+    x.strokeStyle = gold(gy-gr, gy+gr); x.lineWidth = 3; x.beginPath(); x.arc(W/2, gy, gr+18, 0, Math.PI*2); x.stroke();
+    x.setLineDash([3,10]); x.lineWidth = 2; x.beginPath(); x.arc(W/2, gy, gr+32, 0, Math.PI*2); x.stroke(); x.setLineDash([]);
+    for (let i = 0; i < 16; i++){ const an = i*Math.PI/8, px = W/2 + Math.cos(an)*(gr+48), py = gy + Math.sin(an)*(gr+48);
+      x.save(); x.translate(px,py); x.rotate(an+Math.PI/2); x.fillStyle = gold(-10,10); x.beginPath(); x.moveTo(0,-11); x.quadraticCurveTo(8,0,0,11); x.quadraticCurveTo(-8,0,0,-11); x.fill(); x.restore(); }
+    if (ganesh) x.drawImage(ganesh, W/2 - gr*1.25, gy - gr*1.25, gr*2.5, gr*2.5);
+
+    text('॥ श्री गणेशाय नमः ॥', 650, '"Rozha One"', null, 46);
+    divider(700);
+    text('शुभ विवाह निमंत्रण', 805, '"Rozha One"', null, 92);
+    divider(860);
+
+    // couple
+    text('अंकित', 985, '"Rozha One"', null, 112);
+    x.font = '44px "Rozha One"'; x.fillStyle = gold(1010,1050); x.textAlign = 'center'; x.fillText('संग', W/2, 1052);
+    // little hearts beside sang
+    [[-90],[90]].forEach(([dx]) => { const hx = W/2+dx, hy = 1036; x.fillStyle = gold(hy-14,hy+14); x.beginPath(); x.moveTo(hx, hy+12); x.bezierCurveTo(hx-22, hy-2, hx-10, hy-20, hx, hy-8); x.bezierCurveTo(hx+10, hy-20, hx+22, hy-2, hx, hy+12); x.fill(); });
+    text('अंजली', 1160, '"Rozha One"', null, 112);
+    text('Ankit weds Anjali', 1235, '"Great Vibes"', '#e9c27a', 56);
+    divider(1280);
+
+    // events
+    text('शुभ कार्यक्रम', 1365, '"Rozha One"', null, 62);
+    const ev = [['शुभ तिलक','21 | 11 | 2026','शनिवार'],['हल्दी','22 | 11 | 2026','रविवार'],['शुभ विवाह','24 | 11 | 2026','मंगलवार'],['बारात विदाई','25 | 11 | 2026','बुधवार']];
+    ev.forEach(([n, d, wd], i) => {
+      const y = 1400 + i*82, main = i === 2;
+      x.fillStyle = main ? 'rgba(212,36,94,.28)' : 'rgba(26,5,32,.5)'; x.strokeStyle = main ? '#e9c27a' : 'rgba(233,194,122,.4)'; x.lineWidth = main ? 2.5 : 1.5;
+      x.beginPath(); x.roundRect ? x.roundRect(150, y, W-300, 68, 12) : x.rect(150, y, W-300, 68); x.fill(); x.stroke();
+      x.textAlign = 'left'; x.font = '42px "Rozha One"'; x.fillStyle = gold(y+10, y+56); x.fillText(n, 185, y+50);
+      x.textAlign = 'right'; x.font = '38px "Tiro Devanagari Hindi"'; x.fillStyle = '#f6e6c4'; x.fillText(d, W-320, y+48);
+      x.font = '30px "Tiro Devanagari Hindi"'; x.fillStyle = '#d8bf93'; x.fillText(wd, W-180, y+47);
+    });
+
+    // baraat note
+    text('बारात प्रस्थान: 24-11-2026, दोपहर 2 बजे', 1782, '"Tiro Devanagari Hindi"', '#fff1c9', 34);
+    text('ग्राम - मुन्शी डिहरी, नटवार, रोहतास से पटना के लिए', 1828, '"Tiro Devanagari Hindi"', '#d8bf93', 30);
+    text('Created by Nitish Kumar || Software Engineer', 1872, 'serif', 'rgba(216,191,147,.75)', 20);
+
+    return new Promise(res => { try { c.toBlob(b => res(b), 'image/jpeg', .92); } catch(e){ res(null); } });
+  }
+
+  async function openCard(){
+    cardModal.classList.add('show'); document.body.classList.add('locked');
+    if (cardBlob) return;
+    cardSpin.hidden = false;
+    cardBlob = await buildCard();
+    cardSpin.hidden = true;
+    if (!cardBlob){ cardSpin.hidden = false; cardSpin.textContent = 'कार्ड नहीं बन पाया — कृपया पेज को वेबसाइट लिंक से खोलें।'; return; }
+    cardUrl = URL.createObjectURL(cardBlob); cardImg.src = cardUrl; cardDl.href = cardUrl;
+    const file = new File([cardBlob], 'Ankit-Anjali-Shubh-Vivah-Nimantran.jpg', { type: 'image/jpeg' });
+    if (navigator.canShare && navigator.canShare({ files: [file] })){
+      cardShare.hidden = false;
+      cardShare.onclick = () => navigator.share({ files: [file], title: 'अंकित संग अंजली — शुभ विवाह निमंत्रण', text: '🪔 अंकित संग अंजली — शुभ विवाह निमंत्रण 🪔\n' + location.href }).catch(() => {});
+    }
+  }
+  function closeCard(){ cardModal.classList.remove('show'); if (cover.classList.contains('hide') && !aarti.classList.contains('show')) document.body.classList.remove('locked'); }
+  document.querySelectorAll('[data-card]').forEach(b => b.addEventListener('click', openCard));
+  $('#cardClose').addEventListener('click', closeCard);
+  addEventListener('keydown', e => { if (e.key === 'Escape' && cardModal.classList.contains('show')) closeCard(); });
 })();
 </script>
 </body>
