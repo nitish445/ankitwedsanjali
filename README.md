@@ -9,6 +9,19 @@ A single-page wedding invitation for Ankit & Anjali (24 November 2026), built fr
 
 Features: Ganesh opening screen, marigold toran, falling petals, events with countdown, add-to-calendar and WhatsApp share, and an interactive **Shri Ganesh Aarti** mode (rotating aarti thali, bell, shankh, flower shower, and the lyrics of “Jai Ganesh Deva”).
 
+### Video and PDF downloads
+The last card (and the card-image window) has **🎬 वीडियो डाउनलोड करें** and **📄 PDF डाउनलोड करें**:
+- `assets/downloads/Ankit-Anjali-Invitation-Video.mp4`: a ~47-second portrait video (720×1280) of the whole invitation, from the doors opening through every section to the card, with the music from the original video.
+- `assets/downloads/Ankit-Anjali-Invitation-{hi,bho,en}.pdf`: a 10-page, phone-sized PDF in Hindi, Bhojpuri and English. The button picks the language the guest is viewing.
+
+These files are made from the page itself. **After changing any text, rebuild them:**
+
+```bash
+node tools/build-downloads.js
+```
+
+It needs Node, Playwright (Chromium) and ffmpeg. Use `--pdf-only` or `--video-only` to rebuild just one, and `--music some-song.mp3` to use different music.
+
 ### Hindi / भोजपुरी / English
 The हिं | भो | EN switch in the top-left corner changes all the text, the quiz, the downloadable card and the share messages. The aarti lyrics and Sanskrit shloka stay in their traditional form in Hindi and Bhojpuri (Roman script in English). The choice is remembered on that phone. To send a link in a particular language, add `?lang=bho` (Bhojpuri) or `?lang=en` (English).
 
