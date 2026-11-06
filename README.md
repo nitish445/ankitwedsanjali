@@ -23,6 +23,10 @@ Guests tap the diya to light it for the yagya. Each lit diya joins the row below
 - **Scratch card**: scratch the gold foil to reveal “आपका इंतज़ार है!”.
 - **Rangoli maker**: pick colours and tap the pattern, or press “अपने आप भरें”.
 
+- **बारात की धूम 🥁**: “ढोल बजाओ” plays a baraat dhol beat (made in the browser) and the whole page bounces on the beat; the 🥁 button in the corner works from anywhere. “🎆 आतिशबाज़ी” launches fireworks.
+- **Wedding-day fireworks**: on 24 November (India time) fireworks go off automatically when the doors open. Preview with `?fireworks=1`.
+- **हल्दी की रस्म 💛**: tap or swipe to splash haldi on the couple; “धो दें” washes it off.
+
 ### Thank-you page
 From 26 November 2026 the page automatically switches to thank-you mode (“धन्यवाद — आपके आशीर्वाद से विवाह सम्पन्न हुआ”). Preview it any time with `?thanks=1`. To show wedding photos, put them in `assets/photos/` and list them in `THANK_PHOTOS` in `index.html`, e.g. `const THANK_PHOTOS = ['assets/photos/1.jpg', 'assets/photos/2.jpg'];`.
 

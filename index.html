@@ -392,6 +392,33 @@
   .gallery img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;border:1px solid rgba(233,194,122,.45)}
   .gallery .empty{grid-column:1/-1;color:var(--muted);padding:16px;border:1px dashed rgba(233,194,122,.4);border-radius:8px}
 
+  /* dhol */
+  .dhol{display:block;margin:6px auto 0;width:min(78vw,300px);border:0;background:none;cursor:pointer;transition:transform .15s}
+  .dhol svg{width:100%;display:block;filter:drop-shadow(0 14px 20px rgba(0,0,0,.45))}
+  .dhol .stick{transform-box:view-box}
+  .dhol .s1{transform-origin:30px 20px}
+  .dhol .s2{transform-origin:192px 22px}
+  .dhol.hitB .s1{animation:hitL .18s ease-out}
+  .dhol.hitT .s2{animation:hitR .14s ease-out}
+  .dhol.hitB svg{animation:thump .2s ease-out}
+  @keyframes hitL{50%{transform:rotate(14deg)}}
+  @keyframes hitR{50%{transform:rotate(-16deg)}}
+  @keyframes thump{50%{transform:scale(1.04)}}
+  .hint-sm{color:var(--muted);font-size:14px;margin-top:10px}
+  #fwCv{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:44}
+
+  /* haldi */
+  .haldi-wrap{position:relative;width:min(100%,380px);aspect-ratio:4/4.4;margin:16px auto 0;border-radius:14px;overflow:hidden;
+    border:1px solid rgba(233,194,122,.55);background:radial-gradient(circle at 50% 40%,#fff4d6,#f3d9a4 70%,#e5bf7a);box-shadow:0 14px 36px rgba(0,0,0,.4)}
+  .haldi-names{position:absolute;inset:0;display:flex;justify-content:space-around;align-items:center;padding:0 6%}
+  .hn{display:flex;flex-direction:column;align-items:center}
+  .hn span{font-size:clamp(70px,22vw,104px);line-height:1;filter:drop-shadow(0 6px 8px rgba(0,0,0,.25))}
+  .hn b{font-size:clamp(24px,6.5vw,32px);font-weight:400;margin-top:6px;
+    background:linear-gradient(180deg,#8a1e3c,#5a0a28);-webkit-background-clip:text;background-clip:text;color:transparent}
+  #haldiCv{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:crosshair}
+  .haldi-bowl{position:absolute;right:10px;bottom:8px;font-size:34px;pointer-events:none}
+  .haldi-count{min-height:1.6em;margin-top:10px;font-size:clamp(17px,4.6vw,20px);color:var(--gold3)}
+
   /* light a diya */
   .big-diya{display:block;margin:8px auto 0;width:150px;height:150px;border:0;background:radial-gradient(circle, rgba(255,170,60,.0), transparent 70%);
     border-radius:50%;cursor:pointer;transition:transform .2s, background .6s}
@@ -409,6 +436,8 @@
   @keyframes join{from{opacity:0;transform:translateY(-40px) scale(1.8)}to{opacity:1;transform:none}}
   .deep-count{color:var(--muted);font-size:15px;margin-top:8px}
   #music.on{animation:spin 6s linear infinite}
+  #dholFab{bottom:140px;background:radial-gradient(circle,#7a0e2a,#3a0514);border-color:#ff7aa2}
+  #dholFab.on{animation:beat .43s ease-in-out infinite}
   #aartiFab{bottom:78px;background:radial-gradient(circle,#5a1f00,#2a0a00);border-color:var(--marigold)}
   .fab[hidden]{display:none}
 
@@ -463,6 +492,7 @@
     .door{transition:none} #cover.opening .door{transform:none}
     .medallion,.names .n,.names .sang,.cover-content .en,.date-chip,#open,.tap-hint,.cover-content .om-line{animation:none;opacity:1}
     .door .half-mandala svg,.medallion::before{animation:none}
+    #dholFab.on,.dhol svg,.dhol .stick{animation:none}
     .mandala,.heart,#music.on,.gold,.strand,.halo img,.halo .ring,.halo .ring2,.monogram svg,.pulse,.halo::before{animation:none}
     .reveal{transition:none;opacity:1;transform:none}
   }
@@ -555,6 +585,9 @@
         <path d="M50 16 V84 M16 50 H84 M50 16 H80 M84 50 V80 M50 84 H20 M16 50 V20"/></g>
       <g fill="#e0242e"><circle cx="32" cy="32" r="6"/><circle cx="68" cy="32" r="6"/><circle cx="32" cy="68" r="6"/><circle cx="68" cy="68" r="6"/></g>
     </symbol>
+    <linearGradient id="dholShade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".25"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".35"/>
+    </linearGradient>
     <symbol id="diya" viewBox="0 0 100 100">
       <ellipse cx="50" cy="44" rx="10" ry="22" fill="url(#flameG)" class="flame"/>
       <ellipse cx="50" cy="52" rx="4" ry="10" fill="#fffbe6" opacity=".9" class="flame f2"/>
@@ -824,6 +857,55 @@
     </div>
   </section>
 
+  <!-- 6a4. Baraat: dhol + fireworks -->
+  <section id="baraat">
+    <div class="card reveal">
+      <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
+      <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
+      <h2 class="sub gold" data-en="Baraat Celebrations 🥁">बारात की धूम 🥁</h2>
+      <p style="color:var(--muted);font-size:16px" data-en="Play the dhol and light up the sky!">ढोल बजाइए और आसमान रोशन कीजिए!</p>
+      <svg class="divider"><use href="#divider"/></svg>
+      <button class="dhol" id="dholBig" aria-pressed="false" aria-label="ढोल बजाओ" data-en-aria="Play the dhol">
+        <svg viewBox="0 0 220 150" aria-hidden="true">
+          <g class="stick s1"><path d="M30 20 L78 62" stroke="#7a4a1a" stroke-width="7" stroke-linecap="round"/><path d="M26 16 q-6 -2 -4 -8" stroke="#7a4a1a" stroke-width="7" stroke-linecap="round" fill="none"/></g>
+          <g class="stick s2"><path d="M192 22 L150 62" stroke="#c99a3e" stroke-width="4" stroke-linecap="round"/></g>
+          <rect x="40" y="52" width="140" height="78" rx="18" fill="#a3122f"/>
+          <rect x="40" y="52" width="140" height="78" rx="18" fill="url(#dholShade)"/>
+          <path d="M52 56 L76 126 L100 56 L124 126 L148 56 L172 126" stroke="#ffe7b0" stroke-width="3" fill="none"/>
+          <rect x="40" y="58" width="140" height="6" fill="#e9c27a"/><rect x="40" y="118" width="140" height="6" fill="#e9c27a"/>
+          <ellipse cx="40" cy="91" rx="14" ry="40" fill="#f1dfb8" stroke="#b8862f" stroke-width="4"/>
+          <ellipse cx="180" cy="91" rx="14" ry="40" fill="#efd9a8" stroke="#b8862f" stroke-width="4"/>
+          <path d="M110 30 Q70 20 40 52 M110 30 Q150 20 180 52" stroke="#d4245e" stroke-width="3" fill="none"/>
+        </svg>
+      </button>
+      <div class="actions">
+        <button class="btn saffron" id="dholBtn" data-en="🥁 Play the Dhol">🥁 ढोल बजाओ</button>
+        <button class="btn ghost" id="fwBtn" data-en="🎆 Fireworks">🎆 आतिशबाज़ी</button>
+      </div>
+      <p class="hint-sm" data-en="Tip: the whole page dances to the dhol 😄">टिप: ढोल की ताल पर पूरा पेज नाचता है 😄</p>
+    </div>
+  </section>
+
+  <!-- 6a5. Haldi splash -->
+  <section id="haldi">
+    <div class="card reveal">
+      <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
+      <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
+      <h2 class="sub gold" data-en="Haldi Ceremony 💛">हल्दी की रस्म 💛</h2>
+      <p style="color:var(--muted);font-size:16px" data-en="Tap or swipe to put haldi on the couple!">टैप या स्वाइप करके दूल्हा-दुल्हन को हल्दी लगाइए!</p>
+      <div class="haldi-wrap" id="haldiWrap">
+        <div class="haldi-names" aria-hidden="true">
+          <div class="hn"><span>🤵</span><b class="gold display" data-en="Ankit">अंकित</b></div>
+          <div class="hn"><span>👰</span><b class="gold display" data-en="Anjali">अंजली</b></div>
+        </div>
+        <canvas id="haldiCv" aria-label="हल्दी लगाने की जगह" data-en-aria="Haldi area"></canvas>
+        <div class="haldi-bowl" aria-hidden="true">🥣</div>
+      </div>
+      <p class="haldi-count" id="haldiCount" aria-live="polite"></p>
+      <div class="actions"><button class="btn ghost" id="haldiClear" data-en="🧽 Wash it off">🧽 धो दें</button></div>
+    </div>
+  </section>
+
   <!-- 6b. Light a diya -->
   <section id="deep">
     <div class="card reveal">
@@ -872,6 +954,8 @@
 </footer>
 
 <button id="langBtn" aria-label="भाषा बदलें / Change language" title="हिंदी / English"><span data-l="hi" class="on">हिं</span><span data-l="en">EN</span></button>
+<button class="fab" id="dholFab" aria-label="ढोल बजाओ" title="ढोल" data-en-aria="Play the dhol" hidden>🥁</button>
+<canvas id="fwCv" aria-hidden="true"></canvas>
 <button class="fab" id="aartiFab" aria-label="श्री गणेश आरती" title="श्री गणेश आरती" data-open-aarti hidden>🪔</button>
 <button class="fab" id="music" aria-label="संगीत चालू/बंद" title="संगीत" hidden>♪</button>
 <audio id="bgm" src="assets/invitation.mp4" loop preload="none"></audio>
@@ -1028,7 +1112,7 @@
     setTimeout(() => { cover.classList.add('fade'); }, 1500);
     setTimeout(() => { cover.classList.add('hide'); document.body.classList.remove('cover-on'); }, 2300);
     document.body.classList.remove('locked');
-    musicBtn.hidden = false; aartiFab.hidden = false;
+    musicBtn.hidden = false; aartiFab.hidden = false; $('#dholFab').hidden = false;
     burst(26);
     // Shehnai welcome tune first, then the invitation music
     musicWanted = true; musicBtn.classList.add('on');
@@ -1751,6 +1835,174 @@
     const chip = $('.date-chip'); chip.innerHTML = '24 · 11 · 2026 <i></i> <span data-en="Married 💛">विवाह सम्पन्न 💛</span>';
     renderGallery(); langHooks.push(renderGallery);
   }
+
+  /* ---------- dhol (Web Audio) + page bounce ---------- */
+  const Dhol = (() => {
+    const BPM = 152, step = 60 / BPM / 2;           // eighth notes
+    const BASS = [1,0,0,1,0,0,1,0], TREB = [0,0,1,0,0,1,0,1];
+    let a, master, timer = null, next = 0, n = 0, playing = false, timeouts = [], noise;
+    const big = $('#dholBig'), page = document.querySelector('main');
+    function nbuf(){ if (noise) return noise; noise = a.createBuffer(1, a.sampleRate*.5, a.sampleRate); const d = noise.getChannelData(0); for (let i=0;i<d.length;i++) d[i] = Math.random()*2-1; return noise; }
+    function bass(t, v){
+      const o = a.createOscillator(), g = a.createGain();
+      o.type = 'sine'; o.frequency.setValueAtTime(110, t); o.frequency.exponentialRampToValueAtTime(48, t + .3);
+      g.gain.setValueAtTime(v, t); g.gain.exponentialRampToValueAtTime(.0001, t + .45);
+      o.connect(g); g.connect(master); o.start(t); o.stop(t + .5);
+      const ns = a.createBufferSource(), lp = a.createBiquadFilter(), ng = a.createGain();
+      ns.buffer = nbuf(); lp.type = 'lowpass'; lp.frequency.value = 500; ng.gain.setValueAtTime(v*.6, t); ng.gain.exponentialRampToValueAtTime(.0001, t + .09);
+      ns.connect(lp); lp.connect(ng); ng.connect(master); ns.start(t); ns.stop(t + .1);
+    }
+    function treb(t, v){
+      const o = a.createOscillator(), g = a.createGain();
+      o.type = 'triangle'; o.frequency.setValueAtTime(380, t); o.frequency.exponentialRampToValueAtTime(270, t + .08);
+      g.gain.setValueAtTime(v, t); g.gain.exponentialRampToValueAtTime(.0001, t + .14);
+      o.connect(g); g.connect(master); o.start(t); o.stop(t + .16);
+      const ns = a.createBufferSource(), bp = a.createBiquadFilter(), ng = a.createGain();
+      ns.buffer = nbuf(); bp.type = 'bandpass'; bp.frequency.value = 2600; bp.Q.value = 1.2; ng.gain.setValueAtTime(v*.7, t); ng.gain.exponentialRampToValueAtTime(.0001, t + .06);
+      ns.connect(bp); bp.connect(ng); ng.connect(master); ns.start(t); ns.stop(t + .07);
+    }
+    function tick(){
+      while (next < a.currentTime + .15){
+        const k = n % 8, bar = Math.floor(n / 8), t = next + (k % 2 ? .025 : 0);
+        if (BASS[k]){ bass(t, k === 0 ? .95 : .75); later(t, () => { if (!reduce) page.animate([{transform:'none'},{transform:'translateY(-7px) scale(1.006)'},{transform:'none'}], {duration:240, easing:'ease-out'}); flash(big,'hitB'); }); }
+        if (TREB[k]) { treb(t, .5); later(t, () => flash(big,'hitT')); }
+        if (bar % 4 === 3 && k === 7){ treb(t + step/3, .4); treb(t + 2*step/3, .45); }   // little fill every 4 bars
+        if (!BASS[k] && !TREB[k]) treb(t, .12);                                           // ghost notes
+        next += step; n++;
+      }
+    }
+    function later(t, fn){ timeouts.push(setTimeout(fn, Math.max(0, (t - a.currentTime) * 1000))); if (timeouts.length > 64) timeouts = timeouts.slice(-32); }
+    function flash(el, c){ el.classList.remove(c); void el.offsetWidth; el.classList.add(c); }
+    let resume = false;
+    function setUI(){
+      const lbl = playing ? tr('⏹ ढोल रोको','⏹ Stop the Dhol') : tr('🥁 ढोल बजाओ','🥁 Play the Dhol');
+      $('#dholBtn').textContent = lbl; $('#dholBtn').dataset.hi = playing ? '⏹ ढोल रोको' : '🥁 ढोल बजाओ'; $('#dholBtn').dataset.en = playing ? '⏹ Stop the Dhol' : '🥁 Play the Dhol';
+      big.setAttribute('aria-pressed', String(playing)); $('#dholFab').classList.toggle('on', playing);
+    }
+    return {
+      get playing(){ return playing; },
+      start(){
+        if (playing) return;
+        try { a = ac(); } catch(e){ return; }
+        resume = !bgm.paused || Shehnai.playing; Shehnai.stop(); stopMusic(true);
+        master = a.createGain(); master.gain.value = .9; const comp = a.createDynamicsCompressor(); master.connect(comp); comp.connect(a.destination);
+        playing = true; n = 0; next = a.currentTime + .08; tick(); timer = setInterval(tick, 40); setUI();
+      },
+      stop(){
+        if (!playing) return; playing = false; clearInterval(timer); timeouts.forEach(clearTimeout); timeouts = [];
+        const m = master, t = a.currentTime; m.gain.setValueAtTime(m.gain.value, t); m.gain.linearRampToValueAtTime(0, t + .25); setTimeout(() => m.disconnect(), 400);
+        setUI(); if (resume && musicWanted) playMusic();
+      },
+      toggle(){ playing ? this.stop() : this.start(); },
+      setUI
+    };
+  })();
+  ['#dholBtn','#dholBig','#dholFab'].forEach(sel => $(sel).addEventListener('click', () => Dhol.toggle()));
+  langHooks.push(() => Dhol.setUI());
+  vid.addEventListener('play', () => Dhol.stop());
+  document.querySelectorAll('[data-open-aarti]').forEach(b => b.addEventListener('click', () => Dhol.stop()));
+
+  /* ---------- fireworks ---------- */
+  const Fireworks = (() => {
+    const cv = $('#fwCv'), x = cv.getContext('2d'); let W, H, parts = [], rockets = [], until = 0, running = false;
+    function size(){ const dpr = Math.min(2, devicePixelRatio || 1); W = innerWidth; H = innerHeight; cv.width = W*dpr; cv.height = H*dpr; x.setTransform(dpr,0,0,dpr,0,0); }
+    size(); addEventListener('resize', size);
+    const PALS = [['#ffd27a','#fff1c9','#f7a21b'],['#ff7aa2','#d4245e','#fff1c9'],['#8fe08a','#ffd84a','#ffffff'],['#7fd4ff','#c69bff','#ffffff'],['#ff7a1a','#ffd84a','#ff4d4d']];
+    function boom(big){
+      try { const a = ac(), t = a.currentTime, b = a.createBuffer(1, a.sampleRate*.9, a.sampleRate), d = b.getChannelData(0);
+        for (let i=0;i<d.length;i++) d[i] = (Math.random()*2-1) * Math.pow(1 - i/d.length, 3);
+        const src = a.createBufferSource(), lp = a.createBiquadFilter(), g = a.createGain();
+        src.buffer = b; lp.type = 'lowpass'; lp.frequency.value = big ? 700 : 1200; g.gain.value = big ? .55 : .35;
+        src.connect(lp); lp.connect(g); g.connect(a.destination); src.start(t);
+        for (let k = 0; k < 10; k++){ const o = a.createOscillator(), og = a.createGain(), tt = t + .25 + Math.random()*.7;
+          o.type = 'square'; o.frequency.value = 2000 + Math.random()*3000; og.gain.setValueAtTime(.03, tt); og.gain.exponentialRampToValueAtTime(.0001, tt + .03);
+          o.connect(og); og.connect(a.destination); o.start(tt); o.stop(tt + .04); }
+      } catch(e){}
+    }
+    function launch(){
+      rockets.push({ x: W*(.15 + Math.random()*.7), y: H + 10, vx: (Math.random()-.5)*1.6, vy: -(H/62 + Math.random()*H/150), pal: PALS[Math.floor(Math.random()*PALS.length)] });
+    }
+    function explode(r){
+      const n = 70 + Math.floor(Math.random()*50), big = Math.random() > .6, shape = Math.random() > .75 ? 'heart' : 'ball';
+      for (let i = 0; i < n; i++){
+        const ang = i / n * Math.PI * 2; let vx, vy;
+        if (shape === 'heart'){ const t = ang; vx = 16*Math.pow(Math.sin(t),3)/16*3.4; vy = -(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t))/16*3.4; }
+        else { const sp = (big ? 5.2 : 3.8) * (.55 + Math.random()*.45); vx = Math.cos(ang)*sp; vy = Math.sin(ang)*sp; }
+        parts.push({ x: r.x, y: r.y, vx, vy, life: 1, c: r.pal[i % r.pal.length], s: Math.random()*1.4 + 1.2 });
+      }
+      boom(big);
+    }
+    function frame(){
+      x.globalCompositeOperation = 'destination-out'; x.fillStyle = 'rgba(0,0,0,.22)'; x.fillRect(0,0,W,H);
+      x.globalCompositeOperation = 'lighter';
+      if (Date.now() < until && Math.random() < .055) launch();
+      rockets = rockets.filter(r => {
+        r.x += r.vx; r.y += r.vy; r.vy += .14;
+        x.fillStyle = '#fff1c9'; x.beginPath(); x.arc(r.x, r.y, 2.4, 0, 6.28); x.fill();
+        x.fillStyle = 'rgba(255,200,120,.5)'; x.beginPath(); x.arc(r.x - r.vx*2, r.y - r.vy*2, 1.6, 0, 6.28); x.fill();
+        if (r.vy >= -1){ explode(r); return false; } return true;
+      });
+      parts = parts.filter(p => {
+        p.x += p.vx; p.y += p.vy; p.vy += .05; p.vx *= .985; p.vy *= .985; p.life -= .012;
+        x.globalAlpha = Math.max(0, p.life); x.fillStyle = p.c; x.beginPath(); x.arc(p.x, p.y, p.s, 0, 6.28); x.fill();
+        return p.life > 0;
+      });
+      x.globalAlpha = 1;
+      if (rockets.length || parts.length || Date.now() < until) requestAnimationFrame(frame);
+      else { running = false; x.clearRect(0,0,W,H); }
+    }
+    return { show(ms){ until = Math.max(until, Date.now() + (ms || 6000)); for (let k = 0; k < 3; k++) setTimeout(launch, k*260); if (!running){ running = true; requestAnimationFrame(frame); } } };
+  })();
+  $('#fwBtn').addEventListener('click', () => Fireworks.show(6000));
+  // Wedding day (24 Nov, India time) — or preview with ?fireworks=1
+  const IS_WEDDING_DAY = (() => { try { if (new URLSearchParams(location.search).get('fireworks') === '1') return true; } catch(e){}
+    return new Date(Date.now() + 5.5*3600e3).toISOString().slice(0,10) === '2026-11-24'; })();
+  if (IS_WEDDING_DAY) $('#open').addEventListener('click', () => setTimeout(() => Fireworks.show(9000), 1600));
+
+  /* ---------- haldi splash ---------- */
+  (function haldi(){
+    const cv = $('#haldiCv'), wrap = $('#haldiWrap'), countEl = $('#haldiCount'); let x, W, H, count = 0, lastT = 0;
+    function size(){
+      const r = wrap.getBoundingClientRect(), dpr = Math.min(2, devicePixelRatio || 1);
+      const old = (cv.width && W) ? (() => { const t = document.createElement('canvas'); t.width = cv.width; t.height = cv.height; t.getContext('2d').drawImage(cv,0,0); return t; })() : null;
+      W = r.width; H = r.height; cv.width = Math.max(1, W*dpr); cv.height = Math.max(1, H*dpr); x = cv.getContext('2d'); x.setTransform(dpr,0,0,dpr,0,0);
+      if (old) x.drawImage(old, 0, 0, W, H);
+    }
+    const COLS = ['#f4c20d','#ffd83a','#e8a800','#ffcc33','#f0b400'];
+    function blob(cx, cy, r, col, alpha){
+      x.globalAlpha = alpha; x.fillStyle = col; x.beginPath();
+      const pts = 14;
+      for (let i = 0; i <= pts; i++){ const a = i/pts*Math.PI*2, rr = r*(.72 + Math.random()*.45), px = cx + Math.cos(a)*rr, py = cy + Math.sin(a)*rr; i ? x.lineTo(px, py) : x.moveTo(px, py); }
+      x.closePath(); x.fill();
+    }
+    function splatSound(){
+      try { const a = ac(), t = a.currentTime, b = a.createBuffer(1, a.sampleRate*.18, a.sampleRate), d = b.getChannelData(0);
+        for (let i=0;i<d.length;i++) d[i] = (Math.random()*2-1) * Math.pow(1 - i/d.length, 2);
+        const src = a.createBufferSource(), bp = a.createBiquadFilter(), g = a.createGain(); src.buffer = b; bp.type = 'bandpass'; bp.frequency.value = 600 + Math.random()*300; bp.Q.value = .8; g.gain.value = .5;
+        src.connect(bp); bp.connect(g); g.connect(a.destination); src.start(t); } catch(e){}
+    }
+    function splash(px, py, big){
+      const col = COLS[Math.floor(Math.random()*COLS.length)], r = (big ? 30 : 14) + Math.random()*(big ? 16 : 8);
+      blob(px, py, r, col, .82);
+      blob(px + (Math.random()-.5)*r*.6, py + (Math.random()-.5)*r*.6, r*.6, '#ffe680', .55);
+      const drops = big ? 14 : 5;
+      for (let k = 0; k < drops; k++){ const a = Math.random()*Math.PI*2, dist = r*(1.1 + Math.random()*1.4), dr = 2 + Math.random()*(big ? 6 : 3);
+        blob(px + Math.cos(a)*dist, py + Math.sin(a)*dist, dr, col, .8); }
+      if (big){ for (let k = 0; k < 3; k++){ const sx = px + (Math.random()-.5)*r, len = 14 + Math.random()*28; x.globalAlpha = .7; x.fillStyle = col; x.fillRect(sx - 2, py + r*.5, 4, len); blob(sx, py + r*.5 + len, 4, col, .8); } }
+      x.globalAlpha = 1;
+    }
+    function pos(e){ const r = cv.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; }
+    function msg(){
+      countEl.textContent = !count ? '' : count >= 25 ? tr(`💛 ${count} बार हल्दी! दूल्हा-दुल्हन पूरे पीले हो गए 😄`, `💛 ${count} splashes! The couple is all yellow 😄`)
+                                                      : tr(`💛 आपने ${count} बार हल्दी लगाई`, `💛 You applied haldi ${count} time${count > 1 ? 's' : ''}`);
+    }
+    let down = false;
+    cv.addEventListener('pointerdown', e => { down = true; cv.setPointerCapture(e.pointerId); const [px,py] = pos(e); splash(px, py, true); splatSound(); count++; msg(); if (count === 25) burst(24); });
+    cv.addEventListener('pointermove', e => { if (!down) return; const now = performance.now(); if (now - lastT < 45) return; lastT = now; const [px,py] = pos(e); splash(px, py, false); });
+    ['pointerup','pointercancel'].forEach(t => cv.addEventListener(t, () => { down = false; }));
+    $('#haldiClear').addEventListener('click', () => { x.clearRect(0,0,W,H); count = 0; msg(); });
+    size(); addEventListener('resize', size); langHooks.push(msg);
+  })();
 
   applyLang();
   $('#cardClose').addEventListener('click', closeCard);
