@@ -1,56 +1,195 @@
 <!doctype html>
 <html><head><meta charset="utf-8">
 <title>Happy Dhanteras – Mehta Constructions</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Tiro+Devanagari+Hindi&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500;700&family=Rozha+One&family=Tiro+Devanagari+Hindi&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
-  html,body{width:1080px;height:1920px;background:#3a0714;overflow:hidden}
+  html,body{width:1080px;height:1920px;background:#2a0410;overflow:hidden}
   .story{position:relative;width:1080px;height:1920px;overflow:hidden;
-    background:radial-gradient(ellipse 55% 30% at 50% 44%, #5a0f22 0%, #3a0714 70%);color:#e9c46a}
+    background:
+      radial-gradient(ellipse 60% 32% at 50% 56%, rgba(255,170,60,.30), transparent 70%),
+      radial-gradient(ellipse at 50% 45%, #7c1126 0%, #4c0817 50%, #22030b 100%)}
+  .gold{background:linear-gradient(180deg,#fff5cf 0%,#f7d774 35%,#d49a2a 65%,#fbe39a 85%,#b67a17 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
   svg{position:absolute;left:0;top:0}
   .t{position:absolute;left:0;width:100%;text-align:center}
-  .hi{top:960px;font-family:'Tiro Devanagari Hindi',serif;font-size:132px;line-height:1.2;color:#f1cf7a}
-  .en{top:1140px;font-family:'Cinzel',serif;font-weight:400;font-size:40px;letter-spacing:18px;padding-left:18px;color:#e9c46a}
-  .msg{top:1250px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:36px;color:#d9b9a0;opacity:.85}
-  .brand{top:1640px}
-  .brand .name{font-family:'Cinzel',serif;font-weight:600;font-size:34px;letter-spacing:10px;padding-left:10px;color:#f1cf7a}
-  .brand .sub{margin-top:14px;font-family:'Cinzel',serif;font-size:19px;letter-spacing:7px;padding-left:7px;color:#c9a48a}
+  .kicker{top:318px;font-family:'Tiro Devanagari Hindi',serif;font-size:34px;letter-spacing:6px;color:#efc56a}
+  .hi{top:362px;font-family:'Rozha One',serif;font-size:168px;line-height:1.15;
+      filter:drop-shadow(0 5px 0 #4a0714) drop-shadow(0 0 26px rgba(255,190,80,.4))}
+  .en{top:578px;font-family:'Cinzel Decorative',serif;font-weight:700;font-size:62px;letter-spacing:6px;
+      filter:drop-shadow(0 3px 0 #3d0610)}
+  .msg{top:1350px;padding:0 100px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;
+      font-size:42px;line-height:1.35;color:#f6dfb0}
+  .msg b{font-weight:600;color:#ffd56b}
+  .brand{top:1588px}
+  .brand .name{font-family:'Cinzel Decorative',serif;font-weight:700;font-size:54px;letter-spacing:3px}
+  .brand .sub{margin-top:10px;font-family:'Cinzel',serif;font-weight:500;font-size:24px;letter-spacing:8px;padding-left:8px;color:#e9c88e}
+  .brand .sub b{font-weight:700;color:#ffe08f}
 </style></head>
 <body><div class="story">
 
 <svg width="1080" height="1920" viewBox="0 0 1080 1920">
   <defs>
-    <radialGradient id="glow" cx=".5" cy=".5" r=".5">
-      <stop offset="0" stop-color="#ffc861" stop-opacity=".35"/>
-      <stop offset="1" stop-color="#ffc861" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="flame" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0" stop-color="#ff9a2e"/><stop offset=".6" stop-color="#ffd76a"/><stop offset="1" stop-color="#fff4d0"/>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff2bf"/><stop offset=".4" stop-color="#f1c75a"/><stop offset="1" stop-color="#9a650f"/>
     </linearGradient>
+    <linearGradient id="gh" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#9a6210" stop-opacity=".2"/><stop offset=".25" stop-color="#e8b84a"/>
+      <stop offset=".5" stop-color="#fff4c8"/><stop offset=".75" stop-color="#e8b84a"/><stop offset="1" stop-color="#9a6210" stop-opacity=".2"/>
+    </linearGradient>
+    <linearGradient id="gb" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff0b5"/><stop offset=".3" stop-color="#d9a032"/><stop offset=".6" stop-color="#fbe39a"/><stop offset="1" stop-color="#a06a12"/>
+    </linearGradient>
+    <radialGradient id="coin" cx=".38" cy=".32" r=".75">
+      <stop offset="0" stop-color="#fff7d4"/><stop offset=".45" stop-color="#f2c650"/><stop offset="1" stop-color="#9c640e"/>
+    </radialGradient>
+    <radialGradient id="flame" cx=".5" cy=".78" r=".7">
+      <stop offset="0" stop-color="#fffdf0"/><stop offset=".35" stop-color="#ffe274"/>
+      <stop offset=".72" stop-color="#ff8d1e"/><stop offset="1" stop-color="#e2420a" stop-opacity=".15"/>
+    </radialGradient>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#ffd36b" stop-opacity=".8"/><stop offset=".35" stop-color="#ff9f30" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#ff7a00" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="brass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6e3f06"/><stop offset=".25" stop-color="#d49a2c"/>
+      <stop offset=".45" stop-color="#fff0b5"/><stop offset=".65" stop-color="#e5b040"/><stop offset="1" stop-color="#6a3c05"/>
+    </linearGradient>
+
+    <g id="c">
+      <circle r="40" fill="url(#coin)" stroke="#7d4c0a" stroke-width="3"/>
+      <circle r="30" fill="none" stroke="#a8701a" stroke-width="2" opacity=".8"/>
+      <text y="14" text-anchor="middle" font-family="Tiro Devanagari Hindi,serif" font-size="38" fill="#94600f">₹</text>
+    </g>
+    <g id="cs"><ellipse rx="40" ry="15" fill="url(#coin)" stroke="#7d4c0a" stroke-width="2.5"/></g>
+
+    <g id="diya">
+      <ellipse cx="0" cy="-80" rx="150" ry="160" fill="url(#glow)"/>
+      <path d="M-7,-40 C-34,-80 -14,-120 2,-168 C16,-122 38,-82 9,-40Z" fill="url(#flame)"/>
+      <path d="M-2,-48 C-11,-70 -4,-92 2,-110 C9,-92 13,-70 4,-48Z" fill="#fffdf0" opacity=".9"/>
+      <path d="M-130,-34 C-90,-28 -40,-24 0,-24 C40,-24 90,-30 150,-54 C130,-8 104,36 0,40 C-94,36 -126,2 -130,-34Z" fill="url(#brass)" stroke="#5e3404" stroke-width="3"/>
+      <path d="M-122,-31 C-60,-20 70,-20 140,-50" fill="none" stroke="#fff4c8" stroke-width="3" opacity=".8"/>
+      <g fill="#7a1024" opacity=".9"><circle cx="-70" cy="3" r="6"/><circle cx="-35" cy="12" r="6"/><circle cx="0" cy="15" r="6"/><circle cx="35" cy="12" r="6"/><circle cx="70" cy="3" r="6"/></g>
+      <ellipse cx="0" cy="46" rx="90" ry="10" fill="#000" opacity=".3"/>
+    </g>
+
+    <!-- hanging brass bell-lamp -->
+    <g id="hang">
+      <path d="M0,0 L0,0" />
+      <ellipse cx="0" cy="0" rx="22" ry="7" fill="url(#brass)"/>
+      <path d="M-34,6 C-30,44 30,44 34,6Z" fill="url(#brass)" stroke="#5e3404" stroke-width="2"/>
+      <ellipse cx="0" cy="-40" rx="60" ry="70" fill="url(#glow)" opacity=".7"/>
+      <path d="M-4,4 C-14,-14 -6,-30 1,-46 C7,-30 14,-14 4,4Z" fill="url(#flame)"/>
+      <circle cy="48" r="6" fill="url(#coin)"/>
+      <path d="M0,54 L0,78" stroke="#e5b54c" stroke-width="2"/>
+      <path d="M0,78 C-8,90 -6,104 0,112 C6,104 8,90 0,78Z" fill="#c2182f" stroke="#f3c45a" stroke-width="1.5"/>
+    </g>
+
+    <g id="petal"><path d="M0,-330 C44,-275 44,-220 0,-188 C-44,-220 -44,-275 0,-330Z" fill="none" stroke="#f3c45a" stroke-width="2"/></g>
+    <pattern id="dots" width="54" height="54" patternUnits="userSpaceOnUse"><circle cx="27" cy="27" r="1.5" fill="#f3c45a" opacity=".16"/></pattern>
   </defs>
 
-  <!-- single diya -->
-  <g transform="translate(540 820)">
-    <circle cy="-60" r="190" fill="url(#glow)"/>
-    <path d="M0,-150 C22,-110 26,-70 0,-42 C-26,-70 -22,-110 0,-150Z" fill="url(#flame)"/>
-    <path d="M-120,-30 C-60,-22 60,-22 120,-30 C104,20 56,40 0,40 C-56,40 -104,20 -120,-30Z"
-          fill="none" stroke="#e9c46a" stroke-width="4" stroke-linejoin="round"/>
+  <rect width="1080" height="1920" fill="url(#dots)"/>
+
+  <!-- frame -->
+  <rect x="40" y="40" width="1000" height="1840" rx="24" fill="none" stroke="#e2b04a" stroke-width="3" opacity=".9"/>
+  <rect x="56" y="56" width="968" height="1808" rx="16" fill="none" stroke="#e2b04a" stroke-width="1.2" opacity=".45"/>
+  <g id="corners" fill="url(#gb)"></g>
+
+  <!-- hanging lamps on chains -->
+  <g id="chains" stroke="#e2b04a" stroke-width="2" stroke-dasharray="6 5" opacity=".9">
+    <line x1="170" y1="56" x2="170" y2="200"/><line x1="910" y1="56" x2="910" y2="200"/>
+    <line x1="300" y1="56" x2="300" y2="130"/><line x1="780" y1="56" x2="780" y2="130"/>
+  </g>
+  <use href="#hang" transform="translate(170 206)"/>
+  <use href="#hang" transform="translate(910 206)"/>
+  <use href="#hang" transform="translate(300 136) scale(.75)"/>
+  <use href="#hang" transform="translate(780 136) scale(.75)"/>
+
+  <!-- title divider -->
+  <g transform="translate(540 692)">
+    <line x1="-260" y1="0" x2="-34" y2="0" stroke="url(#gh)" stroke-width="2.5"/>
+    <line x1="34" y1="0" x2="260" y2="0" stroke="url(#gh)" stroke-width="2.5"/>
+    <path d="M0,-14 L14,0 L0,14 L-14,0Z" fill="url(#gb)"/>
+    <circle cx="-24" r="4" fill="#f3c45a"/><circle cx="24" r="4" fill="#f3c45a"/>
   </g>
 
-  <!-- thin divider -->
-  <line x1="490" y1="1222" x2="590" y2="1222" stroke="#e9c46a" stroke-width="2" opacity=".7"/>
+  <!-- arch with mandala -->
+  <g transform="translate(540 1040)">
+    <g id="mandala" opacity=".45"></g>
+  </g>
+  <path d="M250,1270 V960 C250,880 330,800 420,780 C470,770 510,745 540,720 C570,745 610,770 660,780 C750,800 830,880 830,960 V1270"
+        fill="rgba(30,2,8,.25)" stroke="url(#gb)" stroke-width="4"/>
+  <path d="M272,1270 V966 C272,896 344,822 426,802 C474,791 512,768 540,746 C568,768 606,791 654,802 C736,822 808,896 808,966 V1270"
+        fill="none" stroke="#e2b04a" stroke-width="1.5" opacity=".6"/>
+  <circle cx="540" cy="712" r="9" fill="url(#gb)"/>
 
-  <!-- brand divider -->
-  <line x1="510" y1="1610" x2="570" y2="1610" stroke="#e9c46a" stroke-width="1.5" opacity=".5"/>
+  <!-- central diya + coins -->
+  <use href="#diya" transform="translate(540 1170) scale(1.25)"/>
+  <g>
+    <use href="#cs" transform="translate(360 1240)"/><use href="#cs" transform="translate(360 1226)"/>
+    <use href="#cs" transform="translate(360 1212)"/><use href="#cs" transform="translate(360 1198)"/>
+    <use href="#cs" transform="translate(720 1240)"/><use href="#cs" transform="translate(720 1226)"/>
+    <use href="#cs" transform="translate(720 1212)"/><use href="#cs" transform="translate(720 1198)"/>
+    <use href="#cs" transform="translate(720 1184)"/>
+    <use href="#c" transform="translate(300 1240) scale(.75) rotate(-12)"/>
+    <use href="#c" transform="translate(782 1242) scale(.75) rotate(14)"/>
+  </g>
+  <!-- base line -->
+  <path d="M200,1272 H880" stroke="url(#gh)" stroke-width="3"/>
+  <g fill="#f3c45a"><circle cx="200" cy="1272" r="5"/><circle cx="880" cy="1272" r="5"/></g>
+
+  <!-- small side diyas outside arch -->
+  <use href="#diya" transform="translate(140 1250) scale(.5)"/>
+  <use href="#diya" transform="translate(940 1250) scale(.5)"/>
+
+  <!-- brand ornament -->
+  <g transform="translate(540 1556)">
+    <line x1="-180" y1="0" x2="-20" y2="0" stroke="url(#gh)" stroke-width="2"/>
+    <line x1="20" y1="0" x2="180" y2="0" stroke="url(#gh)" stroke-width="2"/>
+    <path d="M0,-10 L10,0 L0,10 L-10,0Z" fill="url(#gb)"/>
+  </g>
+  <g transform="translate(540 1720)">
+    <line x1="-120" y1="0" x2="120" y2="0" stroke="url(#gh)" stroke-width="1.5"/>
+  </g>
+
+  <g id="spark" fill="#fff1c4"></g>
 </svg>
 
-<div class="t hi">शुभ धनतेरस</div>
-<div class="t en">HAPPY DHANTERAS</div>
-<div class="t msg">Wishing you prosperity, health &amp; strong foundations.</div>
+<div class="t kicker">॥ धन • धान्य • समृद्धि ॥</div>
+<div class="t hi gold">शुभ धनतेरस</div>
+<div class="t en gold">Happy Dhanteras</div>
+
+<div class="t msg">May this Dhanteras bring <b>wealth, health &amp; happiness</b> — and strong foundations for every dream.</div>
 
 <div class="t brand">
-  <div class="name">MEHTA CONSTRUCTIONS</div>
-  <div class="sub">A PRODUCT OF AS ENTERPRISES</div>
+  <div class="name gold">MEHTA CONSTRUCTIONS</div>
+  <div class="sub">A PRODUCT OF <b>AS ENTERPRISES</b></div>
 </div>
 
-</div></body></html>
+</div>
+<script>
+const NS='http://www.w3.org/2000/svg';
+const mk=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e};
+const m=document.getElementById('mandala');
+for(let i=0;i<20;i++)m.appendChild(mk('use',{href:'#petal',transform:`rotate(${i*18})`}));
+[340,180].forEach(r=>m.appendChild(mk('circle',{r,fill:'none',stroke:'#f3c45a','stroke-width':1.5,'stroke-dasharray':'3 8'})));
+// corner ornaments
+const co=document.getElementById('corners');
+[[40,40,0],[1040,40,90],[1040,1880,180],[40,1880,270]].forEach(([x,y,r])=>{
+  co.appendChild(mk('path',{transform:`translate(${x} ${y}) rotate(${r})`,
+    d:'M0,0 H110 C70,8 40,20 28,28 C20,40 8,70 0,110Z M28,28 m10,10 a14,14 0 1,0 0.1,0'}));
+});
+// sparkles
+const sp=document.getElementById('spark');
+const star=(x,y,s,o)=>sp.appendChild(mk('path',{d:`M${x},${y-s} Q${x},${y} ${x+s},${y} Q${x},${y} ${x},${y+s} Q${x},${y} ${x-s},${y} Q${x},${y} ${x},${y-s}Z`,opacity:o}));
+let seed=11;const rnd=()=>(seed=(seed*9301+49297)%233280)/233280;
+for(let i=0;i<70;i++){const x=80+rnd()*920,y=260+rnd()*1260;
+  if(y>300&&y<720&&x>90&&x<990)continue;
+  if(y>720&&y<1290&&x>240&&x<840)continue;
+  if(y>1310)continue;
+  star(x,y,4+rnd()*11,.3+rnd()*.6);}
+// a few sparkles inside arch top
+[[420,880,8],[660,870,10],[540,800,6],[470,960,5],[620,950,6]].forEach(([x,y,s])=>star(x,y,s,.7));
+</script>
+</body></html>
