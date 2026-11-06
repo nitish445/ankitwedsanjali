@@ -436,6 +436,8 @@
   @keyframes join{from{opacity:0;transform:translateY(-40px) scale(1.8)}to{opacity:1;transform:none}}
   .deep-count{color:var(--muted);font-size:15px;margin-top:8px}
   #music.on{animation:spin 6s linear infinite}
+  #fwFab{bottom:202px;background:radial-gradient(circle,#1d2a6b,#0a0f2e);border-color:#7fd4ff}
+  #fwFab.pop{animation:thump .4s ease-out}
   #dholFab{bottom:140px;background:radial-gradient(circle,#7a0e2a,#3a0514);border-color:#ff7aa2}
   #dholFab.on{animation:beat .43s ease-in-out infinite}
   #aartiFab{bottom:78px;background:radial-gradient(circle,#5a1f00,#2a0a00);border-color:var(--marigold)}
@@ -954,6 +956,7 @@
 </footer>
 
 <button id="langBtn" aria-label="भाषा बदलें / Change language" title="हिंदी / English"><span data-l="hi" class="on">हिं</span><span data-l="en">EN</span></button>
+<button class="fab" id="fwFab" aria-label="आतिशबाज़ी" title="आतिशबाज़ी" data-en-aria="Fireworks" hidden>🎆</button>
 <button class="fab" id="dholFab" aria-label="ढोल बजाओ" title="ढोल" data-en-aria="Play the dhol" hidden>🥁</button>
 <canvas id="fwCv" aria-hidden="true"></canvas>
 <button class="fab" id="aartiFab" aria-label="श्री गणेश आरती" title="श्री गणेश आरती" data-open-aarti hidden>🪔</button>
@@ -1112,7 +1115,7 @@
     setTimeout(() => { cover.classList.add('fade'); }, 1500);
     setTimeout(() => { cover.classList.add('hide'); document.body.classList.remove('cover-on'); }, 2300);
     document.body.classList.remove('locked');
-    musicBtn.hidden = false; aartiFab.hidden = false; $('#dholFab').hidden = false;
+    musicBtn.hidden = false; aartiFab.hidden = false; $('#dholFab').hidden = false; $('#fwFab').hidden = false;
     burst(26);
     // Shehnai welcome tune first, then the invitation music
     musicWanted = true; musicBtn.classList.add('on');
@@ -1954,6 +1957,7 @@
     return { show(ms){ until = Math.max(until, Date.now() + (ms || 6000)); for (let k = 0; k < 3; k++) setTimeout(launch, k*260); if (!running){ running = true; requestAnimationFrame(frame); } } };
   })();
   $('#fwBtn').addEventListener('click', () => Fireworks.show(6000));
+  $('#fwFab').addEventListener('click', () => { const f = $('#fwFab'); f.classList.remove('pop'); void f.offsetWidth; f.classList.add('pop'); Fireworks.show(6000); });
   // Wedding day (24 Nov, India time) — or preview with ?fireworks=1
   const IS_WEDDING_DAY = (() => { try { if (new URLSearchParams(location.search).get('fireworks') === '1') return true; } catch(e){}
     return new Date(Date.now() + 5.5*3600e3).toISOString().slice(0,10) === '2026-11-24'; })();
