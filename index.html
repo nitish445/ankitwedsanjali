@@ -295,9 +295,10 @@
     display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.4)}
   #music{bottom:16px}
   #langBtn{position:fixed;top:12px;left:12px;z-index:48;display:flex;border-radius:999px;overflow:hidden;
-    border:1px solid var(--gold);background:rgba(26,5,32,.85);box-shadow:0 4px 16px rgba(0,0,0,.4);padding:0;cursor:pointer}
-  #langBtn span{padding:6px 12px;font-size:14px;color:var(--gold);font-family:"Tiro Devanagari Hindi",serif;line-height:1.4}
-  #langBtn span.on{background:linear-gradient(180deg,var(--gold3),var(--gold) 50%,var(--gold2));color:var(--plum)}
+    border:1px solid var(--gold);background:rgba(26,5,32,.85);box-shadow:0 4px 16px rgba(0,0,0,.4);padding:0}
+  #langBtn button{border:0;background:none;cursor:pointer;padding:6px 11px;font-size:14px;color:var(--gold);font-family:"Tiro Devanagari Hindi",serif;line-height:1.4}
+  #langBtn button + button{border-left:1px solid rgba(233,194,122,.35)}
+  #langBtn button.on{background:linear-gradient(180deg,var(--gold3),var(--gold) 50%,var(--gold2));color:var(--plum)}
   html[lang=en] body{font-family:"Cormorant Garamond","Tiro Devanagari Hindi",serif}
   html[lang=en] .lead,html[lang=en] .note,html[lang=en] .person p{font-weight:600}
 
@@ -639,8 +640,8 @@
     </h1>
     <div class="en" data-en="Shubh Vivah">Ankit &amp; Anjali</div>
     <div class="date-chip">24 · 11 · 2026 <i></i> <span id="daysLeft">शुभ विवाह</span></div>
-    <button class="btn" id="open" data-en="✨ Open Invitation">✨ निमंत्रण खोलें</button>
-    <div class="tap-hint" data-en="Tap to open the doors">द्वार खोलने के लिए स्पर्श करें</div>
+    <button class="btn" id="open" data-en="✨ Open Invitation" data-bho="✨ नेवता खोलीं">✨ निमंत्रण खोलें</button>
+    <div class="tap-hint" data-en="Tap to open the doors" data-bho="दुआर खोले खातिर छूईं">द्वार खोलने के लिए स्पर्श करें</div>
   </div></div>
 
   <div class="cover-diyas" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#diya"/></svg><svg viewBox="0 0 100 100"><use href="#diya"/></svg></div>
@@ -655,12 +656,12 @@
       <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
       <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
       <div style="font-size:46px">🙏</div>
-      <h2 class="title-big gold" data-en="Thank You">धन्यवाद</h2>
+      <h2 class="title-big gold" data-en="Thank You" data-bho="धन्यवाद">धन्यवाद</h2>
       <svg class="divider"><use href="#divider"/></svg>
-      <p class="lead" data-en="With your blessings, the wedding of<br><strong>Ankit &amp; Anjali</strong><br>was solemnised on 24 November 2026.">आपके आशीर्वाद से<br><strong>अंकित एवं अंजली</strong> का शुभ विवाह<br>24 नवम्बर 2026 को सम्पन्न हुआ।</p>
-      <p class="lead" style="color:var(--muted);margin-top:10px" data-en="Thank you for your presence, love and blessings. 💛">आपकी उपस्थिति, स्नेह और आशीर्वाद के लिए हृदय से आभार। 💛</p>
+      <p class="lead" data-en="With your blessings, the wedding of<br><strong>Ankit &amp; Anjali</strong><br>was solemnised on 24 November 2026." data-bho="रउआ सभे के आसीरबाद से<br><strong>अंकित आ अंजली</strong> के शुभ बियाह<br>24 नवंबर 2026 के सम्पन्न भइल।">आपके आशीर्वाद से<br><strong>अंकित एवं अंजली</strong> का शुभ विवाह<br>24 नवम्बर 2026 को सम्पन्न हुआ।</p>
+      <p class="lead" style="color:var(--muted);margin-top:10px" data-en="Thank you for your presence, love and blessings. 💛" data-bho="रउआ के उपस्थिति, नेह आ आसीरबाद खातिर हिरदय से आभार। 💛">आपकी उपस्थिति, स्नेह और आशीर्वाद के लिए हृदय से आभार। 💛</p>
       <svg class="divider"><use href="#divider"/></svg>
-      <h3 class="sub gold" data-en="Wedding Memories">विवाह की यादें</h3>
+      <h3 class="sub gold" data-en="Wedding Memories" data-bho="बियाह के इयाद">विवाह की यादें</h3>
       <div class="gallery" id="gallery"></div>
     </div>
   </section>
@@ -676,12 +677,12 @@
       </div>
       <div class="ganesh-line gold display" data-en="|| Shri Ganeshaya Namah ||">॥ श्री गणेशाय नमः ॥</div>
       <p style="color:var(--muted);font-size:16px;margin-top:4px" data-en="Vakratunda Mahakaya Suryakoti Samaprabha,<br>Nirvighnam Kuru Me Deva Sarva-Karyeshu Sarvada.">वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥</p>
-      <button class="btn saffron" style="margin-top:16px" data-open-aarti data-en="🪔 Perform Shri Ganesh Aarti">🪔 श्री गणेश आरती करें</button>
+      <button class="btn saffron" style="margin-top:16px" data-open-aarti data-en="🪔 Perform Shri Ganesh Aarti" data-bho="🪔 श्री गणेश आरती करीं">🪔 श्री गणेश आरती करें</button>
       <svg class="divider"><use href="#divider"/></svg>
-      <h1 class="title-big gold" data-en="Wedding<br>Invitation">शुभ विवाह<br>निमंत्रण</h1>
+      <h1 class="title-big gold" data-en="Wedding<br>Invitation" data-bho="शुभ बियाह<br>नेवता">शुभ विवाह<br>निमंत्रण</h1>
       <svg class="divider"><use href="#divider"/></svg>
       <p class="sub gold display" data-en="Ankit <span style='font-size:.7em'>&amp;</span> Anjali">अंकित <span style="font-size:.7em">संग</span> अंजली</p>
-      <p class="lead" style="margin-top:6px" data-en="24 | 11 | 2026 &nbsp;·&nbsp; Tuesday">24 | 11 | 2026 &nbsp;·&nbsp; मंगलवार</p>
+      <p class="lead" style="margin-top:6px" data-en="24 | 11 | 2026 &nbsp;·&nbsp; Tuesday" data-bho="24 | 11 | 2026 &nbsp;·&nbsp; मंगर">24 | 11 | 2026 &nbsp;·&nbsp; मंगलवार</p>
     </div>
   </section>
 
@@ -692,10 +693,10 @@
       <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
       <div style="font-size:40px">🙏</div>
       <svg class="divider"><use href="#divider"/></svg>
-      <p class="lead" data-en="By the infinite grace of God,<br>the auspicious occasion of our son’s wedding has arrived.<br>You and your entire family are cordially invited.">ईश्वर की असीम कृपा से हमारे पुत्र<br>के विवाह की इस शुभ बेला का आगमन हुआ है।<br>जिसमें आप समस्त परिवार सादर आमंत्रित हैं।</p>
+      <p class="lead" data-en="By the infinite grace of God,<br>the auspicious occasion of our son’s wedding has arrived.<br>You and your entire family are cordially invited." data-bho="भगवान के असीम किरपा से हमनी के बेटा<br>के बियाह के ई शुभ घड़ी आ गइल बा।<br>एह में रउआ सभे परिवार सहित सादर नेवतल बानी।">ईश्वर की असीम कृपा से हमारे पुत्र<br>के विवाह की इस शुभ बेला का आगमन हुआ है।<br>जिसमें आप समस्त परिवार सादर आमंत्रित हैं।</p>
       <svg class="divider"><use href="#divider"/></svg>
       <div style="font-size:38px;margin-top:6px">💍</div>
-      <h2 class="sub gold" data-en="are tying the sacred knot">शादी के बंधन में बंधने जा रहे हैं</h2>
+      <h2 class="sub gold" data-en="are tying the sacred knot" data-bho="बियाह के बंधन में बन्हाए जा रहल बाड़े">शादी के बंधन में बंधने जा रहे हैं</h2>
     </div>
   </section>
 
@@ -732,7 +733,7 @@
   <section id="letter">
     <div class="letter reveal">
       <div class="seal" aria-hidden="true">A&amp;A</div>
-      <div class="letter-body" data-en="<p class='greet'>Dear family &amp; friends,</p><p>Having you with us at the most beautiful moment of our lives is the greatest blessing we could ask for. This new journey begins with your love and good wishes.</p><p>Please come and make our special day even more special with your presence. We will be waiting for you!</p><p class='sign'>With love,<br>Ankit &amp; Anjali</p>">
+      <div class="letter-body" data-en="<p class='greet'>Dear family &amp; friends,</p><p>Having you with us at the most beautiful moment of our lives is the greatest blessing we could ask for. This new journey begins with your love and good wishes.</p><p>Please come and make our special day even more special with your presence. We will be waiting for you!</p><p class='sign'>With love,<br>Ankit &amp; Anjali</p>" data-bho="<p class='greet'>प्रिय परिवार आ संगी-साथी लोग,</p><p>हमनी के जिनगी के एह सबसे सुंदर घड़ी में रउआ सभे के साथ हमनी खातिर सबसे बड़ आसीरबाद बा। रउआ सभे के नेह आ सुभकामना से ई नया सफर सुरू हो रहल बा।</p><p>आईं, हमनी के एह शुभ दिन के अपना उपस्थिति से अउरी खास बनाईं। रउआ सभे के इंतजार रही!</p><p class='sign'>सप्रेम,<br>अंकित &amp; अंजली</p>">
         <p class="greet">प्रिय परिवारजन एवं मित्रों,</p>
         <p>हमारे जीवन के इस सबसे सुंदर पल में आपका साथ हमारे लिए सबसे बड़ा आशीर्वाद है। आपके स्नेह और शुभकामनाओं से ही यह नया सफ़र शुरू हो रहा है।</p>
         <p>आइए, हमारे इस शुभ दिन को अपनी उपस्थिति से और भी ख़ास बनाइए। आपका इंतज़ार रहेगा!</p>
@@ -746,19 +747,19 @@
     <div class="card reveal">
       <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
       <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
-      <h2 class="sub gold" data-en="Wedding Events">शुभ कार्यक्रम</h2>
+      <h2 class="sub gold" data-en="Wedding Events" data-bho="शुभ कार्यक्रम">शुभ कार्यक्रम</h2>
       <svg class="divider"><use href="#divider"/></svg>
       <div class="events">
-        <div class="event"><div class="ic">🪔</div><div class="name gold" data-en="Shubh Tilak">शुभ तिलक</div><div class="date">21 | 11 | 2026<span data-en="Saturday">शनिवार</span></div></div>
-        <div class="event"><div class="ic">🌼</div><div class="name gold" data-en="Haldi">हल्दी</div><div class="date">22 | 11 | 2026<span data-en="Sunday">रविवार</span></div></div>
-        <div class="event main"><div class="ic">💍</div><div class="name gold" data-en="Wedding">शुभ विवाह</div><div class="date">24 | 11 | 2026<span data-en="Tuesday">मंगलवार</span></div></div>
-        <div class="event"><div class="ic">🌸</div><div class="name gold" data-en="Baraat Vidaai">बारात विदाई</div><div class="date">25 | 11 | 2026<span data-en="Wednesday">बुधवार</span></div></div>
+        <div class="event"><div class="ic">🪔</div><div class="name gold" data-en="Shubh Tilak">शुभ तिलक</div><div class="date">21 | 11 | 2026<span data-en="Saturday" data-bho="सनिचर">शनिवार</span></div></div>
+        <div class="event"><div class="ic">🌼</div><div class="name gold" data-en="Haldi" data-bho="हरदी">हल्दी</div><div class="date">22 | 11 | 2026<span data-en="Sunday" data-bho="एतवार">रविवार</span></div></div>
+        <div class="event main"><div class="ic">💍</div><div class="name gold" data-en="Wedding" data-bho="शुभ बियाह">शुभ विवाह</div><div class="date">24 | 11 | 2026<span data-en="Tuesday" data-bho="मंगर">मंगलवार</span></div></div>
+        <div class="event"><div class="ic">🌸</div><div class="name gold" data-en="Baraat Vidaai" data-bho="बारात बिदाई">बारात विदाई</div><div class="date">25 | 11 | 2026<span data-en="Wednesday" data-bho="बुध">बुधवार</span></div></div>
       </div>
       <div class="countdown" id="countdown" aria-live="polite"></div>
       <div class="actions">
-        <a class="btn ghost" id="cal" target="_blank" rel="noopener" data-en="📅 Add to Calendar">📅 कैलेंडर में जोड़ें</a>
-        <a class="btn ghost" id="share" target="_blank" rel="noopener" data-en="💬 Send on WhatsApp">💬 WhatsApp पर भेजें</a>
-        <button class="btn saffron" data-card data-en="📥 Download Invitation">📥 निमंत्रण डाउनलोड करें</button>
+        <a class="btn ghost" id="cal" target="_blank" rel="noopener" data-en="📅 Add to Calendar" data-bho="📅 कैलेंडर में जोड़ीं">📅 कैलेंडर में जोड़ें</a>
+        <a class="btn ghost" id="share" target="_blank" rel="noopener" data-en="💬 Send on WhatsApp" data-bho="💬 WhatsApp पर भेजीं">💬 WhatsApp पर भेजें</a>
+        <button class="btn saffron" data-card data-en="📥 Download Invitation" data-bho="📥 नेवता डाउनलोड करीं">📥 निमंत्रण डाउनलोड करें</button>
       </div>
     </div>
   </section>
@@ -771,7 +772,7 @@
       <h2 class="sub gold" data-en="-: Note :-">-: नोट :-</h2>
       <svg class="divider"><use href="#divider"/></svg>
       <div style="font-size:36px">🐎</div>
-      <p class="note" data-en="The baraat will depart from our residence at<br><strong>Village Munshi Dihri, Post + Police Station Natwar, District Rohtas</strong><br>on <strong>24-11-2026</strong> at <strong>2 PM</strong><br>for Patna.">बारात अपने निवास स्थान<br><strong>ग्राम&nbsp;-&nbsp;मुन्शी&nbsp;डिहरी, पोस्ट&nbsp;+&nbsp;थाना&nbsp;-&nbsp;नटवार, जिला&nbsp;-&nbsp;रोहतास</strong><br>से <strong>24-11-2026</strong> के <strong>दोपहर 2 बजे</strong><br>पटना के लिए प्रस्थान करेगी।</p>
+      <p class="note" data-en="The baraat will depart from our residence at<br><strong>Village Munshi Dihri, Post + Police Station Natwar, District Rohtas</strong><br>on <strong>24-11-2026</strong> at <strong>2 PM</strong><br>for Patna." data-bho="बारात आपन घर<br><strong>गाँव&nbsp;-&nbsp;मुन्शी&nbsp;डिहरी, पोस्ट&nbsp;+&nbsp;थाना&nbsp;-&nbsp;नटवार, जिला&nbsp;-&nbsp;रोहतास</strong><br>से <strong>24-11-2026</strong> के <strong>दुपहरिया 2 बजे</strong><br>पटना खातिर रवाना होई।">बारात अपने निवास स्थान<br><strong>ग्राम&nbsp;-&nbsp;मुन्शी&nbsp;डिहरी, पोस्ट&nbsp;+&nbsp;थाना&nbsp;-&nbsp;नटवार, जिला&nbsp;-&nbsp;रोहतास</strong><br>से <strong>24-11-2026</strong> के <strong>दोपहर 2 बजे</strong><br>पटना के लिए प्रस्थान करेगी।</p>
     </div>
   </section>
 
@@ -780,22 +781,22 @@
     <div class="card reveal">
       <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
       <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
-      <h2 class="sub gold" data-en="Weather in Patna">पटना का मौसम</h2>
-      <p style="color:var(--muted);font-size:15px" data-en="Typical weather for 21–25 November">21–25 नवम्बर का सामान्य मौसम</p>
+      <h2 class="sub gold" data-en="Weather in Patna" data-bho="पटना के मौसम">पटना का मौसम</h2>
+      <p style="color:var(--muted);font-size:15px" data-en="Typical weather for 21–25 November" data-bho="21–25 नवंबर के आम मौसम">21–25 नवम्बर का सामान्य मौसम</p>
       <svg class="divider"><use href="#divider"/></svg>
       <div class="wx">
-        <div class="wx-main"><div class="wx-ic">☀️</div><div><div class="wx-t gold display">26° <small>/ 13°</small></div><div class="wx-d" data-en="Day / Night · Clear sky">दिन / रात · साफ़ आसमान</div></div></div>
+        <div class="wx-main"><div class="wx-ic">☀️</div><div><div class="wx-t gold display">26° <small>/ 13°</small></div><div class="wx-d" data-en="Day / Night · Clear sky" data-bho="दिन / रात · साफ आसमान">दिन / रात · साफ़ आसमान</div></div></div>
         <div class="wx-row">
-          <div><span>🌅</span><b data-en="Morning">सुबह</b><i data-en="Light fog, cool">हल्का कोहरा, ठंडक</i></div>
-          <div><span>☀️</span><b data-en="Day">दिन</b><i data-en="Pleasant sun">सुहानी धूप</i></div>
-          <div><span>🌙</span><b data-en="Night">रात</b><i data-en="Chilly">हल्की ठंड</i></div>
+          <div><span>🌅</span><b data-en="Morning" data-bho="बिहान">सुबह</b><i data-en="Light fog, cool" data-bho="हलुक कुहासा, ठंडा">हल्का कोहरा, ठंडक</i></div>
+          <div><span>☀️</span><b data-en="Day" data-bho="दिन">दिन</b><i data-en="Pleasant sun" data-bho="सुहावन घाम">सुहानी धूप</i></div>
+          <div><span>🌙</span><b data-en="Night" data-bho="रात">रात</b><i data-en="Chilly" data-bho="हलुक जाड़">हल्की ठंड</i></div>
         </div>
         <ul class="wx-tips">
-          <li data-en="🧣 Evenings get chilly — carry a shawl or jacket">🧣 शाम को हल्की ठंड — शॉल या जैकेट साथ रखें</li>
-          <li data-en="💧 Sunny afternoons — keep drinking water">💧 दिन में धूप — पानी पीते रहें</li>
-          <li data-en="🚗 Fog in early morning and late night — travel carefully">🚗 सुबह और देर रात कोहरा — यात्रा में सावधानी रखें</li>
+          <li data-en="🧣 Evenings get chilly — carry a shawl or jacket" data-bho="🧣 साँझ के हलुक जाड़ — शॉल भा जैकेट संगे राखीं">🧣 शाम को हल्की ठंड — शॉल या जैकेट साथ रखें</li>
+          <li data-en="💧 Sunny afternoons — keep drinking water" data-bho="💧 दिन में घाम — पानी पीयत रहीं">💧 दिन में धूप — पानी पीते रहें</li>
+          <li data-en="🚗 Fog in early morning and late night — travel carefully" data-bho="🚗 भोरे आ देर रात कुहासा — सफर में सावधानी राखीं">🚗 सुबह और देर रात कोहरा — यात्रा में सावधानी रखें</li>
         </ul>
-        <p class="wx-note" data-en="This is the usual weather for this time of year, not a live forecast. Please check the forecast before travelling.">यह इस मौसम का सामान्य अनुमान है, लाइव पूर्वानुमान नहीं। यात्रा से पहले मौसम ज़रूर देख लें।</p>
+        <p class="wx-note" data-en="This is the usual weather for this time of year, not a live forecast. Please check the forecast before travelling." data-bho="ई एह मौसम के आम अनुमान ह, लाइव पूर्वानुमान ना। सफर से पहिले मौसम जरूर देख लीं।">यह इस मौसम का सामान्य अनुमान है, लाइव पूर्वानुमान नहीं। यात्रा से पहले मौसम ज़रूर देख लें।</p>
       </div>
     </div>
   </section>
@@ -805,7 +806,7 @@
     <div class="card reveal">
       <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
       <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
-      <h2 class="sub gold" data-en="Invitation Video">निमंत्रण वीडियो</h2>
+      <h2 class="sub gold" data-en="Invitation Video" data-bho="नेवता वीडियो">निमंत्रण वीडियो</h2>
       <div class="video-wrap">
         <video id="vid" src="assets/invitation.mp4" poster="assets/poster.jpg" controls playsinline preload="none"></video>
       </div>
@@ -817,8 +818,8 @@
     <div class="card reveal">
       <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
       <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
-      <h2 class="sub gold" data-en="Wedding Quiz ❓">शादी क्विज़ ❓</h2>
-      <p style="color:var(--muted);font-size:16px" data-en="How well do you know the wedding plans?">देखें, आपको शादी की कितनी जानकारी है!</p>
+      <h2 class="sub gold" data-en="Wedding Quiz ❓" data-bho="बियाह क्विज़ ❓">शादी क्विज़ ❓</h2>
+      <p style="color:var(--muted);font-size:16px" data-en="How well do you know the wedding plans?" data-bho="देखीं, रउआ के बियाह के केतना जानकारी बा!">देखें, आपको शादी की कितनी जानकारी है!</p>
       <svg class="divider"><use href="#divider"/></svg>
       <div id="quizBox" aria-live="polite"></div>
     </div>
@@ -829,13 +830,13 @@
     <div class="card reveal">
       <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
       <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
-      <h2 class="sub gold" data-en="A Surprise for You 🎁">आपके लिए एक सरप्राइज़ 🎁</h2>
-      <p style="color:var(--muted);font-size:16px" data-en="Scratch the gold card with your finger">सुनहरे कार्ड को उंगली से खुरचें</p>
+      <h2 class="sub gold" data-en="A Surprise for You 🎁" data-bho="रउआ खातिर एगो सरप्राइज 🎁">आपके लिए एक सरप्राइज़ 🎁</h2>
+      <p style="color:var(--muted);font-size:16px" data-en="Scratch the gold card with your finger" data-bho="सोनहुला कार्ड के अंगुरी से खुरचीं">सुनहरे कार्ड को उंगली से खुरचें</p>
       <div class="scratch-wrap" id="scratchWrap">
         <div class="scratch-msg">
           <div style="font-size:34px">💛</div>
-          <p class="sub gold display" data-en="We are waiting for you!">आपका इंतज़ार है!</p>
-          <p class="lead" data-en="See you at the wedding<br><b>24 November 2026 · Tuesday</b>">मिलते हैं शुभ विवाह में<br><b>24 नवम्बर 2026 · मंगलवार</b></p>
+          <p class="sub gold display" data-en="We are waiting for you!" data-bho="रउआ के इंतजार बा!">आपका इंतज़ार है!</p>
+          <p class="lead" data-en="See you at the wedding<br><b>24 November 2026 · Tuesday</b>" data-bho="भेंट होई शुभ बियाह में<br><b>24 नवंबर 2026 · मंगर</b>">मिलते हैं शुभ विवाह में<br><b>24 नवम्बर 2026 · मंगलवार</b></p>
         </div>
         <canvas id="scratchCv" aria-label="खुरचने वाला कार्ड" data-en-aria="Scratch card"></canvas>
       </div>
@@ -847,14 +848,14 @@
     <div class="card reveal">
       <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
       <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
-      <h2 class="sub gold" data-en="Make a Rangoli 🎨">रंगोली बनाएँ 🎨</h2>
-      <p style="color:var(--muted);font-size:16px" data-en="Pick a colour and tap the pattern to drop petals">रंग चुनें और डिज़ाइन पर टैप करके फूल बिखेरें</p>
+      <h2 class="sub gold" data-en="Make a Rangoli 🎨" data-bho="रंगोली बनाईं 🎨">रंगोली बनाएँ 🎨</h2>
+      <p style="color:var(--muted);font-size:16px" data-en="Pick a colour and tap the pattern to drop petals" data-bho="रंग चुनीं आ डिजाइन पर टैप करके फूल छींटीं">रंग चुनें और डिज़ाइन पर टैप करके फूल बिखेरें</p>
       <div class="palette" id="palette" role="radiogroup" aria-label="रंग" data-en-aria="Colours"></div>
       <div class="rangoli-wrap"><svg id="rangoliSvg" viewBox="-105 -105 210 210" aria-label="रंगोली" data-en-aria="Rangoli"></svg></div>
       <p class="rg-msg" id="rgMsg" aria-live="polite"></p>
       <div class="actions">
-        <button class="btn saffron" id="rgAuto" data-en="✨ Fill it for me">✨ अपने आप भरें</button>
-        <button class="btn ghost" id="rgReset" data-en="↺ Start again">↺ फिर से</button>
+        <button class="btn saffron" id="rgAuto" data-en="✨ Fill it for me" data-bho="✨ अपने आप भरीं">✨ अपने आप भरें</button>
+        <button class="btn ghost" id="rgReset" data-en="↺ Start again" data-bho="↺ फेर से">↺ फिर से</button>
       </div>
     </div>
   </section>
@@ -864,8 +865,8 @@
     <div class="card reveal">
       <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
       <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
-      <h2 class="sub gold" data-en="Baraat Celebrations 🥁">बारात की धूम 🥁</h2>
-      <p style="color:var(--muted);font-size:16px" data-en="Play the dhol and light up the sky!">ढोल बजाइए और आसमान रोशन कीजिए!</p>
+      <h2 class="sub gold" data-en="Baraat Celebrations 🥁" data-bho="बारात के धूम 🥁">बारात की धूम 🥁</h2>
+      <p style="color:var(--muted);font-size:16px" data-en="Play the dhol and light up the sky!" data-bho="ढोल बजाईं आ आसमान चमकाईं!">ढोल बजाइए और आसमान रोशन कीजिए!</p>
       <svg class="divider"><use href="#divider"/></svg>
       <button class="dhol" id="dholBig" aria-pressed="false" aria-label="ढोल बजाओ" data-en-aria="Play the dhol">
         <svg viewBox="0 0 220 150" aria-hidden="true">
@@ -881,10 +882,10 @@
         </svg>
       </button>
       <div class="actions">
-        <button class="btn saffron" id="dholBtn" data-en="🥁 Play the Dhol">🥁 ढोल बजाओ</button>
-        <button class="btn ghost" id="fwBtn" data-en="🎆 Fireworks">🎆 आतिशबाज़ी</button>
+        <button class="btn saffron" id="dholBtn" data-en="🥁 Play the Dhol" data-bho="🥁 ढोल बजाव">🥁 ढोल बजाओ</button>
+        <button class="btn ghost" id="fwBtn" data-en="🎆 Fireworks" data-bho="🎆 आतिसबाजी">🎆 आतिशबाज़ी</button>
       </div>
-      <p class="hint-sm" data-en="Tip: the whole page dances to the dhol 😄">टिप: ढोल की ताल पर पूरा पेज नाचता है 😄</p>
+      <p class="hint-sm" data-en="Tip: the whole page dances to the dhol 😄" data-bho="टिप: ढोल के ताल पर पूरा पेज नाचेला 😄">टिप: ढोल की ताल पर पूरा पेज नाचता है 😄</p>
     </div>
   </section>
 
@@ -893,8 +894,8 @@
     <div class="card reveal">
       <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
       <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
-      <h2 class="sub gold" data-en="Haldi Ceremony 💛">हल्दी की रस्म 💛</h2>
-      <p style="color:var(--muted);font-size:16px" data-en="Tap or swipe to put haldi on the couple!">टैप या स्वाइप करके दूल्हा-दुल्हन को हल्दी लगाइए!</p>
+      <h2 class="sub gold" data-en="Haldi Ceremony 💛" data-bho="हरदी के रस्म 💛">हल्दी की रस्म 💛</h2>
+      <p style="color:var(--muted);font-size:16px" data-en="Tap or swipe to put haldi on the couple!" data-bho="टैप भा स्वाइप करके दूल्हा-दुलहिन के हरदी लगाईं!">टैप या स्वाइप करके दूल्हा-दुल्हन को हल्दी लगाइए!</p>
       <div class="haldi-wrap" id="haldiWrap">
         <div class="haldi-names" aria-hidden="true">
           <div class="hn"><span>🤵</span><b class="gold display" data-en="Ankit">अंकित</b></div>
@@ -904,7 +905,7 @@
         <div class="haldi-bowl" aria-hidden="true">🥣</div>
       </div>
       <p class="haldi-count" id="haldiCount" aria-live="polite"></p>
-      <div class="actions"><button class="btn ghost" id="haldiClear" data-en="🧽 Wash it off">🧽 धो दें</button></div>
+      <div class="actions"><button class="btn ghost" id="haldiClear" data-en="🧽 Wash it off" data-bho="🧽 धो दीं">🧽 धो दें</button></div>
     </div>
   </section>
 
@@ -913,8 +914,8 @@
     <div class="card reveal">
       <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
       <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
-      <h2 class="sub gold" data-en="Light a Diya">दीप जलाएँ</h2>
-      <p class="lead" style="color:var(--muted)" data-en="Light a diya for the yagya and bless the couple">यज्ञ के लिए एक दीप जलाएँ और वर-वधू को आशीर्वाद दें</p>
+      <h2 class="sub gold" data-en="Light a Diya" data-bho="दीया जराईं">दीप जलाएँ</h2>
+      <p class="lead" style="color:var(--muted)" data-en="Light a diya for the yagya and bless the couple" data-bho="जग्य खातिर एगो दीया जराईं आ बर-कनिया के आसीरबाद दीं">यज्ञ के लिए एक दीप जलाएँ और वर-वधू को आशीर्वाद दें</p>
       <svg class="divider"><use href="#divider"/></svg>
       <button class="big-diya" id="bigDiya" aria-label="दीप जलाएँ" data-en-aria="Light a diya">
         <svg viewBox="0 0 100 100" aria-hidden="true">
@@ -926,7 +927,7 @@
           <path d="M50 57 q-2 -4 0 -8" stroke="#3a2a1a" stroke-width="1.6" fill="none"/>
         </svg>
       </button>
-      <div class="actions"><button class="btn saffron" id="lightBtn" data-en="🪔 Light a Diya">🪔 दीप जलाएँ</button></div>
+      <div class="actions"><button class="btn saffron" id="lightBtn" data-en="🪔 Light a Diya" data-bho="🪔 दीया जराईं">🪔 दीप जलाएँ</button></div>
       <p class="deep-msg" id="deepMsg" aria-live="polite"></p>
       <div class="diya-line" id="diyaLine" aria-label="प्रज्वलित दीप"></div>
       <p class="deep-count" id="deepCount"></p>
@@ -938,13 +939,13 @@
     <div class="card reveal">
       <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
       <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
-      <p class="lead gold display" data-en="We hope you and your whole family">आशा हैं आप समस्त परिवार</p>
+      <p class="lead gold display" data-en="We hope you and your whole family" data-bho="आसा बा कि रउआ सभे परिवार">आशा हैं आप समस्त परिवार</p>
       <svg class="heart" style="margin:14px auto"><use href="#heart"/></svg>
-      <p class="lead gold display" data-en="will surely grace the occasion.">संग जरूर पधारेंगे।</p>
+      <p class="lead gold display" data-en="will surely grace the occasion." data-bho="संगे जरूर पधारब।">संग जरूर पधारेंगे।</p>
       <svg class="divider"><use href="#divider"/></svg>
       <div class="actions">
-        <button class="btn saffron" data-open-aarti data-en="🪔 Shri Ganesh Aarti">🪔 श्री गणेश आरती</button>
-        <button class="btn ghost" data-card data-en="📥 Download Invitation">📥 निमंत्रण डाउनलोड करें</button>
+        <button class="btn saffron" data-open-aarti data-en="🪔 Shri Ganesh Aarti" data-bho="🪔 श्री गणेश आरती">🪔 श्री गणेश आरती</button>
+        <button class="btn ghost" data-card data-en="📥 Download Invitation" data-bho="📥 नेवता डाउनलोड करीं">📥 निमंत्रण डाउनलोड करें</button>
       </div>
     </div>
   </section>
@@ -955,7 +956,7 @@
   <div class="credit">Created by <b>Nitish Kumar</b> <i>||</i> Software Engineer</div>
 </footer>
 
-<button id="langBtn" aria-label="भाषा बदलें / Change language" title="हिंदी / English"><span data-l="hi" class="on">हिं</span><span data-l="en">EN</span></button>
+<div id="langBtn" role="group" aria-label="भाषा / Language"><button data-l="hi" class="on" aria-label="हिंदी">हिं</button><button data-l="bho" aria-label="भोजपुरी">भो</button><button data-l="en" aria-label="English">EN</button></div>
 <button class="fab" id="fwFab" aria-label="आतिशबाज़ी" title="आतिशबाज़ी" data-en-aria="Fireworks" hidden>🎆</button>
 <button class="fab" id="dholFab" aria-label="ढोल बजाओ" title="ढोल" data-en-aria="Play the dhol" hidden>🥁</button>
 <canvas id="fwCv" aria-hidden="true"></canvas>
@@ -966,20 +967,20 @@
 <!-- ============ CARD IMAGE ============ -->
 <div id="cardModal" role="dialog" aria-modal="true" aria-label="निमंत्रण कार्ड">
   <button class="close" id="cardClose" aria-label="बंद करें">✕</button>
-  <h2 class="gold display" data-en="📥 Invitation Card">📥 निमंत्रण कार्ड</h2>
-  <p class="hint" data-en="Download it or send it straight to WhatsApp">इसे डाउनलोड करें या सीधे WhatsApp पर भेजें</p>
+  <h2 class="gold display" data-en="📥 Invitation Card" data-bho="📥 नेवता कार्ड">📥 निमंत्रण कार्ड</h2>
+  <p class="hint" data-en="Download it or send it straight to WhatsApp" data-bho="एकरा के डाउनलोड करीं भा सीधे WhatsApp पर भेजीं">इसे डाउनलोड करें या सीधे WhatsApp पर भेजें</p>
   <div class="card-preview"><img id="cardImg" alt="अंकित संग अंजली — शुभ विवाह निमंत्रण कार्ड"><div class="spinner" id="cardSpin">कार्ड बन रहा है…</div></div>
   <div class="actions">
-    <a class="btn saffron" id="cardDownload" download="Ankit-Anjali-Shubh-Vivah-Nimantran.jpg" data-en="📥 Download">📥 डाउनलोड करें</a>
-    <button class="btn ghost" id="cardShare" hidden data-en="💬 WhatsApp / Share">💬 WhatsApp / शेयर करें</button>
+    <a class="btn saffron" id="cardDownload" download="Ankit-Anjali-Shubh-Vivah-Nimantran.jpg" data-en="📥 Download" data-bho="📥 डाउनलोड करीं">📥 डाउनलोड करें</a>
+    <button class="btn ghost" id="cardShare" hidden data-en="💬 WhatsApp / Share" data-bho="💬 WhatsApp / शेयर करीं">💬 WhatsApp / शेयर करें</button>
   </div>
 </div>
 
 <!-- ============ AARTI ============ -->
 <div id="aarti" role="dialog" aria-modal="true" aria-label="श्री गणेश आरती">
   <button class="close" id="aartiClose" aria-label="बंद करें">✕</button>
-  <h2 class="gold" data-en="🪔 Shri Ganesh Aarti 🪔">🪔 श्री गणेश आरती 🪔</h2>
-  <p class="hint" data-en="Move the thali around with your finger, or press “Start Aarti” — with aarti music">थाली को उंगली से घुमाएँ, या “आरती शुरू करें” दबाएँ — आरती संगीत के साथ</p>
+  <h2 class="gold" data-en="🪔 Shri Ganesh Aarti 🪔" data-bho="🪔 श्री गणेश आरती">🪔 श्री गणेश आरती 🪔</h2>
+  <p class="hint" data-en="Move the thali around with your finger, or press “Start Aarti” — with aarti music" data-bho="थाली के अंगुरी से घुमाईं, भा “आरती सुरू करीं” दबाईं — आरती संगीत के संगे">थाली को उंगली से घुमाएँ, या “आरती शुरू करें” दबाएँ — आरती संगीत के साथ</p>
 
   <div class="stage" id="stage">
     <div class="glow"></div>
@@ -1008,9 +1009,9 @@
   <div class="controls">
     <button class="btn saffron" id="aartiToggle">🪔 आरती शुरू करें</button>
     <button class="btn ghost" id="soundBtn" aria-pressed="true">🔊 आरती संगीत</button>
-    <button class="btn ghost" id="bellBtn" data-en="🔔 Bell">🔔 घंटी</button>
-    <button class="btn ghost" id="shankhBtn" data-en="🐚 Shankh">🐚 शंख</button>
-    <button class="btn ghost" id="flowerBtn" data-en="🌸 Flower Shower">🌸 पुष्प वर्षा</button>
+    <button class="btn ghost" id="bellBtn" data-en="🔔 Bell" data-bho="🔔 घंटी">🔔 घंटी</button>
+    <button class="btn ghost" id="shankhBtn" data-en="🐚 Shankh" data-bho="🐚 शंख">🐚 शंख</button>
+    <button class="btn ghost" id="flowerBtn" data-en="🌸 Flower Shower" data-bho="🌸 फूल बरखा">🌸 पुष्प वर्षा</button>
   </div>
 
   <div class="lyrics" id="lyrics">
@@ -1040,25 +1041,36 @@
   /* ---------- language (हिंदी / English) ---------- */
   let lang = 'hi';
   try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('aa-lang') || 'hi'; } catch(e){}
-  if (lang !== 'en') lang = 'hi';
-  const tr = (hi, en) => lang === 'en' ? en : hi;
+  if (!['hi','bho','en'].includes(lang)) lang = 'hi';
+  // Bhojpuri: text made by the script is looked up by its Hindi form
+  const BHO = {"अंकित संग अंजली · शुभ विवाह": "अंकित संग अंजली · शुभ बियाह", "अंकित संग अंजली — शुभ विवाह निमंत्रण": "अंकित संग अंजली — शुभ बियाह के नेवता", "अंकित संग अंजली — शुभ विवाह": "अंकित संग अंजली — शुभ बियाह", "आज शुभ विवाह": "आज शुभ बियाह", "शुभ विवाह": "शुभ बियाह", "शुभ विवाह निमंत्रण": "शुभ बियाह के नेवता", "शुभ विवाह की हार्दिक शुभकामनाएँ!": "शुभ बियाह के ढेर सारा सुभकामना!", "दिन": "दिन", "घंटे": "घंटा", "मिनट": "मिनट", "सेकंड": "सेकंड", "आपने दीप प्रज्वलित किया 🙏": "रउआ दीया जरवनी 🙏", "शुभ! आपके 11 दीपों से मंगल आशीर्वाद 🙏": "शुभ! रउआ 11 दीया से मंगल आसीरबाद 🙏", "यहाँ आपके जलाए दीप दिखेंगे": "इहाँ रउआ जरावल दीया लउकी", "यहाँ खुरचें": "इहाँ खुरचीं", "उंगली से रगड़ें ✨": "अंगुरी से रगड़ीं ✨", "कार्ड बन रहा है…": "कार्ड बन रहल बा…", "कार्ड नहीं बन पाया — कृपया पेज को वेबसाइट लिंक से खोलें।": "कार्ड ना बन पाइल — किरपा करके पेज के वेबसाइट लिंक से खोलीं।", "प्रश्न": "सवाल", "वाह! आप सच्चे बाराती हैं! 🎉": "वाह! रउआ सच्चा बराती बानी! 🎉", "बहुत बढ़िया! शादी में ज़रूर आइए 😊": "बहुत बढ़िया! बियाह में जरूर आईं 😊", "कोई बात नहीं — ऊपर कार्यक्रम देख लीजिए 😄": "कवनो बात ना — ऊपर कार्यक्रम देख लीं 😄", "↺ फिर से खेलें": "↺ फेर से खेलीं", "✅ सही जवाब!": "✅ सही जवाब!", "❌ ओह! सही जवाब हरे रंग में है": "❌ अरे! सही जवाब हरियर रंग में बा", "वाह! कितनी सुंदर रंगोली बनी है! 🙏": "वाह! केतना सुंदर रंगोली बनल बा! 🙏", "⏸ आरती रोकें": "⏸ आरती रोकीं", "🪔 आरती शुरू करें": "🪔 आरती सुरू करीं", "🔊 आरती संगीत": "🔊 आरती संगीत", "🔇 संगीत बंद": "🔇 संगीत बंद", "🥁 ढोल बजाओ": "🥁 ढोल बजाव", "⏹ ढोल रोको": "⏹ ढोल रोक", "विवाह की तस्वीर": "बियाह के फोटो", "📸 विवाह की तस्वीरें जल्द ही यहाँ होंगी…": "📸 बियाह के फोटो जल्दिए इहाँ होई…", "शुभ कार्यक्रम": "शुभ कार्यक्रम", "बारात प्रस्थान: 24-11-2026, दोपहर 2 बजे": "बारात रवाना: 24-11-2026, दुपहरिया 2 बजे", "ग्राम - मुन्शी डिहरी, नटवार, रोहतास से पटना के लिए": "गाँव - मुन्शी डिहरी, नटवार, रोहतास से पटना खातिर", "शुभ तिलक: 21-11-2026 | हल्दी: 22-11-2026 | शुभ विवाह: 24-11-2026 | बारात विदाई: 25-11-2026": "शुभ तिलक: 21-11-2026 | हरदी: 22-11-2026 | शुभ बियाह: 24-11-2026 | बारात बिदाई: 25-11-2026", "🪔 अंकित संग अंजली — शुभ विवाह निमंत्रण 🪔\n": "🪔 अंकित संग अंजली — शुभ बियाह के नेवता 🪔\n", "🪔 अंकित संग अंजली — शुभ विवाह निमंत्रण 🪔\nशुभ विवाह: 24-11-2026 (मंगलवार)\n": "🪔 अंकित संग अंजली — शुभ बियाह के नेवता 🪔\nशुभ बियाह: 24-11-2026 (मंगर)\n", "🙏 धन्यवाद संदेश देखें": "🙏 धन्यवाद संदेस देखीं", "आपके आशीर्वाद के लिए आभार": "रउआ आसीरबाद खातिर आभार"};
+  const BHO_RE = [
+    [/^<b>(\d+)<\/b> दिन शेष$/, '<b>$1</b> दिन बाकी'],
+    [/^🪔 (\d+) परिक्रमा पूर्ण$/, '🪔 $1 परिक्रमा पूरा भइल'],
+    [/^🪔 आपने (\d+) दीप प्रज्वलित किए$/, '🪔 रउआ $1 दीया जरवनी'],
+    [/^💛 आपने (\d+) बार हल्दी लगाई$/, '💛 रउआ $1 बेर हरदी लगवनी'],
+    [/^💛 (\d+) बार हल्दी! दूल्हा-दुल्हन पूरे पीले हो गए 😄$/, '💛 $1 बेर हरदी! दूल्हा-दुलहिन पूरा पियर हो गइलें 😄'],
+  ];
+  const toBho = hi => { if (hi in BHO) return BHO[hi]; for (const [re, rep] of BHO_RE) if (re.test(hi)) return hi.replace(re, rep); return hi; };
+  const tr = (hi, en) => lang === 'en' ? en : lang === 'bho' ? toBho(hi) : hi;
   const langHooks = [];
   function applyLang(){
     document.documentElement.lang = lang;
     document.querySelectorAll('[data-en]').forEach(el => {
       if (el.dataset.hi === undefined) el.dataset.hi = el.innerHTML;
-      el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.hi;
+      el.innerHTML = lang === 'en' ? el.dataset.en : lang === 'bho' ? (el.dataset.bho !== undefined ? el.dataset.bho : toBho(el.dataset.hi)) : el.dataset.hi;
     });
     document.querySelectorAll('[data-en-aria]').forEach(el => {
       if (el.dataset.hiAria === undefined) el.dataset.hiAria = el.getAttribute('aria-label') || '';
-      el.setAttribute('aria-label', lang === 'en' ? el.dataset.enAria : el.dataset.hiAria);
+      el.setAttribute('aria-label', lang === 'en' ? el.dataset.enAria : toBho(el.dataset.hiAria));
     });
-    document.querySelectorAll('#langBtn span').forEach(sp => sp.classList.toggle('on', sp.dataset.l === lang));
+    document.querySelectorAll('#langBtn button').forEach(b => { b.classList.toggle('on', b.dataset.l === lang); b.setAttribute('aria-pressed', String(b.dataset.l === lang)); });
     document.title = tr('अंकित संग अंजली · शुभ विवाह', 'Ankit weds Anjali · Wedding Invitation');
     langHooks.forEach(f => f());
   }
-  document.getElementById('langBtn').addEventListener('click', () => {
-    lang = lang === 'en' ? 'hi' : 'en';
+  document.getElementById('langBtn').addEventListener('click', e => {
+    const b = e.target.closest('button[data-l]'); if (!b || b.dataset.l === lang) return;
+    lang = b.dataset.l;
     try { localStorage.setItem('aa-lang', lang); } catch(e){}
     applyLang();
   });
@@ -1610,6 +1622,7 @@
     // events
     text(tr('शुभ कार्यक्रम','Wedding Events'), 1365, '"Rozha One"', null, 62);
     const ev = EN_ ? [['Shubh Tilak','21 | 11 | 2026','Sat'],['Haldi','22 | 11 | 2026','Sun'],['Wedding','24 | 11 | 2026','Tue'],['Baraat Vidaai','25 | 11 | 2026','Wed']]
+                   : lang === 'bho' ? [['शुभ तिलक','21 | 11 | 2026','सनिचर'],['हरदी','22 | 11 | 2026','एतवार'],['शुभ बियाह','24 | 11 | 2026','मंगर'],['बारात बिदाई','25 | 11 | 2026','बुध']]
                    : [['शुभ तिलक','21 | 11 | 2026','शनिवार'],['हल्दी','22 | 11 | 2026','रविवार'],['शुभ विवाह','24 | 11 | 2026','मंगलवार'],['बारात विदाई','25 | 11 | 2026','बुधवार']];
     ev.forEach(([n, d, wd], i) => {
       const y = 1400 + i*82, main = i === 2;
@@ -1700,14 +1713,14 @@
   /* ---------- quiz ---------- */
   (function quiz(){
     const Q = [
-      { q:['अंकित और अंजली की शादी किस दिन है?','On which day is Ankit & Anjali’s wedding?'],
-        o:[['21 नवम्बर (शनिवार)','21 November (Saturday)'],['24 नवम्बर (मंगलवार)','24 November (Tuesday)'],['25 नवम्बर (बुधवार)','25 November (Wednesday)']], a:1 },
-      { q:['हल्दी की रस्म कब है?','When is the Haldi ceremony?'],
-        o:[['22 नवम्बर (रविवार)','22 November (Sunday)'],['23 नवम्बर (सोमवार)','23 November (Monday)'],['20 नवम्बर (शुक्रवार)','20 November (Friday)']], a:0 },
-      { q:['बारात किस शहर के लिए प्रस्थान करेगी?','Which city will the baraat leave for?'],
-        o:[['रोहतास','Rohtas'],['गया','Gaya'],['पटना','Patna']], a:2 },
-      { q:['बारात किस समय प्रस्थान करेगी?','At what time will the baraat depart?'],
-        o:[['सुबह 10 बजे','10 AM'],['दोपहर 2 बजे','2 PM'],['शाम 6 बजे','6 PM']], a:1 },
+      { q:['अंकित और अंजली की शादी किस दिन है?','On which day is Ankit & Anjali’s wedding?','अंकित आ अंजली के बियाह कवना दिन बा?'],
+        o:[['21 नवम्बर (शनिवार)','21 November (Saturday)','21 नवंबर (सनिचर)'],['24 नवम्बर (मंगलवार)','24 November (Tuesday)','24 नवंबर (मंगर)'],['25 नवम्बर (बुधवार)','25 November (Wednesday)','25 नवंबर (बुध)']], a:1 },
+      { q:['हल्दी की रस्म कब है?','When is the Haldi ceremony?','हरदी के रस्म कब बा?'],
+        o:[['22 नवम्बर (रविवार)','22 November (Sunday)','22 नवंबर (एतवार)'],['23 नवम्बर (सोमवार)','23 November (Monday)','23 नवंबर (सोम)'],['20 नवम्बर (शुक्रवार)','20 November (Friday)','20 नवंबर (सुक)']], a:0 },
+      { q:['बारात किस शहर के लिए प्रस्थान करेगी?','Which city will the baraat leave for?','बारात कवना शहर खातिर रवाना होई?'],
+        o:[['रोहतास','Rohtas','रोहतास'],['गया','Gaya','गया'],['पटना','Patna','पटना']], a:2 },
+      { q:['बारात किस समय प्रस्थान करेगी?','At what time will the baraat depart?','बारात कतना बजे रवाना होई?'],
+        o:[['सुबह 10 बजे','10 AM','बिहान 10 बजे'],['दोपहर 2 बजे','2 PM','दुपहरिया 2 बजे'],['शाम 6 बजे','6 PM','साँझ 6 बजे']], a:1 },
     ];
     const box = $('#quizBox'); let i = 0, score = 0, answered = false;
     function render(){
@@ -1720,7 +1733,7 @@
         $('#qAgain').onclick = () => { i = 0; score = 0; render(); };
         return;
       }
-      const L = lang === 'en' ? 1 : 0, item = Q[i]; answered = false;
+      const L = lang === 'en' ? 1 : lang === 'bho' ? 2 : 0, item = Q[i]; answered = false;
       box.innerHTML = `<div class="q-num">${tr('प्रश्न','Question')} ${i+1} / ${Q.length}</div>
         <div class="q-text display">${item.q[L]}</div>
         <div class="q-opts">${item.o.map((o,k) => `<button class="q-opt" data-k="${k}">${o[L]}</button>`).join('')}</div>
@@ -1831,11 +1844,11 @@
   }
   if (THANKS){
     document.body.classList.add('thanks');
-    const set = (el, hi, en) => { el.dataset.hi = hi; el.dataset.en = en; };
+    const set = (el, hi, en) => { el.dataset.hi = hi; el.dataset.en = en; delete el.dataset.bho; };
     set($('#open'), '🙏 धन्यवाद संदेश देखें', '🙏 See our thank-you note');
     set($('.tap-hint'), 'आपके आशीर्वाद के लिए आभार', 'Grateful for your blessings');
     set($('.cover-content .en'), 'Ankit &amp; Anjali', 'Happily Married');
-    const chip = $('.date-chip'); chip.innerHTML = '24 · 11 · 2026 <i></i> <span data-en="Married 💛">विवाह सम्पन्न 💛</span>';
+    const chip = $('.date-chip'); chip.innerHTML = '24 · 11 · 2026 <i></i> <span data-en="Married 💛" data-bho="बियाह सम्पन्न 💛">विवाह सम्पन्न 💛</span>';
     renderGallery(); langHooks.push(renderGallery);
   }
 
@@ -1879,7 +1892,7 @@
     let resume = false;
     function setUI(){
       const lbl = playing ? tr('⏹ ढोल रोको','⏹ Stop the Dhol') : tr('🥁 ढोल बजाओ','🥁 Play the Dhol');
-      $('#dholBtn').textContent = lbl; $('#dholBtn').dataset.hi = playing ? '⏹ ढोल रोको' : '🥁 ढोल बजाओ'; $('#dholBtn').dataset.en = playing ? '⏹ Stop the Dhol' : '🥁 Play the Dhol';
+      $('#dholBtn').textContent = lbl; delete $('#dholBtn').dataset.bho; $('#dholBtn').dataset.hi = playing ? '⏹ ढोल रोको' : '🥁 ढोल बजाओ'; $('#dholBtn').dataset.en = playing ? '⏹ Stop the Dhol' : '🥁 Play the Dhol';
       big.setAttribute('aria-pressed', String(playing)); $('#dholFab').classList.toggle('on', playing);
     }
     return {
