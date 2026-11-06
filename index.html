@@ -945,6 +945,11 @@
   const $ = s => document.querySelector(s);
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Always start from the top (don't restore the old scroll position on refresh)
+  try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch(e){}
+  const toTop = () => window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  toTop(); addEventListener('load', toTop); addEventListener('pageshow', toTop);
+
   /* ---------- language (हिंदी / English) ---------- */
   let lang = 'hi';
   try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('aa-lang') || 'hi'; } catch(e){}
@@ -1018,6 +1023,7 @@
   $('#open').addEventListener('click', () => {
     if (cover.classList.contains('opening')) return;
     cover.classList.add('opening');
+    toTop();
     try { bell(.25); } catch(e){}
     setTimeout(() => { cover.classList.add('fade'); }, 1500);
     setTimeout(() => { cover.classList.add('hide'); document.body.classList.remove('cover-on'); }, 2300);
