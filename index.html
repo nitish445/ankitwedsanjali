@@ -227,7 +227,7 @@
   .event:hover{transform:translateX(4px);border-color:var(--gold)}
   .event .ic{flex:0 0 48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;
     background:radial-gradient(circle,rgba(247,162,27,.28),rgba(42,10,46,.6));border:1px solid rgba(233,194,122,.5)}
-  .event .name{flex:1;font-family:"Rozha One",serif;font-size:clamp(19px,5vw,24px)}
+  .event .name{flex:1;font-family:"Rozha One",serif;font-size:clamp(19px,5vw,24px);line-height:1.25}
   .event .date{font-size:clamp(15px,4vw,19px);text-align:right}
   .event .date span{display:block;color:var(--muted);font-size:14px}
   .event.main{border-color:var(--gold);background:linear-gradient(90deg,rgba(212,36,94,.25),rgba(94,26,102,.6));box-shadow:0 0 24px rgba(233,194,122,.18)}
@@ -262,6 +262,29 @@
     border:1px solid var(--gold);background:rgba(26,5,32,.88);color:var(--gold);font-size:22px;cursor:pointer;
     display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.4)}
   #music{bottom:16px}
+  #langBtn{position:fixed;top:12px;left:12px;z-index:48;display:flex;border-radius:999px;overflow:hidden;
+    border:1px solid var(--gold);background:rgba(26,5,32,.85);box-shadow:0 4px 16px rgba(0,0,0,.4);padding:0;cursor:pointer}
+  #langBtn span{padding:6px 12px;font-size:14px;color:var(--gold);font-family:"Tiro Devanagari Hindi",serif;line-height:1.4}
+  #langBtn span.on{background:linear-gradient(180deg,var(--gold3),var(--gold) 50%,var(--gold2));color:var(--plum)}
+  html[lang=en] body{font-family:"Cormorant Garamond","Tiro Devanagari Hindi",serif}
+  html[lang=en] .lead,html[lang=en] .note,html[lang=en] .person p{font-weight:600}
+
+  /* light a diya */
+  .big-diya{display:block;margin:8px auto 0;width:150px;height:150px;border:0;background:radial-gradient(circle, rgba(255,170,60,.0), transparent 70%);
+    border-radius:50%;cursor:pointer;transition:transform .2s, background .6s}
+  .big-diya:hover{transform:scale(1.05)}
+  .big-diya svg{width:100%;height:100%}
+  .big-diya .fl{opacity:0;transform-box:fill-box;transform-origin:50% 100%;transform:scale(.2);transition:opacity .5s, transform .6s cubic-bezier(.2,1.6,.4,1)}
+  .big-diya.lit{background:radial-gradient(circle, rgba(255,180,70,.45), rgba(255,140,40,.1) 55%, transparent 70%)}
+  .big-diya.lit .fl{opacity:1;transform:none}
+  .big-diya.lit svg{filter:drop-shadow(0 0 22px rgba(255,170,60,.8))}
+  .deep-msg{min-height:1.8em;margin-top:6px;font-size:clamp(18px,4.8vw,22px);color:var(--gold3);opacity:0;transform:translateY(8px);transition:opacity .5s, transform .5s}
+  .deep-msg.show{opacity:1;transform:none}
+  .diya-line{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;margin-top:10px;min-height:44px;padding:8px;border-top:1px solid rgba(233,194,122,.25);border-bottom:1px solid rgba(233,194,122,.25)}
+  .diya-line svg{width:36px;height:36px;filter:drop-shadow(0 0 8px rgba(255,170,60,.7));animation:join .8s cubic-bezier(.2,1.4,.4,1)}
+  .diya-line .empty{color:var(--muted);font-size:15px;align-self:center}
+  @keyframes join{from{opacity:0;transform:translateY(-40px) scale(1.8)}to{opacity:1;transform:none}}
+  .deep-count{color:var(--muted);font-size:15px;margin-top:8px}
   #music.on{animation:spin 6s linear infinite}
   #aartiFab{bottom:78px;background:radial-gradient(circle,#5a1f00,#2a0a00);border-color:var(--marigold)}
   .fab[hidden]{display:none}
@@ -410,7 +433,7 @@
   <div class="cover-toran" id="coverToran" aria-hidden="true"></div>
 
   <div class="cover-content">
-    <div class="om-line gold display">॥ श्री गणेशाय नमः ॥</div>
+    <div class="om-line gold display" data-en="|| Shri Ganeshaya Namah ||">॥ श्री गणेशाय नमः ॥</div>
     <div class="medallion">
       <div class="disc"></div>
       <div class="halo">
@@ -419,14 +442,14 @@
       </div>
     </div>
     <h1 class="names">
-      <span class="n n1 gold">अंकित</span>
-      <span class="sang gold">संग</span>
-      <span class="n n2 gold">अंजली</span>
+      <span class="n n1 gold" data-en="Ankit">अंकित</span>
+      <span class="sang gold" data-en="weds">संग</span>
+      <span class="n n2 gold" data-en="Anjali">अंजली</span>
     </h1>
-    <div class="en">Ankit &amp; Anjali</div>
+    <div class="en" data-en="Shubh Vivah">Ankit &amp; Anjali</div>
     <div class="date-chip">24 · 11 · 2026 <i></i> <span id="daysLeft">शुभ विवाह</span></div>
-    <button class="btn" id="open">✨ निमंत्रण खोलें</button>
-    <div class="tap-hint">द्वार खोलने के लिए स्पर्श करें</div>
+    <button class="btn" id="open" data-en="✨ Open Invitation">✨ निमंत्रण खोलें</button>
+    <div class="tap-hint" data-en="Tap to open the doors">द्वार खोलने के लिए स्पर्श करें</div>
   </div>
 
   <div class="cover-diyas" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#diya"/></svg><svg viewBox="0 0 100 100"><use href="#diya"/></svg></div>
@@ -444,14 +467,14 @@
         <svg class="ring" aria-hidden="true"><use href="#ring"/></svg>
         <img src="assets/ganesh.webp" alt="श्री गणेश">
       </div>
-      <div class="ganesh-line gold display">॥ श्री गणेशाय नमः ॥</div>
-      <p style="color:var(--muted);font-size:16px;margin-top:4px">वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥</p>
-      <button class="btn saffron" style="margin-top:16px" data-open-aarti>🪔 श्री गणेश आरती करें</button>
+      <div class="ganesh-line gold display" data-en="|| Shri Ganeshaya Namah ||">॥ श्री गणेशाय नमः ॥</div>
+      <p style="color:var(--muted);font-size:16px;margin-top:4px" data-en="Vakratunda Mahakaya Suryakoti Samaprabha,<br>Nirvighnam Kuru Me Deva Sarva-Karyeshu Sarvada.">वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥</p>
+      <button class="btn saffron" style="margin-top:16px" data-open-aarti data-en="🪔 Perform Shri Ganesh Aarti">🪔 श्री गणेश आरती करें</button>
       <svg class="divider"><use href="#divider"/></svg>
-      <h1 class="title-big gold">शुभ विवाह<br>निमंत्रण</h1>
+      <h1 class="title-big gold" data-en="Wedding<br>Invitation">शुभ विवाह<br>निमंत्रण</h1>
       <svg class="divider"><use href="#divider"/></svg>
-      <p class="sub gold display">अंकित <span style="font-size:.7em">संग</span> अंजली</p>
-      <p class="lead" style="margin-top:6px">24 | 11 | 2026 &nbsp;·&nbsp; मंगलवार</p>
+      <p class="sub gold display" data-en="Ankit <span style='font-size:.7em'>&amp;</span> Anjali">अंकित <span style="font-size:.7em">संग</span> अंजली</p>
+      <p class="lead" style="margin-top:6px" data-en="24 | 11 | 2026 &nbsp;·&nbsp; Tuesday">24 | 11 | 2026 &nbsp;·&nbsp; मंगलवार</p>
     </div>
   </section>
 
@@ -462,10 +485,10 @@
       <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
       <div style="font-size:40px">🙏</div>
       <svg class="divider"><use href="#divider"/></svg>
-      <p class="lead">ईश्वर की असीम कृपा से हमारे पुत्र<br>के विवाह की इस शुभ बेला का आगमन हुआ है।<br>जिसमें आप समस्त परिवार सादर आमंत्रित हैं।</p>
+      <p class="lead" data-en="By the infinite grace of God,<br>the auspicious occasion of our son’s wedding has arrived.<br>You and your entire family are cordially invited.">ईश्वर की असीम कृपा से हमारे पुत्र<br>के विवाह की इस शुभ बेला का आगमन हुआ है।<br>जिसमें आप समस्त परिवार सादर आमंत्रित हैं।</p>
       <svg class="divider"><use href="#divider"/></svg>
       <div style="font-size:38px;margin-top:6px">💍</div>
-      <h2 class="sub gold">शादी के बंधन में बंधने जा रहे हैं</h2>
+      <h2 class="sub gold" data-en="are tying the sacred knot">शादी के बंधन में बंधने जा रहे हैं</h2>
     </div>
   </section>
 
@@ -477,18 +500,18 @@
       <div class="monogram"><svg aria-hidden="true"><use href="#ring"/></svg><span>A&amp;A</span></div>
       <div class="couple">
         <div class="person">
-          <h3 class="gold">अंकित</h3>
-          <small>सुपुत्र:</small>
-          <p>श्री नन्द कुमार सिंह एवं<br>श्रीमती चन्द्रावती देवी</p>
+          <h3 class="gold" data-en="Ankit">अंकित</h3>
+          <small data-en="Son of">सुपुत्र:</small>
+          <p data-en="Shri Nand Kumar Singh &amp;<br>Smt. Chandrawati Devi">श्री नन्द कुमार सिंह एवं<br>श्रीमती चन्द्रावती देवी</p>
         </div>
         <div>
           <svg class="heart"><use href="#heart"/></svg>
-          <div class="sang gold">संग</div>
+          <div class="sang gold" data-en="weds">संग</div>
         </div>
         <div class="person">
-          <h3 class="gold">अंजली</h3>
-          <small>सुपुत्री:</small>
-          <p>श्री बिरेन्द्र कुमार एवं<br>श्रीमती सरोज देवी</p>
+          <h3 class="gold" data-en="Anjali">अंजली</h3>
+          <small data-en="Daughter of">सुपुत्री:</small>
+          <p data-en="Shri Birendra Kumar &amp;<br>Smt. Saroj Devi">श्री बिरेन्द्र कुमार एवं<br>श्रीमती सरोज देवी</p>
         </div>
       </div>
       <p class="script" style="margin-top:22px">Ankit weds Anjali</p>
@@ -500,19 +523,19 @@
     <div class="card reveal">
       <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
       <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
-      <h2 class="sub gold">शुभ कार्यक्रम</h2>
+      <h2 class="sub gold" data-en="Wedding Events">शुभ कार्यक्रम</h2>
       <svg class="divider"><use href="#divider"/></svg>
       <div class="events">
-        <div class="event"><div class="ic">🪔</div><div class="name gold">शुभ तिलक</div><div class="date">21 | 11 | 2026<span>शनिवार</span></div></div>
-        <div class="event"><div class="ic">🌼</div><div class="name gold">हल्दी</div><div class="date">22 | 11 | 2026<span>रविवार</span></div></div>
-        <div class="event main"><div class="ic">💍</div><div class="name gold">शुभ विवाह</div><div class="date">24 | 11 | 2026<span>मंगलवार</span></div></div>
-        <div class="event"><div class="ic">🌸</div><div class="name gold">बारात विदाई</div><div class="date">25 | 11 | 2026<span>बुधवार</span></div></div>
+        <div class="event"><div class="ic">🪔</div><div class="name gold" data-en="Shubh Tilak">शुभ तिलक</div><div class="date">21 | 11 | 2026<span data-en="Saturday">शनिवार</span></div></div>
+        <div class="event"><div class="ic">🌼</div><div class="name gold" data-en="Haldi">हल्दी</div><div class="date">22 | 11 | 2026<span data-en="Sunday">रविवार</span></div></div>
+        <div class="event main"><div class="ic">💍</div><div class="name gold" data-en="Wedding">शुभ विवाह</div><div class="date">24 | 11 | 2026<span data-en="Tuesday">मंगलवार</span></div></div>
+        <div class="event"><div class="ic">🌸</div><div class="name gold" data-en="Baraat Vidaai">बारात विदाई</div><div class="date">25 | 11 | 2026<span data-en="Wednesday">बुधवार</span></div></div>
       </div>
       <div class="countdown" id="countdown" aria-live="polite"></div>
       <div class="actions">
-        <a class="btn ghost" id="cal" target="_blank" rel="noopener">📅 कैलेंडर में जोड़ें</a>
-        <a class="btn ghost" id="share" target="_blank" rel="noopener">💬 WhatsApp पर भेजें</a>
-        <button class="btn saffron" data-card>📥 निमंत्रण डाउनलोड करें</button>
+        <a class="btn ghost" id="cal" target="_blank" rel="noopener" data-en="📅 Add to Calendar">📅 कैलेंडर में जोड़ें</a>
+        <a class="btn ghost" id="share" target="_blank" rel="noopener" data-en="💬 Send on WhatsApp">💬 WhatsApp पर भेजें</a>
+        <button class="btn saffron" data-card data-en="📥 Download Invitation">📥 निमंत्रण डाउनलोड करें</button>
       </div>
     </div>
   </section>
@@ -522,10 +545,10 @@
     <div class="card reveal">
       <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
       <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
-      <h2 class="sub gold">-: नोट :-</h2>
+      <h2 class="sub gold" data-en="-: Note :-">-: नोट :-</h2>
       <svg class="divider"><use href="#divider"/></svg>
       <div style="font-size:36px">🐎</div>
-      <p class="note">बारात अपने निवास स्थान<br><strong>ग्राम&nbsp;-&nbsp;मुन्शी&nbsp;डिहरी, पोस्ट&nbsp;+&nbsp;थाना&nbsp;-&nbsp;नटवार, जिला&nbsp;-&nbsp;रोहतास</strong><br>से <strong>24-11-2026</strong> के <strong>दोपहर 2 बजे</strong><br>पटना के लिए प्रस्थान करेगी।</p>
+      <p class="note" data-en="The baraat will depart from our residence at<br><strong>Village Munshi Dihri, Post + Police Station Natwar, District Rohtas</strong><br>on <strong>24-11-2026</strong> at <strong>2 PM</strong><br>for Patna.">बारात अपने निवास स्थान<br><strong>ग्राम&nbsp;-&nbsp;मुन्शी&nbsp;डिहरी, पोस्ट&nbsp;+&nbsp;थाना&nbsp;-&nbsp;नटवार, जिला&nbsp;-&nbsp;रोहतास</strong><br>से <strong>24-11-2026</strong> के <strong>दोपहर 2 बजे</strong><br>पटना के लिए प्रस्थान करेगी।</p>
     </div>
   </section>
 
@@ -534,10 +557,35 @@
     <div class="card reveal">
       <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
       <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
-      <h2 class="sub gold">निमंत्रण वीडियो</h2>
+      <h2 class="sub gold" data-en="Invitation Video">निमंत्रण वीडियो</h2>
       <div class="video-wrap">
         <video id="vid" src="assets/invitation.mp4" poster="assets/poster.jpg" controls playsinline preload="none"></video>
       </div>
+    </div>
+  </section>
+
+  <!-- 6b. Light a diya -->
+  <section id="deep">
+    <div class="card reveal">
+      <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
+      <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
+      <h2 class="sub gold" data-en="Light a Diya">दीप जलाएँ</h2>
+      <p class="lead" style="color:var(--muted)" data-en="Light a diya for the yagya and bless the couple">यज्ञ के लिए एक दीप जलाएँ और वर-वधू को आशीर्वाद दें</p>
+      <svg class="divider"><use href="#divider"/></svg>
+      <button class="big-diya" id="bigDiya" aria-label="दीप जलाएँ" data-en-aria="Light a diya">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <g class="fl"><ellipse cx="50" cy="40" rx="11" ry="26" fill="url(#flameG)" class="flame"/><ellipse cx="50" cy="50" rx="4" ry="11" fill="#fffbe6" class="flame f2"/></g>
+          <path d="M8 60 Q50 55 92 60 Q85 88 50 90 Q15 88 8 60z" fill="#c8641e"/>
+          <path d="M8 60 Q50 55 92 60 Q50 69 8 60z" fill="#8a3a0c"/>
+          <path d="M18 71 Q50 78 82 71" stroke="#ffcf73" stroke-width="2" fill="none"/>
+          <circle cx="32" cy="76" r="2" fill="#ffcf73"/><circle cx="50" cy="79" r="2" fill="#ffcf73"/><circle cx="68" cy="76" r="2" fill="#ffcf73"/>
+          <path d="M50 57 q-2 -4 0 -8" stroke="#3a2a1a" stroke-width="1.6" fill="none"/>
+        </svg>
+      </button>
+      <div class="actions"><button class="btn saffron" id="lightBtn" data-en="🪔 Light a Diya">🪔 दीप जलाएँ</button></div>
+      <p class="deep-msg" id="deepMsg" aria-live="polite"></p>
+      <div class="diya-line" id="diyaLine" aria-label="प्रज्वलित दीप"></div>
+      <p class="deep-count" id="deepCount"></p>
     </div>
   </section>
 
@@ -546,13 +594,13 @@
     <div class="card reveal">
       <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
       <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
-      <p class="lead gold display">आशा हैं आप समस्त परिवार</p>
+      <p class="lead gold display" data-en="We hope you and your whole family">आशा हैं आप समस्त परिवार</p>
       <svg class="heart" style="margin:14px auto"><use href="#heart"/></svg>
-      <p class="lead gold display">संग जरूर पधारेंगे।</p>
+      <p class="lead gold display" data-en="will surely grace the occasion.">संग जरूर पधारेंगे।</p>
       <svg class="divider"><use href="#divider"/></svg>
       <div class="actions">
-        <button class="btn saffron" data-open-aarti>🪔 श्री गणेश आरती</button>
-        <button class="btn ghost" data-card>📥 निमंत्रण डाउनलोड करें</button>
+        <button class="btn saffron" data-open-aarti data-en="🪔 Shri Ganesh Aarti">🪔 श्री गणेश आरती</button>
+        <button class="btn ghost" data-card data-en="📥 Download Invitation">📥 निमंत्रण डाउनलोड करें</button>
       </div>
     </div>
   </section>
@@ -563,6 +611,7 @@
   <div class="credit">Created by <b>Nitish Kumar</b> <i>||</i> Software Engineer</div>
 </footer>
 
+<button id="langBtn" aria-label="भाषा बदलें / Change language" title="हिंदी / English"><span data-l="hi" class="on">हिं</span><span data-l="en">EN</span></button>
 <button class="fab" id="aartiFab" aria-label="श्री गणेश आरती" title="श्री गणेश आरती" data-open-aarti hidden>🪔</button>
 <button class="fab" id="music" aria-label="संगीत चालू/बंद" title="संगीत" hidden>♪</button>
 <audio id="bgm" src="assets/invitation.mp4" loop preload="none"></audio>
@@ -570,20 +619,20 @@
 <!-- ============ CARD IMAGE ============ -->
 <div id="cardModal" role="dialog" aria-modal="true" aria-label="निमंत्रण कार्ड">
   <button class="close" id="cardClose" aria-label="बंद करें">✕</button>
-  <h2 class="gold display">📥 निमंत्रण कार्ड</h2>
-  <p class="hint">इसे डाउनलोड करें या सीधे WhatsApp पर भेजें</p>
+  <h2 class="gold display" data-en="📥 Invitation Card">📥 निमंत्रण कार्ड</h2>
+  <p class="hint" data-en="Download it or send it straight to WhatsApp">इसे डाउनलोड करें या सीधे WhatsApp पर भेजें</p>
   <div class="card-preview"><img id="cardImg" alt="अंकित संग अंजली — शुभ विवाह निमंत्रण कार्ड"><div class="spinner" id="cardSpin">कार्ड बन रहा है…</div></div>
   <div class="actions">
-    <a class="btn saffron" id="cardDownload" download="Ankit-Anjali-Shubh-Vivah-Nimantran.jpg">📥 डाउनलोड करें</a>
-    <button class="btn ghost" id="cardShare" hidden>💬 WhatsApp / शेयर करें</button>
+    <a class="btn saffron" id="cardDownload" download="Ankit-Anjali-Shubh-Vivah-Nimantran.jpg" data-en="📥 Download">📥 डाउनलोड करें</a>
+    <button class="btn ghost" id="cardShare" hidden data-en="💬 WhatsApp / Share">💬 WhatsApp / शेयर करें</button>
   </div>
 </div>
 
 <!-- ============ AARTI ============ -->
 <div id="aarti" role="dialog" aria-modal="true" aria-label="श्री गणेश आरती">
   <button class="close" id="aartiClose" aria-label="बंद करें">✕</button>
-  <h2 class="gold">🪔 श्री गणेश आरती 🪔</h2>
-  <p class="hint">थाली को उंगली से घुमाएँ, या “आरती शुरू करें” दबाएँ — आरती संगीत के साथ</p>
+  <h2 class="gold" data-en="🪔 Shri Ganesh Aarti 🪔">🪔 श्री गणेश आरती 🪔</h2>
+  <p class="hint" data-en="Move the thali around with your finger, or press “Start Aarti” — with aarti music">थाली को उंगली से घुमाएँ, या “आरती शुरू करें” दबाएँ — आरती संगीत के साथ</p>
 
   <div class="stage" id="stage">
     <div class="glow"></div>
@@ -612,22 +661,22 @@
   <div class="controls">
     <button class="btn saffron" id="aartiToggle">🪔 आरती शुरू करें</button>
     <button class="btn ghost" id="soundBtn" aria-pressed="true">🔊 आरती संगीत</button>
-    <button class="btn ghost" id="bellBtn">🔔 घंटी</button>
-    <button class="btn ghost" id="shankhBtn">🐚 शंख</button>
-    <button class="btn ghost" id="flowerBtn">🌸 पुष्प वर्षा</button>
+    <button class="btn ghost" id="bellBtn" data-en="🔔 Bell">🔔 घंटी</button>
+    <button class="btn ghost" id="shankhBtn" data-en="🐚 Shankh">🐚 शंख</button>
+    <button class="btn ghost" id="flowerBtn" data-en="🌸 Flower Shower">🌸 पुष्प वर्षा</button>
   </div>
 
   <div class="lyrics" id="lyrics">
-    <h3 class="gold">जय गणेश देवा</h3>
-    <p class="refrain">जय गणेश, जय गणेश, जय गणेश देवा।<br>माता जाकी पार्वती, पिता महादेवा॥</p>
-    <p>एक दंत दयावंत, चार भुजा धारी।<br>माथे सिंदूर सोहे, मूसे की सवारी॥</p>
-    <p class="refrain">जय गणेश, जय गणेश, जय गणेश देवा।<br>माता जाकी पार्वती, पिता महादेवा॥</p>
-    <p>पान चढ़े, फल चढ़े, और चढ़े मेवा।<br>लड्डुअन का भोग लगे, संत करें सेवा॥</p>
-    <p class="refrain">जय गणेश, जय गणेश, जय गणेश देवा।<br>माता जाकी पार्वती, पिता महादेवा॥</p>
-    <p>अंधन को आँख देत, कोढ़िन को काया।<br>बांझन को पुत्र देत, निर्धन को माया॥</p>
-    <p class="refrain">जय गणेश, जय गणेश, जय गणेश देवा।<br>माता जाकी पार्वती, पिता महादेवा॥</p>
-    <p>‘सूर’ श्याम शरण आए, सफल कीजे सेवा।<br>माता जाकी पार्वती, पिता महादेवा॥</p>
-    <p class="refrain">जय गणेश, जय गणेश, जय गणेश देवा।<br>माता जाकी पार्वती, पिता महादेवा॥</p>
+    <h3 class="gold" data-en="Jai Ganesh Deva">जय गणेश देवा</h3>
+    <p class="refrain" data-en="Jai Ganesh, Jai Ganesh, Jai Ganesh Deva,<br>Mata Jaki Parvati, Pita Mahadeva.">जय गणेश, जय गणेश, जय गणेश देवा।<br>माता जाकी पार्वती, पिता महादेवा॥</p>
+    <p data-en="Ek Dant Dayavant, Char Bhuja Dhari,<br>Mathe Sindoor Sohe, Muse Ki Savari.">एक दंत दयावंत, चार भुजा धारी।<br>माथे सिंदूर सोहे, मूसे की सवारी॥</p>
+    <p class="refrain" data-en="Jai Ganesh, Jai Ganesh, Jai Ganesh Deva,<br>Mata Jaki Parvati, Pita Mahadeva.">जय गणेश, जय गणेश, जय गणेश देवा।<br>माता जाकी पार्वती, पिता महादेवा॥</p>
+    <p data-en="Paan Chadhe, Phal Chadhe, Aur Chadhe Meva,<br>Ladduan Ka Bhog Lage, Sant Karein Seva.">पान चढ़े, फल चढ़े, और चढ़े मेवा।<br>लड्डुअन का भोग लगे, संत करें सेवा॥</p>
+    <p class="refrain" data-en="Jai Ganesh, Jai Ganesh, Jai Ganesh Deva,<br>Mata Jaki Parvati, Pita Mahadeva.">जय गणेश, जय गणेश, जय गणेश देवा।<br>माता जाकी पार्वती, पिता महादेवा॥</p>
+    <p data-en="Andhan Ko Aankh Det, Kodhin Ko Kaya,<br>Baanjhan Ko Putra Det, Nirdhan Ko Maya.">अंधन को आँख देत, कोढ़िन को काया।<br>बांझन को पुत्र देत, निर्धन को माया॥</p>
+    <p class="refrain" data-en="Jai Ganesh, Jai Ganesh, Jai Ganesh Deva,<br>Mata Jaki Parvati, Pita Mahadeva.">जय गणेश, जय गणेश, जय गणेश देवा।<br>माता जाकी पार्वती, पिता महादेवा॥</p>
+    <p data-en="‘Soor’ Shyam Sharan Aaye, Safal Keeje Seva,<br>Mata Jaki Parvati, Pita Mahadeva.">‘सूर’ श्याम शरण आए, सफल कीजे सेवा।<br>माता जाकी पार्वती, पिता महादेवा॥</p>
+    <p class="refrain" data-en="Jai Ganesh, Jai Ganesh, Jai Ganesh Deva,<br>Mata Jaki Parvati, Pita Mahadeva.">जय गणेश, जय गणेश, जय गणेश देवा।<br>माता जाकी पार्वती, पिता महादेवा॥</p>
   </div>
 </div>
 
@@ -635,6 +684,32 @@
 (() => {
   const $ = s => document.querySelector(s);
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- language (हिंदी / English) ---------- */
+  let lang = 'hi';
+  try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('aa-lang') || 'hi'; } catch(e){}
+  if (lang !== 'en') lang = 'hi';
+  const tr = (hi, en) => lang === 'en' ? en : hi;
+  const langHooks = [];
+  function applyLang(){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-en]').forEach(el => {
+      if (el.dataset.hi === undefined) el.dataset.hi = el.innerHTML;
+      el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.hi;
+    });
+    document.querySelectorAll('[data-en-aria]').forEach(el => {
+      if (el.dataset.hiAria === undefined) el.dataset.hiAria = el.getAttribute('aria-label') || '';
+      el.setAttribute('aria-label', lang === 'en' ? el.dataset.enAria : el.dataset.hiAria);
+    });
+    document.querySelectorAll('#langBtn span').forEach(sp => sp.classList.toggle('on', sp.dataset.l === lang));
+    document.title = tr('अंकित संग अंजली · शुभ विवाह', 'Ankit weds Anjali · Wedding Invitation');
+    langHooks.forEach(f => f());
+  }
+  document.getElementById('langBtn').addEventListener('click', () => {
+    lang = lang === 'en' ? 'hi' : 'en';
+    try { localStorage.setItem('aa-lang', lang); } catch(e){}
+    applyLang();
+  });
 
   /* ---------- marigold toran ---------- */
   (function buildToran(){
@@ -670,7 +745,8 @@
   function stopMusic(keepWanted){ bgm.pause(); musicBtn.classList.remove('on'); if(!keepWanted) musicWanted=false; }
   document.body.classList.add('cover-on');
   (() => { const d = Math.ceil((new Date('2026-11-24T00:00:00+05:30') - Date.now()) / 864e5);
-    $('#daysLeft').innerHTML = d > 0 ? `<b>${d}</b> दिन शेष` : (d === 0 ? 'आज शुभ विवाह' : 'शुभ विवाह'); })();
+    const setDays = () => { $('#daysLeft').innerHTML = d > 0 ? tr(`<b>${d}</b> दिन शेष`, `<b>${d}</b> days to go`) : (d === 0 ? tr('आज शुभ विवाह','Wedding today') : tr('शुभ विवाह','Shubh Vivah')); };
+    setDays(); langHooks.push(setDays); })();
   $('#open').addEventListener('click', () => {
     if (cover.classList.contains('opening')) return;
     cover.classList.add('opening');
@@ -701,19 +777,22 @@
   const cd = $('#countdown');
   function tick(){
     const d = target - Date.now();
-    if (d <= 0) { cd.innerHTML = '<p class="lead gold display">शुभ विवाह की हार्दिक शुभकामनाएँ!</p>'; return; }
-    const parts = [[Math.floor(d/864e5),'दिन'],[Math.floor(d/36e5)%24,'घंटे'],[Math.floor(d/6e4)%60,'मिनट'],[Math.floor(d/1e3)%60,'सेकंड']];
+    if (d <= 0) { cd.innerHTML = `<p class="lead gold display">${tr('शुभ विवाह की हार्दिक शुभकामनाएँ!','Heartiest wedding wishes!')}</p>`; return; }
+    const parts = [[Math.floor(d/864e5),tr('दिन','Days')],[Math.floor(d/36e5)%24,tr('घंटे','Hours')],[Math.floor(d/6e4)%60,tr('मिनट','Minutes')],[Math.floor(d/1e3)%60,tr('सेकंड','Seconds')]];
     cd.innerHTML = parts.map(([n,l]) => `<div><b class="gold">${n}</b><small>${l}</small></div>`).join('');
   }
   tick(); setInterval(tick, 1000);
 
   /* ---------- calendar + share ---------- */
-  $('#cal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
-    + '&text=' + encodeURIComponent('अंकित संग अंजली — शुभ विवाह')
-    + '&dates=20261124/20261125'
-    + '&details=' + encodeURIComponent('शुभ तिलक: 21-11-2026 | हल्दी: 22-11-2026 | शुभ विवाह: 24-11-2026 | बारात विदाई: 25-11-2026')
-    + '&location=' + encodeURIComponent('पटना');
-  $('#share').href = 'https://wa.me/?text=' + encodeURIComponent('🪔 अंकित संग अंजली — शुभ विवाह निमंत्रण 🪔\nशुभ विवाह: 24-11-2026 (मंगलवार)\n' + location.href);
+  function setLinks(){
+    $('#cal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+      + '&text=' + encodeURIComponent(tr('अंकित संग अंजली — शुभ विवाह','Ankit weds Anjali — Wedding'))
+      + '&dates=20261124/20261125'
+      + '&details=' + encodeURIComponent(tr('शुभ तिलक: 21-11-2026 | हल्दी: 22-11-2026 | शुभ विवाह: 24-11-2026 | बारात विदाई: 25-11-2026','Shubh Tilak: 21-11-2026 | Haldi: 22-11-2026 | Wedding: 24-11-2026 | Baraat Vidaai: 25-11-2026'))
+      + '&location=' + encodeURIComponent(tr('पटना','Patna'));
+    $('#share').href = 'https://wa.me/?text=' + encodeURIComponent(tr('🪔 अंकित संग अंजली — शुभ विवाह निमंत्रण 🪔\nशुभ विवाह: 24-11-2026 (मंगलवार)\n','🪔 Ankit weds Anjali — Wedding Invitation 🪔\nWedding: 24-11-2026 (Tuesday)\n') + location.href);
+  }
+  setLinks(); langHooks.push(setLinks);
 
   /* ---------- background: petals + sparkles ---------- */
   const cv = $('#fx'), ctx = cv.getContext('2d');
@@ -814,7 +893,7 @@
     if (d > Math.PI) d -= 2*Math.PI; if (d < -Math.PI) d += 2*Math.PI;
     travelled += Math.abs(d); lastAngle = angle;
     if (travelled >= 2*Math.PI){ travelled -= 2*Math.PI; rounds++; bell(.3); if (rounds % 3 === 0) burst(12);
-      roundsEl.textContent = `🪔 ${rounds} परिक्रमा पूर्ण`; }
+      roundsEl.textContent = tr(`🪔 ${rounds} परिक्रमा पूर्ण`, `🪔 ${rounds} circles completed`); }
   }
   function loop(){
     if (!aarti.classList.contains('show')) return;
@@ -936,17 +1015,22 @@
   }
   function stopAudio(){ Music.stop(); recorded.pause(); clearInterval(lyricTimer); }
   function start(){
-    running = true; stage.classList.add('lit'); toggle.textContent = '⏸ आरती रोकें';
+    running = true; stage.classList.add('lit'); toggle.textContent = tr('⏸ आरती रोकें','⏸ Stop Aarti');
     bell(); setLine(0);
     if (soundOn) startAudio(); else lyricTimer = setInterval(nextLine, 5200);
   }
   function stop(){
-    running = false; stage.classList.remove('lit'); toggle.textContent = '🪔 आरती शुरू करें';
+    running = false; stage.classList.remove('lit'); toggle.textContent = tr('🪔 आरती शुरू करें','🪔 Start Aarti');
     stopAudio(); clearInterval(lyricTimer);
   }
+  langHooks.push(() => {
+    toggle.textContent = running ? tr('⏸ आरती रोकें','⏸ Stop Aarti') : tr('🪔 आरती शुरू करें','🪔 Start Aarti');
+    soundBtn.textContent = soundOn ? tr('🔊 आरती संगीत','🔊 Aarti Music') : tr('🔇 संगीत बंद','🔇 Music Off');
+    if (rounds) roundsEl.textContent = tr(`🪔 ${rounds} परिक्रमा पूर्ण`, `🪔 ${rounds} circles completed`);
+  });
   soundBtn.addEventListener('click', () => {
     soundOn = !soundOn;
-    soundBtn.textContent = soundOn ? '🔊 आरती संगीत' : '🔇 संगीत बंद';
+    soundBtn.textContent = soundOn ? tr('🔊 आरती संगीत','🔊 Aarti Music') : tr('🔇 संगीत बंद','🔇 Music Off');
     soundBtn.setAttribute('aria-pressed', String(soundOn));
     if (!running) return;
     clearInterval(lyricTimer);
@@ -1073,7 +1157,7 @@
 
   /* ---------- shareable invitation card (canvas → JPG) ---------- */
   const cardModal = $('#cardModal'), cardImg = $('#cardImg'), cardSpin = $('#cardSpin'), cardDl = $('#cardDownload'), cardShare = $('#cardShare');
-  let cardBlob = null, cardUrl = null;
+  let cardBlob = null, cardUrl = null, cardLang = null;
 
   function loadImg(src){ return new Promise(res => { const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = src; }); }
   async function buildCard(){
@@ -1147,23 +1231,25 @@
       x.save(); x.translate(px,py); x.rotate(an+Math.PI/2); x.fillStyle = gold(-10,10); x.beginPath(); x.moveTo(0,-11); x.quadraticCurveTo(8,0,0,11); x.quadraticCurveTo(-8,0,0,-11); x.fill(); x.restore(); }
     if (ganesh) x.drawImage(ganesh, W/2 - gr*1.25, gy - gr*1.25, gr*2.5, gr*2.5);
 
-    text('॥ श्री गणेशाय नमः ॥', 650, '"Rozha One"', null, 46);
+    const EN_ = lang === 'en';
+    text(tr('॥ श्री गणेशाय नमः ॥','|| Shri Ganeshaya Namah ||'), 650, '"Rozha One"', null, 46);
     divider(700);
-    text('शुभ विवाह निमंत्रण', 805, '"Rozha One"', null, 92);
+    text(tr('शुभ विवाह निमंत्रण','Wedding Invitation'), 805, '"Rozha One"', null, 92);
     divider(860);
 
     // couple
-    text('अंकित', 985, '"Rozha One"', null, 112);
-    x.font = '44px "Rozha One"'; x.fillStyle = gold(1010,1050); x.textAlign = 'center'; x.fillText('संग', W/2, 1052);
+    text(tr('अंकित','Ankit'), 985, '"Rozha One"', null, 112);
+    x.font = '44px "Rozha One"'; x.fillStyle = gold(1010,1050); x.textAlign = 'center'; x.fillText(tr('संग','weds'), W/2, 1052);
     // little hearts beside sang
     [[-90],[90]].forEach(([dx]) => { const hx = W/2+dx, hy = 1036; x.fillStyle = gold(hy-14,hy+14); x.beginPath(); x.moveTo(hx, hy+12); x.bezierCurveTo(hx-22, hy-2, hx-10, hy-20, hx, hy-8); x.bezierCurveTo(hx+10, hy-20, hx+22, hy-2, hx, hy+12); x.fill(); });
-    text('अंजली', 1160, '"Rozha One"', null, 112);
-    text('Ankit weds Anjali', 1235, '"Great Vibes"', '#e9c27a', 56);
+    text(tr('अंजली','Anjali'), 1160, '"Rozha One"', null, 112);
+    text(tr('Ankit weds Anjali','Shubh Vivah'), 1235, '"Great Vibes"', '#e9c27a', 56);
     divider(1280);
 
     // events
-    text('शुभ कार्यक्रम', 1365, '"Rozha One"', null, 62);
-    const ev = [['शुभ तिलक','21 | 11 | 2026','शनिवार'],['हल्दी','22 | 11 | 2026','रविवार'],['शुभ विवाह','24 | 11 | 2026','मंगलवार'],['बारात विदाई','25 | 11 | 2026','बुधवार']];
+    text(tr('शुभ कार्यक्रम','Wedding Events'), 1365, '"Rozha One"', null, 62);
+    const ev = EN_ ? [['Shubh Tilak','21 | 11 | 2026','Sat'],['Haldi','22 | 11 | 2026','Sun'],['Wedding','24 | 11 | 2026','Tue'],['Baraat Vidaai','25 | 11 | 2026','Wed']]
+                   : [['शुभ तिलक','21 | 11 | 2026','शनिवार'],['हल्दी','22 | 11 | 2026','रविवार'],['शुभ विवाह','24 | 11 | 2026','मंगलवार'],['बारात विदाई','25 | 11 | 2026','बुधवार']];
     ev.forEach(([n, d, wd], i) => {
       const y = 1400 + i*82, main = i === 2;
       x.fillStyle = main ? 'rgba(212,36,94,.28)' : 'rgba(26,5,32,.5)'; x.strokeStyle = main ? '#e9c27a' : 'rgba(233,194,122,.4)'; x.lineWidth = main ? 2.5 : 1.5;
@@ -1174,8 +1260,8 @@
     });
 
     // baraat note
-    text('बारात प्रस्थान: 24-11-2026, दोपहर 2 बजे', 1782, '"Tiro Devanagari Hindi"', '#fff1c9', 34);
-    text('ग्राम - मुन्शी डिहरी, नटवार, रोहतास से पटना के लिए', 1828, '"Tiro Devanagari Hindi"', '#d8bf93', 30);
+    text(tr('बारात प्रस्थान: 24-11-2026, दोपहर 2 बजे','Baraat departs: 24-11-2026, 2 PM'), 1782, '"Tiro Devanagari Hindi"', '#fff1c9', 34);
+    text(tr('ग्राम - मुन्शी डिहरी, नटवार, रोहतास से पटना के लिए','from Village Munshi Dihri, Natwar, Rohtas for Patna'), 1828, '"Tiro Devanagari Hindi"', '#d8bf93', 30);
     text('Created by Nitish Kumar || Software Engineer', 1872, 'serif', 'rgba(216,191,147,.75)', 20);
 
     return new Promise(res => { try { c.toBlob(b => res(b), 'image/jpeg', .92); } catch(e){ res(null); } });
@@ -1183,20 +1269,52 @@
 
   async function openCard(){
     cardModal.classList.add('show'); document.body.classList.add('locked');
-    if (cardBlob) return;
-    cardSpin.hidden = false;
+    if (cardBlob && cardLang === lang) return;
+    cardSpin.hidden = false; cardSpin.textContent = tr('कार्ड बन रहा है…','Creating your card…'); cardShare.hidden = true;
+    if (cardUrl) URL.revokeObjectURL(cardUrl);
+    cardLang = lang;
     cardBlob = await buildCard();
     cardSpin.hidden = true;
-    if (!cardBlob){ cardSpin.hidden = false; cardSpin.textContent = 'कार्ड नहीं बन पाया — कृपया पेज को वेबसाइट लिंक से खोलें।'; return; }
+    if (!cardBlob){ cardSpin.hidden = false; cardSpin.textContent = tr('कार्ड नहीं बन पाया — कृपया पेज को वेबसाइट लिंक से खोलें।','Could not create the card — please open the page from its website link.'); return; }
     cardUrl = URL.createObjectURL(cardBlob); cardImg.src = cardUrl; cardDl.href = cardUrl;
     const file = new File([cardBlob], 'Ankit-Anjali-Shubh-Vivah-Nimantran.jpg', { type: 'image/jpeg' });
     if (navigator.canShare && navigator.canShare({ files: [file] })){
       cardShare.hidden = false;
-      cardShare.onclick = () => navigator.share({ files: [file], title: 'अंकित संग अंजली — शुभ विवाह निमंत्रण', text: '🪔 अंकित संग अंजली — शुभ विवाह निमंत्रण 🪔\n' + location.href }).catch(() => {});
+      cardShare.onclick = () => navigator.share({ files: [file], title: tr('अंकित संग अंजली — शुभ विवाह निमंत्रण','Ankit weds Anjali — Wedding Invitation'), text: tr('🪔 अंकित संग अंजली — शुभ विवाह निमंत्रण 🪔\n','🪔 Ankit weds Anjali — Wedding Invitation 🪔\n') + location.href }).catch(() => {});
     }
   }
   function closeCard(){ cardModal.classList.remove('show'); if (cover.classList.contains('hide') && !aarti.classList.contains('show')) document.body.classList.remove('locked'); }
   document.querySelectorAll('[data-card]').forEach(b => b.addEventListener('click', openCard));
+
+  /* ---------- light a diya ---------- */
+  const bigDiya = $('#bigDiya'), diyaLine = $('#diyaLine'), deepMsg = $('#deepMsg'), deepCount = $('#deepCount');
+  let lit = 0, lighting = false;
+  try { lit = Math.min(108, parseInt(localStorage.getItem('aa-diyas') || '0', 10) || 0); } catch(e){}
+  const smallDiya = '<svg viewBox="0 0 100 100" aria-hidden="true"><use href="#diya"/></svg>';
+  function renderLine(){
+    diyaLine.innerHTML = lit ? smallDiya.repeat(Math.min(lit, 51)) : `<span class="empty">${tr('यहाँ आपके जलाए दीप दिखेंगे','Your lit diyas will appear here')}</span>`;
+    deepCount.textContent = lit ? tr(`🪔 आपने ${lit} दीप प्रज्वलित किए`, `🪔 You have lit ${lit} diya${lit > 1 ? 's' : ''}`) : '';
+  }
+  function lightDiya(){
+    if (lighting) return; lighting = true;
+    bigDiya.classList.add('lit');
+    try { bell(.18); } catch(e){}
+    setTimeout(() => {
+      lit++; try { localStorage.setItem('aa-diyas', String(lit)); } catch(e){}
+      if (diyaLine.querySelector('.empty')) diyaLine.innerHTML = '';
+      if (lit <= 51) diyaLine.insertAdjacentHTML('beforeend', smallDiya);
+      deepCount.textContent = tr(`🪔 आपने ${lit} दीप प्रज्वलित किए`, `🪔 You have lit ${lit} diya${lit > 1 ? 's' : ''}`);
+      deepMsg.textContent = lit % 11 === 0 ? tr('शुभ! आपके 11 दीपों से मंगल आशीर्वाद 🙏','Shubh! Eleven diyas of blessings 🙏') : tr('आपने दीप प्रज्वलित किया 🙏','You lit a diya 🙏');
+      deepMsg.classList.add('show');
+      if (lit % 11 === 0) burst(30);
+    }, 650);
+    setTimeout(() => { bigDiya.classList.remove('lit'); deepMsg.classList.remove('show'); lighting = false; }, 2600);
+  }
+  bigDiya.addEventListener('click', lightDiya);
+  $('#lightBtn').addEventListener('click', lightDiya);
+  renderLine(); langHooks.push(renderLine);
+
+  applyLang();
   $('#cardClose').addEventListener('click', closeCard);
   addEventListener('keydown', e => { if (e.key === 'Escape' && cardModal.classList.contains('show')) closeCard(); });
 })();

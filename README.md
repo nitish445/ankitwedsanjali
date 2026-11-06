@@ -9,6 +9,12 @@ A single-page wedding invitation for Ankit & Anjali (24 November 2026), built fr
 
 Features: Ganesh opening screen, marigold toran, falling petals, events with countdown, add-to-calendar and WhatsApp share, and an interactive **Shri Ganesh Aarti** mode (rotating aarti thali, bell, shankh, flower shower, and the lyrics of “Jai Ganesh Deva”).
 
+### Hindi / English
+The हिं | EN switch in the top-left corner changes all the text, the aarti lyrics (shown in Roman script) and the downloadable card. The choice is remembered on that phone. To send someone the English version directly, add `?lang=en` to the link.
+
+### दीप जलाएँ (Light a diya)
+Guests tap the diya to light it for the yagya. Each lit diya joins the row below with “आपने दीप प्रज्वलित किया 🙏”, and every 11th diya brings a flower shower. The count is kept on each guest's own phone (there is no server, so diyas from different guests are not added together).
+
 ### Shehnai welcome
 When a guest taps “निमंत्रण खोलें”, a short shehnai tune (about 15 seconds, made in the browser) plays, and then the invitation music starts. The ♪ button stops it.
 
