@@ -15,6 +15,17 @@ The हिं | EN switch in the top-left corner changes all the text, the aarti
 ### दीप जलाएँ (Light a diya)
 Guests tap the diya to light it for the yagya. Each lit diya joins the row below with “आपने दीप प्रज्वलित किया 🙏”, and every 11th diya brings a flower shower. The count is kept on each guest's own phone (there is no server, so diyas from different guests are not added together).
 
+### Fun sections
+- **Varmala**: two marigold garlands slide in and meet as a heart around “अंकित ❤ अंजली” when guests reach the couple.
+- **Letter from the couple**: a handwritten-style letter. The text is a draft; replace it with Ankit & Anjali's own words (search for `letter-body` in `index.html`, Hindi inside the tag, English in `data-en`).
+- **Weather card**: typical late-November weather in Patna with tips (not a live forecast).
+- **Wedding quiz**: 4 questions with a flower shower for right answers.
+- **Scratch card**: scratch the gold foil to reveal “आपका इंतज़ार है!”.
+- **Rangoli maker**: pick colours and tap the pattern, or press “अपने आप भरें”.
+
+### Thank-you page
+From 26 November 2026 the page automatically switches to thank-you mode (“धन्यवाद — आपके आशीर्वाद से विवाह सम्पन्न हुआ”). Preview it any time with `?thanks=1`. To show wedding photos, put them in `assets/photos/` and list them in `THANK_PHOTOS` in `index.html`, e.g. `const THANK_PHOTOS = ['assets/photos/1.jpg', 'assets/photos/2.jpg'];`.
+
 ### Shehnai welcome
 When a guest taps “निमंत्रण खोलें”, a short shehnai tune (about 15 seconds, made in the browser) plays, and then the invitation music starts. The ♪ button stops it.
 

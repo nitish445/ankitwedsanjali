@@ -12,7 +12,7 @@
 <link rel="icon" href="assets/ganesh.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Tiro+Devanagari+Hindi&family=Great+Vibes&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Tiro+Devanagari+Hindi&family=Great+Vibes&family=Cormorant+Garamond:wght@500;600&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#2a0a2e; --bg2:#4a1350; --plum:#3a0d40; --deep:#1a0520;
@@ -269,6 +269,97 @@
   html[lang=en] body{font-family:"Cormorant Garamond","Tiro Devanagari Hindi",serif}
   html[lang=en] .lead,html[lang=en] .note,html[lang=en] .person p{font-weight:600}
 
+  /* varmala */
+  .varmala{position:relative;width:min(70vw,260px);margin:-10px auto 6px}
+  .varmala svg{width:100%;display:block;overflow:visible}
+  .vm-left,.vm-right{transition:transform 1.6s cubic-bezier(.3,1.25,.4,1), opacity .6s}
+  .vm-left{transform:translateX(-150px) rotate(-14deg);opacity:0}
+  .vm-right{transform:translateX(150px) rotate(14deg);opacity:0}
+  .varmala.meet .vm-left,.varmala.meet .vm-right{transform:none;opacity:1}
+  .vm-names{margin-top:4px;text-align:center;font-size:clamp(20px,5.4vw,26px);opacity:0;transform:scale(.7);transition:opacity .8s 1.4s, transform .8s 1.4s}
+  .vm-names b{display:inline-block;color:#e8447a;-webkit-text-fill-color:#e8447a;animation:beat 1.6s ease-in-out infinite}
+  .varmala.meet .vm-names{opacity:1;transform:none}
+
+  /* letter */
+  #letter .letter{position:relative;width:100%;max-width:560px;padding:46px 30px 40px;color:#5a2410;
+    font-family:"Kalam",cursive;font-size:clamp(17px,4.4vw,21px);line-height:1.75;text-align:left;
+    background:
+      linear-gradient(180deg,transparent 33%,rgba(120,70,20,.10) 33.2%,transparent 33.6%,transparent 66%,rgba(120,70,20,.10) 66.2%,transparent 66.6%),
+      radial-gradient(ellipse at 20% 10%,rgba(255,255,255,.6),transparent 50%),
+      radial-gradient(ellipse at 80% 90%,rgba(190,130,60,.25),transparent 55%),
+      #f8ecd2;
+    border-radius:4px;box-shadow:0 24px 60px rgba(0,0,0,.5), inset 0 0 50px rgba(160,100,40,.25);transform:rotate(-1.2deg)}
+  #letter .letter.reveal{transform:rotate(-1.2deg) scaleY(.2);transform-origin:50% 0}
+  #letter .letter.reveal.in{transform:rotate(-1.2deg)}
+  #letter p{margin-bottom:10px}
+  #letter .greet{font-weight:700;font-size:1.1em}
+  #letter .sign{text-align:right;font-weight:700;margin-top:16px;color:#8a1e3c}
+  #letter .letter-body p{opacity:0;transform:translateY(8px);transition:opacity .8s, transform .8s}
+  #letter .letter.in .letter-body p{opacity:1;transform:none}
+  #letter .letter.in .letter-body p:nth-child(2){transition-delay:.6s}
+  #letter .letter.in .letter-body p:nth-child(3){transition-delay:1.2s}
+  #letter .letter.in .letter-body p:nth-child(4){transition-delay:1.8s}
+  .seal{position:absolute;top:-26px;left:50%;margin-left:-32px;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(circle at 35% 30%,#d4245e,#8a0e30 70%);color:#ffd9a0;font-family:"Great Vibes",cursive;font-size:24px;
+    box-shadow:0 4px 10px rgba(0,0,0,.4), inset 0 0 0 4px rgba(255,255,255,.12), inset 0 0 0 7px rgba(0,0,0,.15)}
+
+  /* weather */
+  .wx-main{display:flex;align-items:center;justify-content:center;gap:16px}
+  .wx-ic{font-size:58px;filter:drop-shadow(0 0 18px rgba(255,200,80,.6));animation:breathe 4s ease-in-out infinite}
+  .wx-t{font-size:48px;line-height:1.1;text-align:left}
+  .wx-t small{font-size:.55em}
+  .wx-d{color:var(--muted);font-size:16px;text-align:left}
+  .wx-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}
+  .wx-row div{padding:10px 4px;border-radius:8px;border:1px solid rgba(233,194,122,.3);background:rgba(26,5,32,.5);display:flex;flex-direction:column;align-items:center;line-height:1.4}
+  .wx-row span{font-size:24px}
+  .wx-row b{font-weight:400;color:var(--gold);font-family:"Rozha One",serif}
+  .wx-row i{font-style:normal;font-size:14px;color:var(--muted)}
+  .wx-tips{list-style:none;text-align:left;display:grid;gap:8px}
+  .wx-tips li{padding:10px 14px;border-radius:8px;background:rgba(26,5,32,.45);border-left:3px solid var(--marigold);font-size:clamp(15px,4vw,18px)}
+  .wx-note{margin-top:14px;color:var(--muted);font-size:13px;opacity:.85}
+
+  /* quiz */
+  .q-num{color:var(--muted);font-size:14px}
+  .q-text{font-size:clamp(19px,5vw,24px);margin:6px 0 14px;color:var(--gold3)}
+  .q-opts{display:grid;gap:10px}
+  .q-opt{font:inherit;font-size:clamp(16px,4.3vw,19px);padding:12px 16px;border-radius:10px;cursor:pointer;color:var(--text);
+    background:rgba(26,5,32,.55);border:1px solid rgba(233,194,122,.4);transition:transform .2s, background .3s, border-color .3s}
+  .q-opt:hover{transform:translateY(-2px);border-color:var(--gold)}
+  .q-opt.right{background:rgba(63,143,58,.45);border-color:#8fe08a}
+  .q-opt.wrong{background:rgba(212,36,94,.35);border-color:#ff7aa2;animation:shake .4s}
+  .q-opt:disabled{cursor:default}
+  @keyframes shake{0%,100%{transform:none}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  .q-fb{min-height:1.6em;margin-top:12px;font-size:18px}
+  .q-score{font-size:clamp(26px,7vw,36px)}
+
+  /* scratch */
+  .scratch-wrap{position:relative;width:min(100%,360px);aspect-ratio:5/3.4;margin:16px auto 0;border-radius:12px;overflow:hidden;
+    border:1px solid rgba(233,194,122,.6);background:radial-gradient(circle at 50% 40%,#5e1a66,#2a0a2e);box-shadow:0 12px 36px rgba(0,0,0,.4)}
+  .scratch-msg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px}
+  .scratch-msg .sub{font-size:clamp(24px,6.5vw,32px)}
+  .scratch-msg .lead{font-size:clamp(15px,4vw,18px)}
+  #scratchCv{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab;transition:opacity .8s}
+  #scratchCv.done{opacity:0;pointer-events:none}
+
+  /* rangoli */
+  .palette{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:16px 0 6px}
+  .palette button{width:38px;height:38px;border-radius:50%;cursor:pointer;border:2px solid rgba(255,255,255,.25);box-shadow:inset 0 -4px 8px rgba(0,0,0,.25);transition:transform .2s}
+  .palette button[aria-checked=true]{transform:scale(1.2);border-color:#fff;box-shadow:0 0 0 3px var(--gold), inset 0 -4px 8px rgba(0,0,0,.25)}
+  .rangoli-wrap{width:min(100%,380px);margin:8px auto 0;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#3a1a1a 0%,#2a1210 70%,transparent 72%)}
+  #rangoliSvg{width:100%;height:100%;display:block;touch-action:manipulation}
+  #rangoliSvg .rg{fill:rgba(255,255,255,.03);stroke:#f3e6cf;stroke-width:.9;stroke-dasharray:2.5 2;cursor:pointer;transition:fill .7s ease}
+  #rangoliSvg .rg.filled{stroke-dasharray:none;stroke:rgba(255,255,255,.55)}
+  #rangoliSvg .drop{animation:drop .7s ease-in forwards}
+  @keyframes drop{from{transform:translateY(-26px) scale(1.4);opacity:0}60%{opacity:1}to{transform:none;opacity:0}}
+  .rg-msg{min-height:1.6em;margin-top:8px;font-size:clamp(17px,4.6vw,21px);color:var(--gold3)}
+
+  /* thank-you mode */
+  .thanks-only{display:none}
+  body.thanks .thanks-only{display:flex}
+  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:14px}
+  .gallery img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;border:1px solid rgba(233,194,122,.45)}
+  .gallery .empty{grid-column:1/-1;color:var(--muted);padding:16px;border:1px dashed rgba(233,194,122,.4);border-radius:8px}
+
   /* light a diya */
   .big-diya{display:block;margin:8px auto 0;width:150px;height:150px;border:0;background:radial-gradient(circle, rgba(255,170,60,.0), transparent 70%);
     border-radius:50%;cursor:pointer;transition:transform .2s, background .6s}
@@ -458,6 +549,22 @@
 <main>
   <div class="toran" id="toran" aria-hidden="true"></div>
 
+  <!-- 0. Thank-you (shown after the wedding) -->
+  <section class="thanks-only" id="thanks">
+    <div class="card reveal">
+      <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
+      <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
+      <div style="font-size:46px">🙏</div>
+      <h2 class="title-big gold" data-en="Thank You">धन्यवाद</h2>
+      <svg class="divider"><use href="#divider"/></svg>
+      <p class="lead" data-en="With your blessings, the wedding of<br><strong>Ankit &amp; Anjali</strong><br>was solemnised on 24 November 2026.">आपके आशीर्वाद से<br><strong>अंकित एवं अंजली</strong> का शुभ विवाह<br>24 नवम्बर 2026 को सम्पन्न हुआ।</p>
+      <p class="lead" style="color:var(--muted);margin-top:10px" data-en="Thank you for your presence, love and blessings. 💛">आपकी उपस्थिति, स्नेह और आशीर्वाद के लिए हृदय से आभार। 💛</p>
+      <svg class="divider"><use href="#divider"/></svg>
+      <h3 class="sub gold" data-en="Wedding Memories">विवाह की यादें</h3>
+      <div class="gallery" id="gallery"></div>
+    </div>
+  </section>
+
   <!-- 1. Ganesh + title -->
   <section class="first">
     <div class="card reveal">
@@ -497,7 +604,10 @@
     <div class="card reveal">
       <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
       <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
-      <div class="monogram"><svg aria-hidden="true"><use href="#ring"/></svg><span>A&amp;A</span></div>
+      <div class="varmala" id="varmala" aria-hidden="true">
+        <svg viewBox="-130 -115 260 235"><g class="vm-left" id="vmLeft"></g><g class="vm-right" id="vmRight"></g></svg>
+        <div class="vm-names gold display"><span data-en="Ankit">अंकित</span> <b>❤</b> <span data-en="Anjali">अंजली</span></div>
+      </div>
       <div class="couple">
         <div class="person">
           <h3 class="gold" data-en="Ankit">अंकित</h3>
@@ -515,6 +625,19 @@
         </div>
       </div>
       <p class="script" style="margin-top:22px">Ankit weds Anjali</p>
+    </div>
+  </section>
+
+  <!-- 3b. Letter from the couple -->
+  <section id="letter">
+    <div class="letter reveal">
+      <div class="seal" aria-hidden="true">A&amp;A</div>
+      <div class="letter-body" data-en="<p class='greet'>Dear family &amp; friends,</p><p>Having you with us at the most beautiful moment of our lives is the greatest blessing we could ask for. This new journey begins with your love and good wishes.</p><p>Please come and make our special day even more special with your presence. We will be waiting for you!</p><p class='sign'>With love,<br>Ankit &amp; Anjali</p>">
+        <p class="greet">प्रिय परिवारजन एवं मित्रों,</p>
+        <p>हमारे जीवन के इस सबसे सुंदर पल में आपका साथ हमारे लिए सबसे बड़ा आशीर्वाद है। आपके स्नेह और शुभकामनाओं से ही यह नया सफ़र शुरू हो रहा है।</p>
+        <p>आइए, हमारे इस शुभ दिन को अपनी उपस्थिति से और भी ख़ास बनाइए। आपका इंतज़ार रहेगा!</p>
+        <p class="sign">सप्रेम,<br>अंकित &amp; अंजली</p>
+      </div>
     </div>
   </section>
 
@@ -552,6 +675,31 @@
     </div>
   </section>
 
+  <!-- 5b. Weather -->
+  <section id="weather">
+    <div class="card reveal">
+      <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
+      <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
+      <h2 class="sub gold" data-en="Weather in Patna">पटना का मौसम</h2>
+      <p style="color:var(--muted);font-size:15px" data-en="Typical weather for 21–25 November">21–25 नवम्बर का सामान्य मौसम</p>
+      <svg class="divider"><use href="#divider"/></svg>
+      <div class="wx">
+        <div class="wx-main"><div class="wx-ic">☀️</div><div><div class="wx-t gold display">26° <small>/ 13°</small></div><div class="wx-d" data-en="Day / Night · Clear sky">दिन / रात · साफ़ आसमान</div></div></div>
+        <div class="wx-row">
+          <div><span>🌅</span><b data-en="Morning">सुबह</b><i data-en="Light fog, cool">हल्का कोहरा, ठंडक</i></div>
+          <div><span>☀️</span><b data-en="Day">दिन</b><i data-en="Pleasant sun">सुहानी धूप</i></div>
+          <div><span>🌙</span><b data-en="Night">रात</b><i data-en="Chilly">हल्की ठंड</i></div>
+        </div>
+        <ul class="wx-tips">
+          <li data-en="🧣 Evenings get chilly — carry a shawl or jacket">🧣 शाम को हल्की ठंड — शॉल या जैकेट साथ रखें</li>
+          <li data-en="💧 Sunny afternoons — keep drinking water">💧 दिन में धूप — पानी पीते रहें</li>
+          <li data-en="🚗 Fog in early morning and late night — travel carefully">🚗 सुबह और देर रात कोहरा — यात्रा में सावधानी रखें</li>
+        </ul>
+        <p class="wx-note" data-en="This is the usual weather for this time of year, not a live forecast. Please check the forecast before travelling.">यह इस मौसम का सामान्य अनुमान है, लाइव पूर्वानुमान नहीं। यात्रा से पहले मौसम ज़रूर देख लें।</p>
+      </div>
+    </div>
+  </section>
+
   <!-- 6. Video -->
   <section>
     <div class="card reveal">
@@ -560,6 +708,53 @@
       <h2 class="sub gold" data-en="Invitation Video">निमंत्रण वीडियो</h2>
       <div class="video-wrap">
         <video id="vid" src="assets/invitation.mp4" poster="assets/poster.jpg" controls playsinline preload="none"></video>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6a. Quiz -->
+  <section id="quiz">
+    <div class="card reveal">
+      <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
+      <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
+      <h2 class="sub gold" data-en="Wedding Quiz ❓">शादी क्विज़ ❓</h2>
+      <p style="color:var(--muted);font-size:16px" data-en="How well do you know the wedding plans?">देखें, आपको शादी की कितनी जानकारी है!</p>
+      <svg class="divider"><use href="#divider"/></svg>
+      <div id="quizBox" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- 6a2. Scratch card -->
+  <section id="scratch">
+    <div class="card reveal">
+      <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
+      <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
+      <h2 class="sub gold" data-en="A Surprise for You 🎁">आपके लिए एक सरप्राइज़ 🎁</h2>
+      <p style="color:var(--muted);font-size:16px" data-en="Scratch the gold card with your finger">सुनहरे कार्ड को उंगली से खुरचें</p>
+      <div class="scratch-wrap" id="scratchWrap">
+        <div class="scratch-msg">
+          <div style="font-size:34px">💛</div>
+          <p class="sub gold display" data-en="We are waiting for you!">आपका इंतज़ार है!</p>
+          <p class="lead" data-en="See you at the wedding<br><b>24 November 2026 · Tuesday</b>">मिलते हैं शुभ विवाह में<br><b>24 नवम्बर 2026 · मंगलवार</b></p>
+        </div>
+        <canvas id="scratchCv" aria-label="खुरचने वाला कार्ड" data-en-aria="Scratch card"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6a3. Rangoli -->
+  <section id="rangoli">
+    <div class="card reveal">
+      <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg>
+      <svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
+      <h2 class="sub gold" data-en="Make a Rangoli 🎨">रंगोली बनाएँ 🎨</h2>
+      <p style="color:var(--muted);font-size:16px" data-en="Pick a colour and tap the pattern to drop petals">रंग चुनें और डिज़ाइन पर टैप करके फूल बिखेरें</p>
+      <div class="palette" id="palette" role="radiogroup" aria-label="रंग" data-en-aria="Colours"></div>
+      <div class="rangoli-wrap"><svg id="rangoliSvg" viewBox="-105 -105 210 210" aria-label="रंगोली" data-en-aria="Rangoli"></svg></div>
+      <p class="rg-msg" id="rgMsg" aria-live="polite"></p>
+      <div class="actions">
+        <button class="btn saffron" id="rgAuto" data-en="✨ Fill it for me">✨ अपने आप भरें</button>
+        <button class="btn ghost" id="rgReset" data-en="↺ Start again">↺ फिर से</button>
       </div>
     </div>
   </section>
@@ -745,7 +940,7 @@
   function stopMusic(keepWanted){ bgm.pause(); musicBtn.classList.remove('on'); if(!keepWanted) musicWanted=false; }
   document.body.classList.add('cover-on');
   (() => { const d = Math.ceil((new Date('2026-11-24T00:00:00+05:30') - Date.now()) / 864e5);
-    const setDays = () => { $('#daysLeft').innerHTML = d > 0 ? tr(`<b>${d}</b> दिन शेष`, `<b>${d}</b> days to go`) : (d === 0 ? tr('आज शुभ विवाह','Wedding today') : tr('शुभ विवाह','Shubh Vivah')); };
+    const setDays = () => { if (!$('#daysLeft')) return; $('#daysLeft').innerHTML = d > 0 ? tr(`<b>${d}</b> दिन शेष`, `<b>${d}</b> days to go`) : (d === 0 ? tr('आज शुभ विवाह','Wedding today') : tr('शुभ विवाह','Shubh Vivah')); };
     setDays(); langHooks.push(setDays); })();
   $('#open').addEventListener('click', () => {
     if (cover.classList.contains('opening')) return;
@@ -1313,6 +1508,170 @@
   bigDiya.addEventListener('click', lightDiya);
   $('#lightBtn').addEventListener('click', lightDiya);
   renderLine(); langHooks.push(renderLine);
+
+  /* ---------- varmala ---------- */
+  (function buildVarmala(){
+    const heart = t => [16*Math.pow(Math.sin(t),3)*6, -(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t))*6 + 6];
+    const half = (from, to) => {
+      let g = ''; const n = 22;
+      for (let i = 0; i <= n; i++){
+        const [x,y] = heart(from + (to-from)*i/n), c = i % 2 ? 'url(#mari)' : 'url(#mari2)';
+        g += i % 6 === 3 ? `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="9" fill="#d4245e"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4" fill="#ff7aa2"/>`
+                         : `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="8" fill="${c}"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="#c25a00" opacity=".45"/>`;
+        if (i % 4 === 1){ const [x2,y2] = heart(from + (to-from)*(i+.5)/n); g += `<ellipse cx="${((x+x2)/2*1.12).toFixed(1)}" cy="${((y+y2)/2*1.08).toFixed(1)}" rx="3.5" ry="8" fill="#3f8f3a" transform="rotate(${(i*16)%360} ${((x+x2)/2*1.12).toFixed(1)} ${((y+y2)/2*1.08).toFixed(1)})"/>`; }
+      }
+      return g;
+    };
+    $('#vmLeft').innerHTML = half(Math.PI, 2*Math.PI);
+    $('#vmRight').innerHTML = half(0, Math.PI);
+    const vm = $('#varmala');
+    new IntersectionObserver((es, ob) => es.forEach(e => {
+      if (!e.isIntersecting) return; ob.disconnect();
+      setTimeout(() => { vm.classList.add('meet'); setTimeout(() => { try { bell(.12); } catch(err){} burst(16); }, 1500); }, 300);
+    }), { threshold: .6 }).observe(vm);
+  })();
+
+  /* ---------- quiz ---------- */
+  (function quiz(){
+    const Q = [
+      { q:['अंकित और अंजली की शादी किस दिन है?','On which day is Ankit & Anjali’s wedding?'],
+        o:[['21 नवम्बर (शनिवार)','21 November (Saturday)'],['24 नवम्बर (मंगलवार)','24 November (Tuesday)'],['25 नवम्बर (बुधवार)','25 November (Wednesday)']], a:1 },
+      { q:['हल्दी की रस्म कब है?','When is the Haldi ceremony?'],
+        o:[['22 नवम्बर (रविवार)','22 November (Sunday)'],['23 नवम्बर (सोमवार)','23 November (Monday)'],['20 नवम्बर (शुक्रवार)','20 November (Friday)']], a:0 },
+      { q:['बारात किस शहर के लिए प्रस्थान करेगी?','Which city will the baraat leave for?'],
+        o:[['रोहतास','Rohtas'],['गया','Gaya'],['पटना','Patna']], a:2 },
+      { q:['बारात किस समय प्रस्थान करेगी?','At what time will the baraat depart?'],
+        o:[['सुबह 10 बजे','10 AM'],['दोपहर 2 बजे','2 PM'],['शाम 6 बजे','6 PM']], a:1 },
+    ];
+    const box = $('#quizBox'); let i = 0, score = 0, answered = false;
+    function render(){
+      if (i >= Q.length){
+        const msg = score === Q.length ? tr('वाह! आप सच्चे बाराती हैं! 🎉','Wow! You are a true baraati! 🎉')
+                  : score >= 2 ? tr('बहुत बढ़िया! शादी में ज़रूर आइए 😊','Well done! Do come to the wedding 😊')
+                  : tr('कोई बात नहीं — ऊपर कार्यक्रम देख लीजिए 😄','No worries — check the events above 😄');
+        box.innerHTML = `<div class="q-score gold display">${score} / ${Q.length}</div><p class="lead" style="margin:8px 0 16px">${msg}</p>
+          <button class="btn ghost" id="qAgain">${tr('↺ फिर से खेलें','↺ Play again')}</button>`;
+        $('#qAgain').onclick = () => { i = 0; score = 0; render(); };
+        return;
+      }
+      const L = lang === 'en' ? 1 : 0, item = Q[i]; answered = false;
+      box.innerHTML = `<div class="q-num">${tr('प्रश्न','Question')} ${i+1} / ${Q.length}</div>
+        <div class="q-text display">${item.q[L]}</div>
+        <div class="q-opts">${item.o.map((o,k) => `<button class="q-opt" data-k="${k}">${o[L]}</button>`).join('')}</div>
+        <div class="q-fb" id="qFb"></div>`;
+      box.querySelectorAll('.q-opt').forEach(b => b.onclick = () => {
+        if (answered) return; answered = true;
+        const k = +b.dataset.k, ok = k === item.a, all = box.querySelectorAll('.q-opt');
+        all.forEach(x => x.disabled = true);
+        all[item.a].classList.add('right');
+        if (ok){ score++; burst(18); try { bell(.15); } catch(e){} $('#qFb').textContent = tr('✅ सही जवाब!','✅ Correct!'); }
+        else { b.classList.add('wrong'); $('#qFb').textContent = tr('❌ ओह! सही जवाब हरे रंग में है','❌ Oops! The right answer is in green'); }
+        setTimeout(() => { i++; render(); }, 1700);
+      });
+    }
+    render(); langHooks.push(() => { if (!answered || i >= Q.length) render(); });
+  })();
+
+  /* ---------- scratch card ---------- */
+  (function scratch(){
+    const cv = $('#scratchCv'), wrap = $('#scratchWrap'); let x, done = false, drawing = false, moves = 0, last = null;
+    function paint(){
+      const r = wrap.getBoundingClientRect(), dpr = Math.min(2, devicePixelRatio || 1);
+      cv.width = Math.max(1, r.width * dpr); cv.height = Math.max(1, r.height * dpr);
+      x = cv.getContext('2d'); x.setTransform(dpr,0,0,dpr,0,0);
+      const W = r.width, H = r.height, g = x.createLinearGradient(0,0,W,H);
+      g.addColorStop(0,'#b8862f'); g.addColorStop(.3,'#f5d98f'); g.addColorStop(.5,'#c99a3e'); g.addColorStop(.75,'#f7e2a6'); g.addColorStop(1,'#a87422');
+      x.globalCompositeOperation = 'source-over'; x.fillStyle = g; x.fillRect(0,0,W,H);
+      for (let k = 0; k < 140; k++){ x.fillStyle = `rgba(255,255,240,${Math.random()*.5})`; x.beginPath(); x.arc(Math.random()*W, Math.random()*H, Math.random()*1.6, 0, 6.28); x.fill(); }
+      x.fillStyle = '#5a2a00'; x.textAlign = 'center'; x.textBaseline = 'middle';
+      x.font = `${Math.round(W/9)}px "Rozha One"`; x.fillText('🎁', W/2, H*.33);
+      x.font = `${Math.round(W/14)}px "Rozha One"`; x.fillText(tr('यहाँ खुरचें','Scratch here'), W/2, H*.6);
+      x.font = `${Math.round(W/24)}px "Tiro Devanagari Hindi"`; x.fillText(tr('उंगली से रगड़ें ✨','Rub with your finger ✨'), W/2, H*.78);
+    }
+    function pos(e){ const r = cv.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; }
+    function scr(p){
+      x.globalCompositeOperation = 'destination-out'; x.lineCap = 'round'; x.lineJoin = 'round'; x.lineWidth = Math.max(28, cv.clientWidth/9);
+      x.beginPath(); x.moveTo(...(last || p)); x.lineTo(...p); x.stroke(); last = p;
+      if (++moves % 12 === 0) check();
+    }
+    function check(){
+      const d = x.getImageData(0,0,cv.width,cv.height).data; let clear = 0, tot = 0;
+      for (let k = 3; k < d.length; k += 4*24){ tot++; if (d[k] < 40) clear++; }
+      if (clear / tot > .5){ done = true; cv.classList.add('done'); burst(30); try { bell(.2); } catch(e){} }
+    }
+    cv.addEventListener('pointerdown', e => { if (done) return; drawing = true; cv.setPointerCapture(e.pointerId); last = null; scr(pos(e)); });
+    cv.addEventListener('pointermove', e => { if (drawing && !done) scr(pos(e)); });
+    ['pointerup','pointercancel'].forEach(t => cv.addEventListener(t, () => { drawing = false; last = null; if (!done && x) check(); }));
+    const redo = () => { if (!done && !moves) paint(); };
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(paint);
+    addEventListener('resize', redo); langHooks.push(redo);
+  })();
+
+  /* ---------- rangoli ---------- */
+  (function rangoli(){
+    const svg = $('#rangoliSvg'), pal = $('#palette'), msg = $('#rgMsg');
+    const COLORS = ['#f7a21b','#ff7a1a','#d4245e','#e8447a','#ffd84a','#3f8f3a','#2f7fd8','#7b3fc4','#ffffff'];
+    let cur = COLORS[0];
+    pal.innerHTML = COLORS.map((c,k) => `<button role="radio" aria-checked="${k===0}" aria-label="${c}" style="background:${c}" data-c="${c}"></button>`).join('');
+    pal.querySelectorAll('button').forEach(b => b.onclick = () => { cur = b.dataset.c; pal.querySelectorAll('button').forEach(o => o.setAttribute('aria-checked', String(o === b))); });
+    const petal = (r0, r1, w) => `M0 ${-r0} C ${w} ${-(r0+(r1-r0)*.35)} ${w*.8} ${-(r0+(r1-r0)*.8)} 0 ${-r1} C ${-w*.8} ${-(r0+(r1-r0)*.8)} ${-w} ${-(r0+(r1-r0)*.35)} 0 ${-r0} Z`;
+    let html = '<circle r="100" fill="none" stroke="#f3e6cf" stroke-width=".6" stroke-dasharray="1 3"/>';
+    const rings = [[12, petal(62, 98, 17), 0], [12, petal(64, 84, 7), 15], [8, petal(30, 64, 16), 22.5], [8, petal(14, 34, 8), 0]];
+    rings.forEach(([n, d, off], ri) => { for (let k = 0; k < n; k++) html += `<path class="rg" data-ring="${ri}" data-k="${k}" d="${d}" transform="rotate(${off + k*360/n})"/>`; });
+    html += '<circle class="rg" data-ring="4" data-k="0" r="13"/>';
+    for (let k = 0; k < 24; k++){ const a = k*Math.PI/12; html += `<circle cx="${(103*Math.cos(a)).toFixed(1)}" cy="${(103*Math.sin(a)).toFixed(1)}" r="1.6" fill="#f3e6cf" opacity=".7"/>`; }
+    html += '<g id="drops"></g>';
+    svg.innerHTML = html;
+    const regions = [...svg.querySelectorAll('.rg')], drops = svg.querySelector('#drops');
+    let filled = 0, auto = null;
+    function fill(el, color){
+      const was = el.classList.contains('filled');
+      el.style.fill = color; el.classList.add('filled');
+      const b = el.getBBox(), m = el.getCTM(), cx = b.x + b.width/2, cy = b.y + b.height/2;
+      const px = m ? m.a*cx + m.c*cy + m.e : cx, py = m ? m.b*cx + m.d*cy + m.f : cy;
+      const sm = svg.getCTM(), inv = sm ? sm.inverse() : null;
+      const lx = inv ? inv.a*px + inv.c*py + inv.e : px, ly = inv ? inv.b*px + inv.d*py + inv.f : py;
+      for (let k = 0; k < 4; k++){
+        const c = document.createElementNS('http://www.w3.org/2000/svg','ellipse');
+        c.setAttribute('cx', (lx + (Math.random()-.5)*12).toFixed(1)); c.setAttribute('cy', (ly + (Math.random()-.5)*12).toFixed(1));
+        c.setAttribute('rx','3'); c.setAttribute('ry','1.8'); c.setAttribute('fill', color); c.setAttribute('class','drop');
+        c.style.animationDelay = (k*.08)+'s'; c.style.transformBox = 'fill-box'; c.style.transformOrigin = 'center';
+        drops.appendChild(c); c.addEventListener('animationend', () => c.remove());
+      }
+      if (!was){ filled++; if (filled === regions.length) complete(); }
+    }
+    function complete(){ msg.textContent = tr('वाह! कितनी सुंदर रंगोली बनी है! 🙏','Wow! What a beautiful rangoli! 🙏'); burst(36); try { bell(.2); } catch(e){} }
+    svg.addEventListener('click', e => { const el = e.target.closest('.rg'); if (el) fill(el, cur); });
+    $('#rgAuto').onclick = () => {
+      clearInterval(auto);
+      const scheme = [['#d4245e','#f7a21b'],['#ffd84a','#ff7a1a'],['#3f8f3a','#2f7fd8'],['#e8447a','#7b3fc4'],['#ffffff']];
+      const todo = regions.filter(r => !r.classList.contains('filled')).sort((a,b) => (+b.dataset.ring) - (+a.dataset.ring));
+      auto = setInterval(() => { const el = todo.shift(); if (!el){ clearInterval(auto); return; }
+        const sc = scheme[+el.dataset.ring]; fill(el, sc[(+el.dataset.k) % sc.length]); }, 70);
+    };
+    $('#rgReset').onclick = () => { clearInterval(auto); regions.forEach(r => { r.classList.remove('filled'); r.style.fill = ''; }); filled = 0; msg.textContent = ''; };
+    langHooks.push(() => { if (filled === regions.length) msg.textContent = tr('वाह! कितनी सुंदर रंगोली बनी है! 🙏','Wow! What a beautiful rangoli! 🙏'); });
+  })();
+
+  /* ---------- thank-you mode (after the wedding) ---------- */
+  // Add wedding photos here later, e.g. 'assets/photos/1.jpg'
+  const THANK_PHOTOS = [];
+  const THANKS = (() => { try { const q = new URLSearchParams(location.search).get('thanks'); if (q === '0') return false; if (q === '1') return true; } catch(e){}
+    return Date.now() >= new Date('2026-11-26T00:00:00+05:30').getTime(); })();
+  function renderGallery(){
+    $('#gallery').innerHTML = THANK_PHOTOS.length
+      ? THANK_PHOTOS.map((src,k) => `<img src="${src}" alt="${tr('विवाह की तस्वीर','Wedding photo')} ${k+1}" loading="lazy">`).join('')
+      : `<div class="empty">${tr('📸 विवाह की तस्वीरें जल्द ही यहाँ होंगी…','📸 Wedding photos will be added here soon…')}</div>`;
+  }
+  if (THANKS){
+    document.body.classList.add('thanks');
+    const set = (el, hi, en) => { el.dataset.hi = hi; el.dataset.en = en; };
+    set($('#open'), '🙏 धन्यवाद संदेश देखें', '🙏 See our thank-you note');
+    set($('.tap-hint'), 'आपके आशीर्वाद के लिए आभार', 'Grateful for your blessings');
+    set($('.cover-content .en'), 'Ankit &amp; Anjali', 'Happily Married');
+    const chip = $('.date-chip'); chip.innerHTML = '24 · 11 · 2026 <i></i> <span data-en="Married 💛">विवाह सम्पन्न 💛</span>';
+    renderGallery(); langHooks.push(renderGallery);
+  }
 
   applyLang();
   $('#cardClose').addEventListener('click', closeCard);
